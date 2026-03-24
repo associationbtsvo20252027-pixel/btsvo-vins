@@ -1,0 +1,23 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+
+# Variables d'environnement — À DÉFINIR dans Netlify Dashboard > Site settings > Environment variables
+# SUPABASE_URL        = https://xxxxxxx.supabase.co
+# SUPABASE_ANON_KEY   = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+# RESEND_API_KEY      = re_xxxxxxxxxxxx
+# ASSO_EMAIL          = associationbtsvo2025.2027@gmail.com
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
