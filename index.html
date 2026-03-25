@@ -4,38 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Association BTS VO — Millésime 2025-2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bx:#8B1A2E;--bxd:#5C0F1E;--or:#B8963E;--orl:#D4B068;--cr:#F8F4EE;--crd:#EDE6D9;--tx:#1A1008;--txm:#6B5B4E;--wh:#FFF;--r:16px;--rs:10px;--sh:0 2px 16px rgba(90,20,10,.09);--shl:0 8px 40px rgba(90,20,10,.16)}
+:root{--bx:#2E5FBF;--bxd:#1B3A6B;--or:#4A7FE8;--orl:#7B9FF8;--cr:#F8F4EE;--crd:#EDE6D9;--tx:#1A1008;--txm:#6B5B4E;--wh:#FFF;--r:16px;--rs:10px;--sh:0 2px 16px rgba(90,20,10,.09);--shl:0 8px 40px rgba(90,20,10,.16)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Jost',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.2}
+body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
 header{background:var(--bxd);color:#fff;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:76px;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--or)}
 .logo{display:flex;align-items:center;gap:16px;cursor:pointer}
 .logo-text h1{font-size:1.22rem;font-weight:400;color:var(--orl);letter-spacing:.07em;line-height:1.2}
 .logo-text p{font-size:.7rem;font-weight:300;color:rgba(255,255,255,.6);letter-spacing:.16em;text-transform:uppercase;margin-top:2px}
 .hright{display:flex;align-items:center;gap:1rem}
-.map-btn{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2);border-radius:var(--rs);padding:9px 18px;font-family:'Jost',sans-serif;font-size:.84rem;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap}
+.map-btn{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2);border-radius:var(--rs);padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:.84rem;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap}
 .map-btn:hover{background:rgba(255,255,255,.2);color:#fff}
-.cart-btn{background:var(--or);color:var(--bxd);border:none;border-radius:var(--rs);padding:9px 22px;font-family:'Jost',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s}
-.cart-btn:hover{background:var(--orl)}
-.cart-count{background:var(--bx);color:#fff;border-radius:50%;width:21px;height:21px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.cart-btn{background:rgba(255,255,255,.18);color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:var(--rs);padding:9px 22px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;backdrop-filter:blur(4px)}
+.cart-btn:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.7)}
+.cart-count{background:rgba(255,255,255,.3);color:#fff;border-radius:50%;width:21px;height:21px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
 .hero-banner{width:100%;height:240px;overflow:hidden;background:var(--bxd);display:flex;align-items:center;justify-content:center;position:relative}
 .hero-ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.2)}
 .hero-ph p{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
-.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(92,15,30,.2),rgba(92,15,30,.6));display:flex;align-items:flex-end;padding:2.2rem 2.5rem}
-.hero-tag{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.92);letter-spacing:.02em;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,37,72,.55) 0%,transparent 60%);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:2rem 2.5rem}
+.hero-tag{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;font-style:italic;color:#6B8FE8;letter-spacing:.06em;text-shadow:0 2px 12px rgba(0,0,0,.35);line-height:1.2}.hero-sub{font-size:.78rem;font-weight:400;color:rgba(255,255,255,.7);letter-spacing:.14em;text-transform:uppercase;margin-top:.35rem;font-style:normal;font-family:'DM Sans',sans-serif;text-shadow:0 1px 6px rgba(0,0,0,.3)}
 nav.pills{background:var(--crd);padding:.9rem 2.5rem;display:flex;align-items:center;gap:.55rem;overflow-x:auto;border-bottom:1px solid rgba(139,26,46,.1);flex-wrap:wrap}
-.pill{background:#fff;border:1px solid rgba(139,26,46,.18);border-radius:30px;padding:6px 17px;font-family:'Jost',sans-serif;font-size:.83rem;letter-spacing:.02em;cursor:pointer;color:var(--txm);transition:all .18s;white-space:nowrap}
+.pill{background:#fff;border:1px solid rgba(139,26,46,.18);border-radius:30px;padding:6px 17px;font-family:'DM Sans',sans-serif;font-size:.83rem;letter-spacing:.02em;cursor:pointer;color:var(--txm);transition:all .18s;white-space:nowrap}
 .pill:hover{border-color:var(--bx);color:var(--bx)}
 .pill.on{background:var(--bx);color:#fff;border-color:var(--bx);font-weight:500}
 main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .catsec{margin-bottom:3.5rem}
-.cattitle{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;font-style:italic;color:var(--bxd);margin-bottom:.4rem;display:flex;align-items:center;gap:14px;letter-spacing:.01em}
+.cattitle{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:300;font-style:italic;color:var(--bxd);margin-bottom:.4rem;display:flex;align-items:center;gap:14px;letter-spacing:.01em}
 .cattitle::before{content:'';display:block;width:3px;height:30px;background:var(--or);border-radius:2px;flex-shrink:0}
 .catdesc{font-size:.87rem;color:var(--txm);margin-bottom:1.4rem;padding-left:17px;font-style:italic;line-height:1.65}
 .subcatsec{margin-bottom:2.2rem}
-.subcattitle{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--bx);margin-bottom:1rem;padding:.45rem 0 .45rem 17px;border-bottom:1px dashed rgba(184,150,62,.4);letter-spacing:.01em}
+.subcattitle{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--bx);margin-bottom:1rem;padding:.45rem 0 .45rem 17px;border-bottom:1px dashed rgba(184,150,62,.4);letter-spacing:.01em}
 .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.6rem}
 .wcard{background:var(--wh);border-radius:var(--r);overflow:hidden;border:1px solid rgba(139,26,46,.08);box-shadow:var(--sh);cursor:pointer;transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column}
 .wcard:hover{transform:translateY(-5px);box-shadow:var(--shl)}
@@ -46,18 +46,18 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .cr2{background:#f9e8e8;color:#7a1525}.cb2{background:#fdf8e8;color:#5a4d10}.cros{background:#fce8f0;color:#7a1f48}.ceff{background:#e8f0fc;color:#1a3a70}.cliq{background:#f8f0e8;color:#6a3a08}
 .winfo{padding:1rem 1.2rem .6rem;flex:1;display:flex;flex-direction:column;gap:.3rem}
 .wapp{font-size:.71rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
-.wnom{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:600;color:var(--bxd);line-height:1.25}
+.wnom{font-family:'Playfair Display',serif;font-size:1.18rem;font-weight:600;color:var(--bxd);line-height:1.25}
 .wmil{font-size:.8rem;color:var(--txm);letter-spacing:.01em}
 .wlab{font-size:.74rem;color:#5A7A99;font-style:italic}
-.wpri{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--bx);margin-top:auto;padding-top:.6rem}
+.wpri{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--bx);margin-top:auto;padding-top:.6rem}
 .wcr{display:flex;align-items:center;gap:7px;padding:0 1.2rem 1rem}
 .qbtn{width:30px;height:30px;border:1px solid rgba(139,26,46,.22);border-radius:50%;background:none;font-size:1.05rem;cursor:pointer;color:var(--bx);display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
 .qbtn:hover{background:var(--bx);color:#fff}
-.qinp{width:40px;text-align:center;border:1px solid rgba(139,26,46,.2);border-radius:8px;padding:5px;font-size:.9rem;font-family:'Jost',sans-serif;color:var(--tx)}
-.abtn2{flex:1;background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:8px 0;font-family:'Jost',sans-serif;font-size:.83rem;font-weight:500;letter-spacing:.02em;cursor:pointer;transition:background .2s}
+.qinp{width:40px;text-align:center;border:1px solid rgba(139,26,46,.2);border-radius:8px;padding:5px;font-size:.9rem;font-family:'DM Sans',sans-serif;color:var(--tx)}
+.abtn2{flex:1;background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:8px 0;font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:500;letter-spacing:.02em;cursor:pointer;transition:background .2s}
 .abtn2:hover{background:var(--bxd)}
 .empty{text-align:center;padding:5rem 2rem;color:var(--txm)}
-.empty h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--bx);margin-bottom:.5rem}
+.empty h3{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:300;color:var(--bx);margin-bottom:.5rem}
 /* MODALES */
 .movl{display:none;position:fixed;inset:0;background:rgba(26,16,8,.78);z-index:200;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
 .movl.open{display:flex}
@@ -72,10 +72,10 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .mdi img{width:100%;max-height:240px;object-fit:cover;display:block;border-radius:var(--r)}
 .mr{display:flex;flex-direction:column;gap:.8rem}
 .mapp{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--or)}
-.mnom{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--bxd);line-height:1.1}
+.mnom{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--bxd);line-height:1.1}
 .mtags{display:flex;gap:8px;flex-wrap:wrap;margin:.3rem 0}
 .mtag{background:var(--cr);padding:4px 12px;border-radius:20px;font-size:.76rem;color:var(--txm);border:1px solid rgba(139,26,46,.1)}
-.mpri{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--bx)}
+.mpri{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:600;color:var(--bx)}
 .mdesc{font-size:.88rem;color:var(--txm);line-height:1.75;font-style:italic;border-left:3px solid var(--or);padding-left:1rem}
 .mcrow{display:flex;align-items:center;gap:10px;margin-top:.5rem}
 /* PANIER */
@@ -84,18 +84,18 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .cside{position:fixed;top:0;right:-430px;width:420px;height:100vh;background:var(--wh);z-index:300;transition:right .3s;box-shadow:-8px 0 40px rgba(26,16,8,.2);display:flex;flex-direction:column}
 .cside.open{right:0}
 .chdr{background:var(--bxd);color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--or);flex-shrink:0}
-.chdr h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300}
+.chdr h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300}
 .cclose{background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer}
 .clist{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
 .citem{display:flex;gap:12px;align-items:center;background:var(--cr);border-radius:var(--rs);padding:.75rem}
-.ciinfo{flex:1}.ciname{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--bxd);line-height:1.2}
+.ciinfo{flex:1}.ciname{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--bxd);line-height:1.2}
 .cisub{font-size:.76rem;color:var(--txm);margin-top:1px}.cipri{font-size:.88rem;font-weight:500;color:var(--bx);margin-top:3px}
 .cictr{display:flex;align-items:center;gap:6px}
 .crmbtn{background:none;border:none;color:#c0392b;cursor:pointer;font-size:1rem;margin-left:4px;padding:0}
 .cfoot{padding:1.2rem;border-top:1px solid rgba(139,26,46,.12);flex-shrink:0}
 .ctrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
-.ctlbl{font-size:.9rem;color:var(--txm)}.ctval{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--bx)}
-.ckbtn{width:100%;background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:14px;font-family:'Jost',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s}
+.ctlbl{font-size:.9rem;color:var(--txm)}.ctval{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bx)}
+.ckbtn{width:100%;background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:14px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s}
 .ckbtn:hover{background:var(--bxd)}
 .cempty{text-align:center;padding:3rem 1rem;color:var(--txm);font-size:.9rem}
 /* FORMULAIRE COMMANDE */
@@ -103,46 +103,46 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .fg{margin-bottom:.9rem}
 .fg label{display:block;font-size:.76rem;font-weight:500;color:var(--txm);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase}
-.fg input,.fg select{width:100%;border:1px solid rgba(139,26,46,.2);border-radius:var(--rs);padding:10px 14px;font-family:'Jost',sans-serif;font-size:.93rem;color:var(--tx);background:var(--cr);transition:border-color .2s}
+.fg input,.fg select{width:100%;border:1px solid rgba(139,26,46,.2);border-radius:var(--rs);padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--tx);background:var(--cr);transition:border-color .2s}
 .fg input:focus,.fg select:focus{outline:none;border-color:var(--bx);background:#fff}
 .fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238B1A2E'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer}
 .osbox{background:var(--cr);border-radius:var(--rs);padding:.9rem;margin-bottom:1.2rem;max-height:160px;overflow-y:auto}
 .osline{display:flex;justify-content:space-between;font-size:.83rem;padding:3px 0;border-bottom:1px solid rgba(139,26,46,.06)}
 .osline:last-child{font-weight:500;border:none;padding-top:8px}
 .retrait-box{background:linear-gradient(135deg,rgba(139,26,46,.04),rgba(184,150,62,.06));border:1px solid rgba(184,150,62,.3);border-radius:var(--rs);padding:1rem 1.2rem;margin-bottom:1.2rem}
-.retrait-box h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--bxd);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.retrait-box h4{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--bxd);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
 .retrait-box p{font-size:.82rem;color:var(--txm);line-height:1.65}
-.ville-pill{background:#fff;border:1px solid rgba(139,26,46,.22);border-radius:20px;padding:6px 16px;font-family:'Jost',sans-serif;font-size:.83rem;cursor:pointer;color:var(--txm);transition:all .18s;white-space:nowrap}
+.ville-pill{background:#fff;border:1px solid rgba(139,26,46,.22);border-radius:20px;padding:6px 16px;font-family:'DM Sans',sans-serif;font-size:.83rem;cursor:pointer;color:var(--txm);transition:all .18s;white-space:nowrap}
 .ville-pill:hover{border-color:var(--bx);color:var(--bx)}
 .ville-pill.on{background:var(--bx);color:#fff;border-color:var(--bx);font-weight:500}
-.subbtn{width:100%;background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:14px;font-family:'Jost',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.subbtn{width:100%;background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:14px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s;margin-top:.5rem}
 .subbtn:hover{background:var(--bxd)}
 .subbtn:disabled{opacity:.6;cursor:not-allowed}
 .succbox{text-align:center;padding:2.5rem 2rem}
-.succbox h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--bx);margin:1rem 0 .5rem}
+.succbox h3{font-family:'Playfair Display',serif;font-size:2rem;font-weight:300;color:var(--bx);margin:1rem 0 .5rem}
 .succbox p{color:var(--txm);font-size:.9rem;line-height:1.6}
 /* CARTE */
 .carte-page{display:none;position:fixed;inset:0;background:var(--cr);z-index:150;overflow-y:auto}
 .carte-page.open{display:block}
 .carte-top{background:var(--bxd);color:#fff;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--or);position:sticky;top:0;z-index:10}
-.carte-top h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--orl)}
+.carte-top h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300;color:var(--orl)}
 .carte-body{max-width:960px;margin:0 auto;padding:2rem}
-.carte-subtitle{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:var(--bxd);text-align:center;margin-bottom:.4rem}
+.carte-subtitle{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:var(--bxd);text-align:center;margin-bottom:.4rem}
 .carte-desc{text-align:center;font-size:.85rem;color:var(--txm);margin-bottom:2rem}
 .carte-wrap{position:relative;max-width:600px;margin:0 auto}
 #franceSVG{width:100%;height:auto;border-radius:var(--r);box-shadow:var(--shl)}
 .city-tt{position:absolute;background:var(--bxd);color:#fff;border-radius:var(--rs);padding:.7rem 1.1rem;font-size:.8rem;pointer-events:none;z-index:20;min-width:190px;max-width:240px;box-shadow:var(--shl);display:none;border-top:3px solid var(--or)}
-.city-tt strong{font-family:'Cormorant Garamond',serif;font-size:1.05rem;display:block;margin-bottom:.25rem;color:var(--orl)}
+.city-tt strong{font-family:'Playfair Display',serif;font-size:1.05rem;display:block;margin-bottom:.25rem;color:var(--orl)}
 .ville-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:2rem}
 .ville-card{background:var(--wh);border-radius:var(--rs);padding:1rem 1.1rem;border:1px solid rgba(139,26,46,.1);box-shadow:var(--sh);display:flex;align-items:flex-start;gap:10px}
 .ville-dot-icon{width:32px;height:32px;background:rgba(139,26,46,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.ville-card h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--bxd);margin-bottom:.2rem}
+.ville-card h4{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--bxd);margin-bottom:.2rem}
 .ville-card p{font-size:.8rem;color:var(--txm);line-height:1.4}
 .livr-banner{margin-top:2rem;padding:1.2rem 1.5rem;background:rgba(139,26,46,.06);border-radius:var(--rs);border-left:3px solid var(--or);text-align:center}
 /* ADMIN LOGIN */
 .alogwrap{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,16,8,.93);align-items:center;justify-content:center}
 .alogbox{background:#fff;border-radius:var(--r);padding:2.5rem;width:100%;max-width:380px;text-align:center;box-shadow:var(--shl)}
-.alogbox h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--bxd);margin:1rem 0 .2rem}
+.alogbox h2{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:300;color:var(--bxd);margin:1rem 0 .2rem}
 .alogbox p{color:var(--txm);font-size:.82rem;margin-bottom:1.5rem}
 .logerr{color:#c0392b;font-size:.8rem;margin-top:.5rem;min-height:1.2em}
 .logbtns{display:flex;justify-content:space-between;gap:1rem;margin-top:1.2rem}
@@ -150,22 +150,22 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .apanel{display:none;position:fixed;inset:0;background:#f0ece6;z-index:400;overflow-y:auto}
 .apanel.open{display:block}
 .atop{background:var(--bxd);color:#fff;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--or);position:sticky;top:0;z-index:10}
-.atop h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--orl)}
+.atop h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300;color:var(--orl)}
 .abody{max-width:1100px;margin:0 auto;padding:2rem}
 .atabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
-.atab{background:#fff;border:1px solid rgba(139,26,46,.2);border-radius:var(--rs);padding:9px 20px;font-family:'Jost',sans-serif;font-size:.88rem;cursor:pointer;color:var(--txm);transition:all .2s}
+.atab{background:#fff;border:1px solid rgba(139,26,46,.2);border-radius:var(--rs);padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:.88rem;cursor:pointer;color:var(--txm);transition:all .2s}
 .atab.on{background:var(--bx);color:#fff;border-color:var(--bx)}
 .asec{display:none}.asec.on{display:block}
 .acard{background:#fff;border-radius:var(--r);padding:1.4rem;margin-bottom:1.5rem;border:1px solid rgba(139,26,46,.09)}
-.acard h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--bxd);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(139,26,46,.09)}
+.acard h3{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--bxd);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(139,26,46,.09)}
 .fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:650px){.fg2{grid-template-columns:1fr}}
 .al{display:block;font-size:.76rem;font-weight:500;color:var(--txm);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase}
-.ai{width:100%;border:1px solid rgba(139,26,46,.18);border-radius:var(--rs);padding:9px 12px;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--tx);background:#faf8f5;transition:border-color .2s}
+.ai{width:100%;border:1px solid rgba(139,26,46,.18);border-radius:var(--rs);padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--tx);background:#faf8f5;transition:border-color .2s}
 .ai:focus{outline:none;border-color:var(--bx);background:#fff}
 .aisel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238B1A2E'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
 .ata{min-height:90px;resize:vertical}
-.abtn{background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:9px 22px;font-family:'Jost',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;transition:background .2s}
+.abtn{background:var(--bx);color:#fff;border:none;border-radius:var(--rs);padding:9px 22px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;transition:background .2s}
 .abtn:hover{background:var(--bxd)}
 .abtn-s{background:#fff;color:var(--bx);border:1px solid rgba(139,26,46,.25)}.abtn-s:hover{background:var(--cr)}
 .abtn-d{background:#c0392b}.abtn-d:hover{background:#992020}
@@ -192,7 +192,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .bnzone.hi .rmbn{display:block}
 .sync-bar{display:flex;align-items:center;gap:8px;font-size:.78rem;padding:5px 12px;border-radius:20px;border:1px solid transparent}
 .sync-ok{background:#edfaf4;color:#1a6b45;border-color:#9de0c0}
-.sync-err{background:#fdf0f0;color:#8b1a1a;border-color:#e0a0a0}
+.sync-err{background:#fdf0f0;color:#1a1a6b;border-color:#a0a0e0}
 .sync-loading{background:#fdf8e8;color:#7a6010;border-color:#e0d090}
 .badge-nouveau{background:#e8f4e8;color:#1a6b2a;border:1px solid #9dd0a0;font-size:.66rem;padding:2px 8px;border-radius:20px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
 .badge-limite{background:#fff3e0;color:#b56a00;border:1px solid #f0c070;font-size:.66rem;padding:2px 8px;border-radius:20px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
@@ -227,7 +227,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 <!-- HEADER -->
 <header>
   <div class="logo" onclick="showPage('home')">
-    <div id="logoImgWrap" style="display:none"><img id="logoImg" src="" alt="Logo" style="max-height:44px;max-width:80px;object-fit:contain"></div>
+    <div id="logoImgWrap" style="display:none"><img id="logoImg" src="" alt="Logo" style="max-height:56px;max-width:56px;object-fit:cover;border-radius:50%;border:2px solid var(--orl)"></div>
     <div id="logoSvgWrap">
       <svg width="36" height="80" viewBox="0 0 30 65" fill="none">
         <rect x="9" y="0" width="12" height="16" rx="3" fill="#D4B068"/>
@@ -265,7 +265,8 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
     <img id="heroImg" src="" alt="Bannière" style="width:100%;height:100%;object-fit:cover">
   </div>
   <div class="hero-ov">
-    <p class="hero-tag" id="heroTag">Sélection de vins — Financement du voyage de fin d'études</p>
+    <p class="hero-tag" id="heroTag">Notre sélection</p>
+    <p class="hero-sub">La gamme est vouée à évoluer au cours du temps</p>
   </div>
 </div>
 
@@ -286,19 +287,18 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 <div class="carte-page" id="cartePage">
   <div class="carte-top">
     <h2>Points de retrait</h2>
-    <button onclick="closeCarte()" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:var(--rs);padding:7px 16px;cursor:pointer;font-family:'Jost',sans-serif;font-size:.84rem">✕ Fermer</button>
+    <button onclick="closeCarte()" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:var(--rs);padding:7px 16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.84rem">✕ Fermer</button>
   </div>
   <div class="carte-body">
     <p class="carte-subtitle">Où récupérer votre commande ?</p>
     <p class="carte-desc">Retrouvez nos points de distribution sur la carte ci-dessous.</p>
     <div class="carte-wrap">
-      <svg id="franceSVG" viewBox="0 0 490 520" xmlns="http://www.w3.org/2000/svg">
-        <rect width="490" height="520" fill="#EDE6D9" rx="12"/>
-        <path d="M170 30 L200 20 L230 25 L260 18 L290 22 L320 18 L350 28 L370 45 L390 60 L400 80 L410 100 L415 125 L420 145 L410 165 L420 185 L415 205 L420 225 L415 240 L420 260 L410 280 L405 300 L400 325 L390 345 L380 365 L365 385 L345 405 L330 420 L310 430 L295 445 L275 460 L260 470 L245 460 L230 455 L210 445 L195 430 L175 415 L155 405 L140 390 L125 375 L110 355 L95 335 L85 315 L75 295 L70 275 L65 255 L68 235 L65 215 L70 195 L65 175 L75 155 L80 135 L90 115 L100 95 L115 75 L135 55 L155 40 Z" fill="#C8B89A" stroke="#B0A080" stroke-width="1.5"/>
-        <path d="M65 215 L45 220 L30 225 L20 218 L25 205 L40 198 L60 200 Z" fill="#C8B89A" stroke="#B0A080" stroke-width="1"/>
-        <path d="M80 75 L65 65 L55 55 L60 45 L75 42 L88 50 L90 65 Z" fill="#C8B89A" stroke="#B0A080" stroke-width="1"/>
-        <g id="cityLayer"></g>
-      </svg>
+      <svg id="franceSVG" viewBox="0 0 500 520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="520" fill="#EDE6D9" rx="12"/>
+  <path fill="#C8B89A" stroke="#8B7355" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"
+    d="M 249 12 L 240 18 L 238 52 L 242 59 L 236 58 L 220 73 L 209 75 L 189 84 L 183 96 L 191 100 L 171 110 L 164 106 L 137 102 L 137 98 L 131 91 L 135 86 L 134 84 L 126 82 L 120 86 L 109 81 L 112 84 L 113 98 L 120 110 L 122 121 L 121 137 L 125 140 L 126 144 L 111 146 L 107 142 L 109 140 L 95 144 L 92 140 L 76 148 L 67 130 L 58 128 L 46 130 L 46 135 L 37 135 L 35 139 L 29 134 L 23 134 L 19 137 L 18 135 L 14 137 L 9 136 L 1 142 L 3 143 L 0 147 L 0 152 L 12 151 L 17 153 L 19 157 L 5 156 L 9 160 L 11 158 L 15 159 L 18 164 L 17 167 L 1 170 L 8 171 L 11 174 L 13 184 L 20 183 L 20 180 L 27 181 L 30 185 L 43 188 L 46 192 L 52 194 L 57 199 L 57 202 L 61 198 L 67 200 L 70 198 L 74 201 L 67 203 L 70 206 L 83 206 L 80 218 L 87 221 L 93 218 L 95 220 L 93 222 L 94 225 L 91 227 L 99 235 L 93 242 L 93 246 L 102 255 L 105 265 L 117 272 L 118 275 L 129 278 L 130 282 L 124 285 L 116 280 L 115 282 L 128 287 L 134 293 L 129 306 L 125 305 L 124 296 L 120 295 L 125 304 L 126 314 L 144 328 L 147 340 L 146 349 L 142 335 L 130 321 L 127 327 L 127 343 L 123 369 L 126 366 L 130 373 L 125 372 L 122 378 L 112 430 L 105 442 L 98 445 L 98 448 L 113 452 L 112 460 L 109 462 L 113 465 L 115 461 L 122 467 L 139 471 L 140 475 L 146 481 L 157 477 L 168 487 L 176 484 L 180 488 L 183 486 L 196 487 L 197 477 L 219 487 L 224 486 L 227 490 L 241 492 L 242 498 L 248 501 L 250 506 L 254 508 L 257 504 L 264 503 L 275 509 L 288 501 L 299 503 L 294 489 L 294 469 L 291 467 L 293 463 L 296 465 L 302 458 L 314 453 L 335 438 L 340 440 L 340 442 L 359 443 L 361 445 L 358 447 L 360 449 L 370 448 L 368 446 L 370 444 L 373 444 L 376 448 L 386 449 L 389 447 L 391 455 L 403 456 L 410 465 L 415 462 L 423 463 L 424 460 L 431 461 L 432 458 L 445 454 L 445 450 L 442 449 L 445 444 L 451 442 L 455 433 L 462 431 L 463 426 L 476 420 L 476 413 L 483 404 L 482 398 L 478 397 L 467 400 L 461 396 L 453 393 L 449 387 L 451 383 L 447 379 L 455 366 L 442 356 L 442 350 L 437 346 L 438 343 L 445 342 L 455 336 L 456 326 L 449 320 L 449 314 L 444 313 L 442 309 L 443 302 L 449 300 L 449 294 L 440 283 L 442 277 L 439 273 L 428 272 L 423 276 L 422 274 L 420 275 L 419 279 L 421 281 L 415 286 L 410 287 L 407 283 L 413 280 L 412 261 L 424 250 L 424 240 L 434 234 L 446 215 L 441 213 L 449 206 L 453 210 L 459 210 L 462 206 L 464 200 L 460 194 L 463 181 L 462 169 L 468 159 L 467 154 L 470 139 L 479 130 L 483 119 L 474 116 L 462 117 L 455 111 L 442 114 L 436 109 L 428 112 L 420 97 L 410 94 L 404 97 L 397 96 L 392 92 L 379 94 L 374 85 L 358 78 L 355 68 L 357 59 L 355 58 L 350 69 L 345 71 L 332 70 L 330 67 L 334 65 L 334 61 L 330 59 L 330 56 L 334 54 L 327 48 L 314 49 L 312 40 L 301 39 L 298 37 L 298 29 L 294 24 L 287 28 L 282 28 L 275 21 L 276 12 L 274 8 Z"/>
+  <g id="cityLayer"></g>
+</svg>
       <div class="city-tt" id="cityTT"></div>
     </div>
     <div class="ville-grid" id="villeGrid"></div>
@@ -362,7 +362,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
     <div class="mhdr">
       <div>
         <div style="font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--or)">Commande</div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--bxd)">Finaliser ma commande</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--bxd)">Finaliser ma commande</h3>
       </div>
       <button class="mcls" onclick="closeOM()">✕</button>
     </div>
@@ -374,7 +374,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
           Point de retrait
         </h4>
         <div id="villesBtns" style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.7rem"></div>
-        <input type="text" id="oVilleAutre" placeholder="Autre lieu ou précision…" class="fg" style="width:100%;border:1px solid rgba(139,26,46,.2);border-radius:var(--rs);padding:10px 14px;font-family:'Jost',sans-serif;font-size:.88rem;background:var(--cr)">
+        <input type="text" id="oVilleAutre" placeholder="Autre lieu ou précision…" class="fg" style="width:100%;border:1px solid rgba(139,26,46,.2);border-radius:var(--rs);padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--cr)">
       </div>
       <div class="f2">
         <div class="fg"><label>Prénom *</label><input type="text" id="oPre" placeholder="Prénom"></div>
@@ -439,8 +439,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
       <button class="atab" onclick="swTab('commandes',this)">📋 Commandes</button>
       <button class="atab" onclick="swTab('annonce',this)">Annonce</button>
       <button class="atab" onclick="swTab('villes',this)">Points de retrait</button>
-      <button class="atab" onclick="swTab('banner',this)">Bannière</button>
-      <button class="atab" onclick="swTab('params',this)">Paramètres</button>
+      <button class="atab" id="tabBtnParams" onclick="openParamsLock(this)">Paramètres 🔒</button>
     </div>
 
     <!-- VINS -->
@@ -467,7 +466,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
         <div class="fg2" style="margin-top:1rem">
           <div>
             <label class="al">Photo bouteille — cliquez puis Ctrl+V</label>
-            <div class="ipz" id="zB" onclick="setAZ('zB')" tabindex="0">
+            <div class="ipz" id="zB" onclick="setAZ('zB')" tabindex="0" title="Cliquez puis Ctrl+V pour recadrer">
               <svg width="24" height="50" viewBox="0 0 24 50" fill="none"><rect x="7" y="0" width="10" height="14" rx="3" fill="rgba(139,26,46,.15)"/><rect x="2" y="12" width="20" height="34" rx="8" fill="rgba(139,26,46,.15)"/></svg>
               <span>Cliquer ici puis Ctrl+V</span><span class="hint">pour coller la photo</span>
               <button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>
@@ -476,7 +475,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
           </div>
           <div>
             <label class="al">Photo descriptive — cliquez puis Ctrl+V</label>
-            <div class="ipz" id="zD" onclick="setAZ('zD')" tabindex="0">
+            <div class="ipz" id="zD" onclick="setAZ('zD')" tabindex="0" title="Cliquez puis Ctrl+V pour recadrer">
               <svg width="28" height="22" viewBox="0 0 28 22" fill="none"><rect x="1" y="1" width="26" height="20" rx="3" fill="rgba(139,26,46,.12)"/><circle cx="8" cy="9" r="3" fill="rgba(139,26,46,.2)"/><path d="M1 17l6-5 5 4 5-6 11 8" stroke="rgba(139,26,46,.25)" stroke-width="1.5" stroke-linecap="round"/></svg>
               <span>Cliquer ici puis Ctrl+V</span><span class="hint">pour coller la photo</span>
               <button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>
@@ -491,15 +490,15 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
         <div style="margin-top:1.2rem">
           <label class="al">Options spéciales</label>
           <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:6px">
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#faf8f5;border:1px solid rgba(139,26,46,.15);border-radius:var(--rs);padding:8px 14px">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#faf8f5;border:1px solid rgba(41,82,204,.15);border-radius:var(--rs);padding:8px 14px">
               <input type="checkbox" id="wNouveau" onchange="toggleStockField()" style="accent-color:var(--bx)">
               <span style="font-size:.85rem">🆕 Nouveau vin</span>
             </label>
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#faf8f5;border:1px solid rgba(139,26,46,.15);border-radius:var(--rs);padding:8px 14px">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#faf8f5;border:1px solid rgba(41,82,204,.15);border-radius:var(--rs);padding:8px 14px">
               <input type="checkbox" id="wLimite" onchange="toggleStockField()" style="accent-color:var(--bx)">
               <span style="font-size:.85rem">⏳ Stock limité</span>
             </label>
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#faf8f5;border:1px solid rgba(139,26,46,.15);border-radius:var(--rs);padding:8px 14px">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#faf8f5;border:1px solid rgba(41,82,204,.15);border-radius:var(--rs);padding:8px 14px">
               <input type="checkbox" id="wUnique" style="accent-color:var(--bx)">
               <span style="font-size:.85rem">1️⃣ 1 bouteille / client</span>
             </label>
@@ -507,6 +506,18 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
           <div id="stockField" style="display:none;margin-top:.8rem;max-width:260px">
             <label class="al">Nombre de bouteilles en stock *</label>
             <input type="number" class="ai" id="wStock" placeholder="ex: 24" min="0" step="1">
+          </div>
+          <!-- RATIO EXCLUSIVITÉ -->
+          <div style="margin-top:1rem;background:linear-gradient(135deg,rgba(41,82,204,.04),rgba(41,82,204,.08));border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:1rem 1.2rem">
+            <label class="al" style="margin-bottom:.5rem">🏆 Cuvée exclusive — Ratio d'accès</label>
+            <p style="font-size:.78rem;color:var(--txm);margin-bottom:.8rem;line-height:1.6">
+              Si renseigné, le client doit avoir ce nombre de <strong>bouteilles ordinaires</strong> dans son panier pour pouvoir ajouter 1 bouteille de cette cuvée.<br>
+              Les bouteilles d'autres cuvées exclusives ne comptent pas.
+            </p>
+            <div style="max-width:240px">
+              <label class="al">Ratio (ex: 6 = 6 bouteilles normales pour 1 de celle-ci)</label>
+              <input type="number" class="ai" id="wRatio" placeholder="Laisser vide = pas de ratio" min="1" step="1">
+            </div>
           </div>
         </div>
         <div class="brow">
@@ -520,7 +531,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
           <table class="wtbl">
             <thead><tr>
               <th></th><th>Appellation</th><th>Nom / Cuvée</th><th>Mill.</th>
-              <th>Couleur</th><th>Prix</th><th>Stock</th><th>Visible</th><th>Actions</th>
+              <th>Couleur</th><th>Prix</th><th>Stock</th><th>Ratio</th><th>Visible</th><th>Actions</th>
             </tr></thead>
             <tbody id="wbody"></tbody>
           </table>
@@ -620,30 +631,39 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
       </div>
     </div>
 
-    <!-- BANNIÈRE -->
-    <div class="asec" id="tab-banner">
+    <!-- PARAMÈTRES (bannière + logo + mdp) -->
+    <div class="asec" id="tab-params">
+      <!-- Bannière héro -->
       <div class="acard">
         <h3>Bannière héro</h3>
-        <div class="bnzone" id="bnZ" onclick="setAZ('bnZ')" tabindex="0">
+        <div class="bnzone" id="bnZ" onclick="setAZ('bnZ');openCropModal('banner',null)" tabindex="0" style="cursor:pointer">
           <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><rect x="1" y="5" width="36" height="28" rx="3" stroke="rgba(139,26,46,.3)" stroke-width="1.5"/></svg>
           <p style="font-size:.85rem;color:var(--txm);margin-top:6px">Cliquez ici puis Ctrl+V</p>
           <button class="rmbn" onclick="rmBanner();event.stopPropagation()">Supprimer</button>
         </div>
         <p style="font-size:.78rem;color:var(--txm);margin-top:.7rem">Copiez votre image (Ctrl+C) puis cliquez sur la zone et faites Ctrl+V.</p>
-        <div style="margin-top:1.5rem">
-          <label class="al">Logo de l'association</label>
-          <div class="ipz" id="zLogo" onclick="triggerLogoUpload()" tabindex="0" style="max-width:280px">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="4" width="30" height="24" rx="3" stroke="rgba(139,26,46,.3)" stroke-width="1.5"/><path d="M10 20l4-5 4 3 4-6" stroke="rgba(139,26,46,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <p style="font-size:.78rem;color:var(--txm);margin-top:4px;text-align:center">Cliquer pour uploader</p>
-            <button class="rmbtn" onclick="rmLogo();event.stopPropagation()">✕</button>
-          </div>
-          <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoFile(event)">
-        </div>
       </div>
-    </div>
-
-    <!-- PARAMÈTRES -->
-    <div class="asec" id="tab-params">
+      <!-- Logo -->
+      <div class="acard">
+        <h3>Logo de l'association</h3>
+        <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
+          <div id="zLogo" onclick="openCropModal('logo')" tabindex="0"
+               style="width:160px;height:160px;border-radius:50%;border:3px dashed rgba(41,82,204,.3);background:#faf8f5;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(41,82,204,.6)'" onmouseout="this.style.borderColor='rgba(41,82,204,.3)'">
+            <div id="zLogoInner" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="4" width="30" height="24" rx="3" stroke="rgba(41,82,204,.3)" stroke-width="1.5"/><path d="M10 20l4-5 4 3 4-6" stroke="rgba(41,82,204,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <p style="font-size:.78rem;color:var(--txm);text-align:center;padding:0 12px">Cliquer pour uploader</p>
+            </div>
+            <button id="rmLogoBtn" onclick="rmLogo();event.stopPropagation()" style="display:none;position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(192,57,43,.85);color:#fff;border:none;border-radius:20px;padding:3px 10px;font-size:.75rem;cursor:pointer">Supprimer</button>
+          </div>
+          <div style="font-size:.82rem;color:var(--txm);line-height:1.8;max-width:280px">
+            <p>Le logo apparaît dans le header du site.</p>
+            <p style="margin-top:.5rem">Format recommandé : carré ou circulaire, fond transparent ou beige.</p>
+          </div>
+        </div>
+        <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoFile(event)">
+      </div>
+      <!-- Mot de passe admin -->
       <div class="acard">
         <h3>Changer le mot de passe admin</h3>
         <div class="fg2">
@@ -653,11 +673,19 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
         <div class="brow"><button class="abtn" onclick="chgPwd()">Mettre à jour</button></div>
         <div id="pmsg" style="margin-top:.5rem;font-size:.82rem"></div>
       </div>
+      <!-- Mot de passe paramètres -->
       <div class="acard">
-        <h3>Configuration Supabase</h3>
-        <p style="font-size:.82rem;color:var(--txm);margin-bottom:1rem;line-height:1.7">
-          Ces informations sont définies dans le fichier <code style="background:rgba(139,26,46,.08);padding:1px 5px;border-radius:4px">netlify.toml</code> ou dans les variables d'environnement Netlify. Pas besoin de les saisir ici — tout est automatique.
-        </p>
+        <h3>Changer le mot de passe Paramètres</h3>
+        <div class="fg2">
+          <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="npParams" placeholder="••••••••"></div>
+          <div><label class="al">Confirmer</label><input type="password" class="ai" id="cpParams2" placeholder="••••••••"></div>
+        </div>
+        <div class="brow"><button class="abtn" onclick="chgPwdParams()">Mettre à jour</button></div>
+        <div id="pmsgParams" style="margin-top:.5rem;font-size:.82rem"></div>
+      </div>
+      <!-- Supabase info -->
+      <div class="acard">
+        <h3>Connexion Supabase</h3>
         <div style="background:#edfaf4;border:1px solid #9de0c0;border-radius:var(--rs);padding:1rem 1.2rem">
           <p style="font-size:.84rem;color:#1a6b45;font-weight:500">✓ Connexion Supabase active</p>
           <p style="font-size:.78rem;color:#1a6b45;margin-top:4px">Les données sont synchronisées en temps réel pour tous les visiteurs.</p>
@@ -674,7 +702,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
     <div style="display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.8rem;border-bottom:1px solid rgba(184,150,62,.3)">
       <div>
         <div style="font-size:.72rem;font-weight:500;color:var(--or);letter-spacing:.1em;text-transform:uppercase">Commande</div>
-        <h3 id="odTitle" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--bxd);margin-top:2px"></h3>
+        <h3 id="odTitle" style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--bxd);margin-top:2px"></h3>
       </div>
       <button onclick="closeOrderDetail()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--txm)">✕</button>
     </div>
@@ -687,7 +715,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
       <div id="odItems" style="margin-bottom:1rem"></div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.8rem 1rem;background:rgba(139,26,46,.05);border-radius:var(--rs);border:1px solid rgba(139,26,46,.1)">
         <span style="font-size:.9rem;color:var(--txm)">Total commande</span>
-        <span id="odTotal" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--bx)"></span>
+        <span id="odTotal" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bx)"></span>
       </div>
       <div id="odMsgWrap" style="display:none;margin-top:1rem;padding:.8rem 1rem;background:var(--cr);border-radius:var(--rs);border-left:3px solid var(--or)">
         <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem">Message</div>
@@ -716,7 +744,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 <footer style="background:var(--bxd);color:rgba(255,255,255,.75);text-align:center;padding:2.5rem 2rem;border-top:2px solid var(--or);margin-top:2rem">
   <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:.9rem">
     <svg width="28" height="28" viewBox="0 0 30 65" fill="none" style="opacity:.5"><rect x="9" y="0" width="12" height="16" rx="3" fill="#D4B068"/><rect x="3" y="14" width="24" height="48" rx="10" fill="#D4B068"/></svg>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;font-style:italic;color:var(--orl);letter-spacing:.02em">Une vente au service d'un projet</p>
+    <p style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:300;font-style:italic;color:var(--orl);letter-spacing:.02em">Une vente au service d'un projet</p>
     <p style="font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.65);max-width:560px">Cette vente de vins a pour but de financer notre voyage de fin d'études, une aventure que nous préparons avec enthousiasme depuis le début de notre BTS VO. Chaque bouteille achetée contribue directement à ce projet commun. Merci pour votre soutien !</p>
     <p style="font-size:.76rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-top:.5rem">Association BTS VO — Millésime 2025-2027</p>
     <p style="font-size:.75rem;color:rgba(255,255,255,.3)">L'abus d'alcool est dangereux pour la santé — Vente réservée aux majeurs</p>
@@ -945,6 +973,7 @@ function wCard(w) {
     w.nouveau ? `<span class="badge-nouveau">✦ Nouveau</span>` : '',
     w.limite  ? `<span class="badge-limite">⏳ Stock limité</span>` : '',
     w.unique  ? `<span class="badge-unique">1 btl / client</span>` : '',
+    w.ratio   ? `<span style="background:#f0f4ff;color:#1B3A6B;border:1px solid #a0b4e0;font-size:.66rem;padding:2px 8px;border-radius:20px;font-weight:500;letter-spacing:.04em;white-space:nowrap">🏆 Cuvée exclusive (1:${w.ratio})</span>` : '',
   ].filter(Boolean).join('');
   const stockBar = w.limite && w.stock != null && w.stockInit
     ? `<div class="stock-bar"><div class="stock-bar-fill" style="width:${Math.min(100,Math.round(w.stock/w.stockInit*100))}%"></div></div>`
@@ -993,6 +1022,18 @@ function renderLogo() {
   const imgWrap = document.getElementById('logoImgWrap'), svgWrap = document.getElementById('logoSvgWrap');
   if (cfg.logo) { document.getElementById('logoImg').src = cfg.logo; imgWrap.style.display = 'block'; svgWrap.style.display = 'none'; }
   else { imgWrap.style.display = 'none'; svgWrap.style.display = 'block'; }
+  // Update admin logo zone
+  const zLogo = document.getElementById('zLogo');
+  const inner = document.getElementById('zLogoInner');
+  const rmBtn = document.getElementById('rmLogoBtn');
+  if (!zLogo) return;
+  if (cfg.logo) {
+    if (inner) inner.innerHTML = `<img src="${cfg.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    if (rmBtn) rmBtn.style.display = 'block';
+  } else {
+    if (inner) inner.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="4" width="30" height="24" rx="3" stroke="rgba(41,82,204,.3)" stroke-width="1.5"/><path d="M10 20l4-5 4 3 4-6" stroke="rgba(41,82,204,.3)" stroke-width="1.5" stroke-linecap="round"/></svg><p style="font-size:.78rem;color:var(--txm);text-align:center;padding:0 12px">Cliquer pour uploader</p>`;
+    if (rmBtn) rmBtn.style.display = 'none';
+  }
 }
 function renderAnnonce() {
   const el = document.getElementById('annonceBanner');
@@ -1009,7 +1050,7 @@ function renderAnnonce() {
   el.innerHTML = `<div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px">
     <div style="display:flex;align-items:center;gap:8px">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="${s.icon}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      <span style="font-family:'Jost',sans-serif;font-size:.84rem;font-weight:500;color:${s.color};letter-spacing:.06em;text-transform:uppercase">${cfg.aTitre}</span>
+      <span style="font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:500;color:${s.color};letter-spacing:.06em;text-transform:uppercase">${cfg.aTitre}</span>
       <svg width="11" height="11" viewBox="0 0 24 24" fill="${s.icon}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
     </div>
     ${cfg.aMsg ? `<p style="font-size:.78rem;color:${s.color};opacity:.8;font-style:italic">${cfg.aMsg}</p>` : ''}
@@ -1039,7 +1080,7 @@ function renderCarte() {
     dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '7'); dot.setAttribute('fill', '#8B1A2E'); dot.setAttribute('stroke', 'white'); dot.setAttribute('stroke-width', '2.5');
     const lbl = document.createElementNS(ns, 'text');
     lbl.setAttribute('x', x); lbl.setAttribute('y', y + 20); lbl.setAttribute('text-anchor', 'middle');
-    lbl.setAttribute('font-size', '9.5'); lbl.setAttribute('font-family', 'Jost,sans-serif');
+    lbl.setAttribute('font-size', '9.5'); lbl.setAttribute('font-family', 'DM Sans,sans-serif');
     lbl.setAttribute('fill', '#5C0F1E'); lbl.setAttribute('font-weight', '600'); lbl.textContent = v.nom;
     grp.appendChild(halo); grp.appendChild(dot); grp.appendChild(lbl);
     grp.addEventListener('mouseenter', function() {
@@ -1133,6 +1174,11 @@ function addById(id, qty) {
     const available = w.stock - inCart;
     if (available <= 0) { alert('Ce vin est épuisé ou déjà au maximum dans votre panier.'); return; }
     if (qty > available) { qty = available; alert(`Stock limité : seulement ${available} bouteille${available > 1 ? 's' : ''}.`); }
+  }
+  // Vérification ratio exclusivité
+  if (w.ratio && parseInt(w.ratio) > 0) {
+    const check = canAddExclusive(id, qty);
+    if (!check.ok) { alert(check.msg); return; }
   }
   const ex = cart.find(x => x.id === id);
   if (ex) ex.qty += qty;
@@ -1375,8 +1421,6 @@ async function setLogo(data) {
 }
 async function rmLogo() {
   cfg.logo = ''; await sbSetConfig(cfg); renderLogo();
-  const z = document.getElementById('zLogo'); z.classList.remove('hi');
-  z.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="4" width="30" height="24" rx="3" stroke="rgba(139,26,46,.3)" stroke-width="1.5"/><path d="M10 20l4-5 4 3 4-6" stroke="rgba(139,26,46,.3)" stroke-width="1.5" stroke-linecap="round"/></svg><p style="font-size:.78rem;color:var(--txm);margin-top:4px;text-align:center">Cliquer pour uploader</p><button class="rmbtn" onclick="rmLogo();event.stopPropagation()">✕</button>`;
   showToast('Logo supprimé');
 }
 
@@ -1392,6 +1436,7 @@ function toggleStockField() {
 async function saveWine() {
   const id = document.getElementById('eid').value || 'w' + Date.now();
   const limite = document.getElementById('wLimite').checked;
+  const ratioVal = document.getElementById('wRatio').value;
   const w = {
     id,
     appellation:  document.getElementById('wApp2').value.trim(),
@@ -1409,6 +1454,7 @@ async function saveWine() {
     limite,
     stock:        limite ? parseInt(document.getElementById('wStock').value) || 0 : null,
     unique:       document.getElementById('wUnique').checked,
+    ratio:        ratioVal ? parseInt(ratioVal) : null,
     visible:      true,
   };
   if (!w.appellation || !w.couleur || !w.prix) { alert('Appellation, Couleur et Prix requis.'); return; }
@@ -1425,7 +1471,7 @@ async function saveWine() {
 
 function resetWF() {
   document.getElementById('eid').value = ''; document.getElementById('wft').textContent = 'Ajouter un vin';
-  ['wApp2','wNom2','wExp','wMil','wLab','wPrix','wDes','wStock'].forEach(id => document.getElementById(id).value = '');
+  ['wApp2','wNom2','wExp','wMil','wLab','wPrix','wDes','wStock','wRatio'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('wCoul').value = '';
   document.getElementById('wNouveau').checked = false;
   document.getElementById('wLimite').checked = false;
@@ -1449,6 +1495,7 @@ function editWine(id) {
   document.getElementById('wNouveau').checked = !!w.nouveau;
   document.getElementById('wLimite').checked  = !!w.limite;
   document.getElementById('wUnique').checked  = !!w.unique;
+  document.getElementById('wRatio').value = w.ratio || '';
   if (w.limite && w.stock != null) { document.getElementById('wStock').value = w.stock; document.getElementById('stockField').style.display = 'block'; }
   else document.getElementById('stockField').style.display = 'none';
   if (w.iB) { document.getElementById('iB').value = w.iB; const z = document.getElementById('zB'); z.innerHTML = `<img src="${w.iB}"><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`; z.classList.add('hi'); } else clrZ('zB','iB');
@@ -1494,6 +1541,7 @@ function renderWList() {
       <td>${w.couleur || '—'}</td>
       <td style="color:var(--bx);font-weight:500">${w.prix ? parseFloat(w.prix).toFixed(2).replace('.', ',') + ' €' : '—'}</td>
       <td>${stockTxt}</td>
+      <td>${w.ratio ? `<span style="font-size:.8rem;color:#1B3A6B;font-weight:500">1:${w.ratio}</span>` : '—'}</td>
       <td><button class="toggle-vis" onclick="toggleVisible('${w.id}')" title="${vis ? 'Masquer' : 'Afficher'}">${vis ? '👁️' : '🙈'}</button></td>
       <td style="white-space:nowrap">
         <button class="abtn abtn-s" style="padding:4px 10px;font-size:.76rem" onclick="editWine('${w.id}')">Modifier</button>
@@ -1509,7 +1557,7 @@ function renderWList() {
 async function saveCat() {
   const nom = document.getElementById('cNom').value.trim();
   if (!nom) { alert('Nom requis.'); return; }
-  const cat = { id: 'c' + Date.now(), nom, desc: document.getElementById('cDes').value.trim(), parent: document.getElementById('cPar').value || null };
+  const cat = { id: 'c' + Date.now(), nom, "desc": document.getElementById('cDes').value.trim(), parent: document.getElementById('cPar').value || null };
   try {
     await sbUpsert('cats', cat);
     cats.push(cat);
@@ -1552,7 +1600,7 @@ function renderCatTree() {
     const wrap = document.createElement('div'); wrap.style.marginBottom = '1rem';
     const row = document.createElement('div'); row.style.cssText = 'display:flex;align-items:center;flex-wrap:wrap;gap:6px';
     const span = document.createElement('span'); span.className = 'catit';
-    span.innerHTML = `<strong>${tc.nom}</strong>${tc.desc ? ` <em style="font-size:.78rem;color:var(--txm)">— ${tc.desc}</em>` : ''}`;
+    span.innerHTML = `<strong>${tc.nom}</strong>${(tc.desc||tc.descr) ? ` <em style="font-size:.78rem;color:var(--txm)">— ${tc.desc||tc.descr}</em>` : ''}`;
     const btn = document.createElement('button'); btn.className = 'catitd'; btn.textContent = '✕';
     btn.addEventListener('click', () => delCatById(tc.id));
     span.appendChild(btn); row.appendChild(span); wrap.appendChild(row);
@@ -1560,7 +1608,7 @@ function renderCatTree() {
       const subrow = document.createElement('div'); subrow.style.cssText = 'padding-left:1.2rem;margin-top:5px;display:flex;flex-wrap:wrap;gap:5px';
       subs.forEach(sc => {
         const ss = document.createElement('span'); ss.className = 'catit';
-        ss.innerHTML = `↳ ${sc.nom}${sc.desc ? ` <em style="font-size:.76rem;color:var(--txm)">— ${sc.desc}</em>` : ''}`;
+        ss.innerHTML = `↳ ${sc.nom}${(sc.desc||sc.descr) ? ` <em style="font-size:.76rem;color:var(--txm)">— ${sc.desc||sc.descr}</em>` : ''}`;
         const sb = document.createElement('button'); sb.className = 'catitd'; sb.textContent = '✕';
         sb.addEventListener('click', () => delCatById(sc.id));
         ss.appendChild(sb); subrow.appendChild(ss);
@@ -1710,7 +1758,7 @@ function renderOrderList() {
     { label:'Panier moyen', val: orders.length ? (totalCA / orders.length).toFixed(2).replace('.', ',') + ' €' : '—', color:'#7a6010' },
   ].map(s => `<div style="background:var(--cr);border-radius:var(--rs);padding:.8rem 1rem;border:1px solid rgba(139,26,46,.08)">
     <div style="font-size:.72rem;color:var(--txm);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">${s.label}</div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:${s.color}">${s.val}</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:${s.color}">${s.val}</div>
   </div>`).join('');
 
   if (!list.length) {
@@ -1725,14 +1773,14 @@ function renderOrderList() {
     const btl = (o.items || []).reduce((s, i) => s + i.qty, 0);
     return `<div onclick="openOrderDetail('${o.id}')" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.1rem;border-radius:var(--rs);border:1px solid rgba(139,26,46,.08);margin-bottom:.6rem;cursor:pointer;transition:all .18s;background:#fff" onmouseover="this.style.background='var(--cr)';this.style.borderColor='rgba(139,26,46,.2)'" onmouseout="this.style.background='#fff';this.style.borderColor='rgba(139,26,46,.08)'">
       <div style="display:flex;align-items:center;gap:12px">
-        <div style="width:38px;height:38px;border-radius:50%;background:rgba(139,26,46,.1);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--bxd);flex-shrink:0">${(o.prenom||'?').charAt(0)}${(o.nom||'').charAt(0)}</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:rgba(139,26,46,.1);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--bxd);flex-shrink:0">${(o.prenom||'?').charAt(0)}${(o.nom||'').charAt(0)}</div>
         <div>
           <div style="font-weight:500;font-size:.92rem;color:var(--tx)">${o.prenom} ${o.nom}</div>
           <div style="font-size:.76rem;color:var(--txm);margin-top:1px">${dateStr} à ${timeStr} · ${btl} bouteille${btl > 1 ? 's' : ''}</div>
         </div>
       </div>
       <div style="text-align:right;flex-shrink:0">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--bx)">${(o.total||0).toFixed(2).replace('.', ',')} €</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--bx)">${(o.total||0).toFixed(2).replace('.', ',')} €</div>
         <div style="font-size:.72rem;color:var(--txm);margin-top:1px">${o.ville || ''}</div>
       </div>
     </div>`;
@@ -1804,10 +1852,364 @@ function chgPwd() {
   showToast('Mot de passe mis à jour ✓');
 }
 
+
+// ═══════════════════════════════════════════════
+// PARAMS LOCK
+// ═══════════════════════════════════════════════
+const PARAMS_PW_KEY = 'bvo_params_pw';
+function getParamsPw(){ return localStorage.getItem(PARAMS_PW_KEY) || 'kinganatole'; }
+function setParamsPw(pw){ localStorage.setItem(PARAMS_PW_KEY, pw); }
+
+function openParamsLock(btn) {
+  window._paramBtn = btn;
+  document.getElementById('paramsLockInput').value = '';
+  document.getElementById('paramsLockErr').textContent = '';
+  const m = document.getElementById('paramsLockModal');
+  m.style.display = 'flex';
+  setTimeout(() => document.getElementById('paramsLockInput').focus(), 100);
+}
+function closeParamsLock() {
+  document.getElementById('paramsLockModal').style.display = 'none';
+}
+function checkParamsLock() {
+  const val = document.getElementById('paramsLockInput').value;
+  if (val === getParamsPw()) {
+    closeParamsLock();
+    swTab('params', window._paramBtn || document.getElementById('tabBtnParams'));
+  } else {
+    document.getElementById('paramsLockErr').textContent = 'Mot de passe incorrect.';
+    document.getElementById('paramsLockInput').value = '';
+    document.getElementById('paramsLockInput').focus();
+  }
+}
+function chgPwdParams() {
+  const p1 = document.getElementById('npParams').value;
+  const p2 = document.getElementById('cpParams2').value;
+  const m  = document.getElementById('pmsgParams');
+  if (!p1) { m.style.color='#c0392b'; m.textContent='Entrez un mot de passe.'; return; }
+  if (p1 !== p2) { m.style.color='#c0392b'; m.textContent='Les mots de passe ne correspondent pas.'; return; }
+  setParamsPw(p1);
+  document.getElementById('npParams').value = '';
+  document.getElementById('cpParams2').value = '';
+  m.style.color = 'var(--bx)'; m.textContent = 'Mot de passe Paramètres mis à jour !';
+  showToast('Mot de passe Paramètres mis à jour ✓');
+}
+
+// ═══════════════════════════════════════════════
+// CROP MODAL
+// ═══════════════════════════════════════════════
+let cropTarget = null; // 'logo' | 'banner' | 'bottle' | 'desc'
+let cropImg = null;
+let cropX = 0, cropY = 0, cropScale = 1;
+let cropDragging = false, cropStartX = 0, cropStartY = 0;
+let cropOrigX = 0, cropOrigY = 0;
+let cropSourceData = null;
+
+const CROP_SIZES = {
+  logo:   { w: 200, h: 200, radius: '50%' },
+  banner: { w: 480, h: 180, radius: '8px' },
+  bottle: { w: 200, h: 300, radius: '8px' },
+  desc:   { w: 380, h: 220, radius: '8px' },
+};
+
+function openCropModal(target, dataUrl) {
+  cropTarget = target;
+  const sz = CROP_SIZES[target] || { w: 300, h: 300, radius: '8px' };
+  const container = document.getElementById('cropContainer');
+  container.style.width  = sz.w + 'px';
+  container.style.height = sz.h + 'px';
+  container.style.borderRadius = sz.radius;
+  container.innerHTML = '';
+
+  if (dataUrl) {
+    cropSourceData = dataUrl;
+    _initCropImage(dataUrl, sz);
+  } else if (target === 'logo') {
+    document.getElementById('logoFileInput').onchange = function(e) {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        cropSourceData = ev.target.result;
+        _initCropImage(ev.target.result, sz);
+      };
+      reader.readAsDataURL(file);
+      e.target.value = '';
+    };
+    document.getElementById('logoFileInput').click();
+    document.getElementById('cropModal').style.display = 'flex';
+    return;
+  }
+  document.getElementById('cropModal').style.display = 'flex';
+}
+
+function _initCropImage(dataUrl, sz) {
+  const container = document.getElementById('cropContainer');
+  container.innerHTML = '';
+  cropImg = document.createElement('img');
+  cropImg.src = dataUrl;
+  cropImg.style.cssText = 'position:absolute;top:0;left:0;transform-origin:0 0;user-select:none;pointer-events:none;max-width:none;';
+  container.appendChild(cropImg);
+
+  cropImg.onload = () => {
+    const scaleW = sz.w / cropImg.naturalWidth;
+    const scaleH = sz.h / cropImg.naturalHeight;
+    cropScale = Math.max(scaleW, scaleH);
+    cropX = (sz.w - cropImg.naturalWidth * cropScale) / 2;
+    cropY = (sz.h - cropImg.naturalHeight * cropScale) / 2;
+    // Set slider min/max based on image
+    const minScale = Math.max(scaleW, scaleH);
+    const slider = document.getElementById('cropZoom');
+    slider.min = Math.round(minScale * 100);
+    slider.max = Math.round(minScale * 100 * 4);
+    slider.value = Math.round(cropScale * 100);
+    document.getElementById('cropZoomVal').textContent = Math.round(cropScale * 100) + '%';
+    _applyCropTransform();
+  };
+
+  // Drag events
+  container.onmousedown = e => {
+    cropDragging = true; cropStartX = e.clientX; cropStartY = e.clientY;
+    cropOrigX = cropX; cropOrigY = cropY;
+    container.style.cursor = 'grabbing';
+    e.preventDefault();
+  };
+  document.onmousemove = e => {
+    if (!cropDragging) return;
+    cropX = cropOrigX + (e.clientX - cropStartX);
+    cropY = cropOrigY + (e.clientY - cropStartY);
+    _applyCropTransform();
+  };
+  document.onmouseup = () => { cropDragging = false; container.style.cursor = 'grab'; };
+
+  // Touch
+  container.ontouchstart = e => {
+    const t = e.touches[0];
+    cropDragging = true; cropStartX = t.clientX; cropStartY = t.clientY;
+    cropOrigX = cropX; cropOrigY = cropY;
+    e.preventDefault();
+  };
+  container.ontouchmove = e => {
+    if (!cropDragging) return;
+    const t = e.touches[0];
+    cropX = cropOrigX + (t.clientX - cropStartX);
+    cropY = cropOrigY + (t.clientY - cropStartY);
+    _applyCropTransform();
+    e.preventDefault();
+  };
+  container.ontouchend = () => { cropDragging = false; };
+}
+
+function _applyCropTransform() {
+  if (!cropImg) return;
+  cropImg.style.transform = `translate(${cropX}px,${cropY}px) scale(${cropScale})`;
+}
+
+function updateCropZoom(val) {
+  if (!cropImg) return;
+  const sz = CROP_SIZES[cropTarget] || { w: 300, h: 300 };
+  const cx = sz.w / 2, cy = sz.h / 2;
+  const oldScale = cropScale;
+  const newScale = val / 100;
+  // Zoom centré sur le milieu du cadre
+  cropX = cx - (cx - cropX) * (newScale / oldScale);
+  cropY = cy - (cy - cropY) * (newScale / oldScale);
+  cropScale = newScale;
+  document.getElementById('cropZoom').value = val;
+  document.getElementById('cropZoomVal').textContent = Math.round(val) + '%';
+  _applyCropTransform();
+}
+
+function applyCrop() {
+  if (!cropImg) return;
+  const sz = CROP_SIZES[cropTarget] || { w: 300, h: 300 };
+  const canvas = document.createElement('canvas');
+  canvas.width = sz.w; canvas.height = sz.h;
+  const ctx = canvas.getContext('2d');
+
+  // Clip circulaire pour logo
+  if (cropTarget === 'logo') {
+    ctx.beginPath();
+    ctx.arc(sz.w / 2, sz.h / 2, sz.w / 2, 0, Math.PI * 2);
+    ctx.clip();
+  }
+
+  // Dessiner l'image avec la transform actuelle
+  // cropX, cropY = translation de l'image dans le container
+  // cropScale = échelle de l'image
+  ctx.save();
+  ctx.translate(cropX, cropY);
+  ctx.scale(cropScale, cropScale);
+  ctx.drawImage(cropImg, 0, 0, cropImg.naturalWidth, cropImg.naturalHeight);
+  ctx.restore();
+
+  const result = canvas.toDataURL('image/png');
+  closeCropModal();
+
+  if (cropTarget === 'logo') {
+    setLogo(result);
+  } else if (cropTarget === 'banner') {
+    setBanner(result);
+  } else if (cropTarget === 'bottle') {
+    document.getElementById('iB').value = result;
+    const z = document.getElementById('zB');
+    z.innerHTML = `<img src="${result}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`;
+    z.classList.add('hi');
+    az = null;
+  } else if (cropTarget === 'desc') {
+    document.getElementById('iD').value = result;
+    const z = document.getElementById('zD');
+    z.innerHTML = `<img src="${result}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>`;
+    z.classList.add('hi');
+    az = null;
+  }
+}
+
+function closeCropModal() {
+  document.getElementById('cropModal').style.display = 'none';
+  cropTarget = null; cropImg = null; cropSourceData = null;
+  cropDragging = false; az = null;
+  document.onmousemove = null; document.onmouseup = null;
+}
+
+// Override setAZ pour ouvrir le crop au paste
+const _origPaste = document.onpaste;
+document.addEventListener('paste', function(e) {
+  if (!az) return;
+  const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+  for (const it of items) {
+    if (it.type.indexOf('image') === 0) {
+      const rd = new FileReader();
+      rd.onload = ev => {
+        const data = ev.target.result;
+        if (az === 'bnZ') { openCropModal('banner', data); return; }
+        if (az === 'zLogo') { openCropModal('logo', data); return; }
+        if (az === 'zB') { openCropModal('bottle', data); return; }
+        if (az === 'zD') { openCropModal('desc', data); return; }
+      };
+      rd.readAsDataURL(it.getAsFile()); e.preventDefault(); return;
+    }
+  }
+}, true);
+
+// Override zone click for bottle/desc to also open crop
+document.addEventListener('click', function(e) {
+  const zB = document.getElementById('zB');
+  const zD = document.getElementById('zD');
+  const bnZ = document.getElementById('bnZ');
+  if (zB && zB.contains(e.target) && !e.target.classList.contains('rmbtn')) {
+    az = 'zB';
+  }
+  if (zD && zD.contains(e.target) && !e.target.classList.contains('rmbtn')) {
+    az = 'zD';
+  }
+});
+
+// Logo zone click → file picker → crop
+document.addEventListener('DOMContentLoaded', () => {});
+
+// ═══════════════════════════════════════════════
+// RATIO EXCLUSIVITÉ — Logique panier
+// ═══════════════════════════════════════════════
+function getExclusiveBottlesInCart() {
+  // Returns total qty of exclusive wines (ratio > 0) already in cart
+  return cart.filter(it => {
+    const w = wines.find(x => x.id === it.id);
+    return w && w.ratio && parseInt(w.ratio) > 0;
+  }).reduce((s, it) => s + it.qty, 0);
+}
+
+function getNormalBottlesInCart() {
+  // Returns total qty of NON-exclusive wines in cart
+  return cart.filter(it => {
+    const w = wines.find(x => x.id === it.id);
+    return !w || !w.ratio || parseInt(w.ratio) === 0;
+  }).reduce((s, it) => s + it.qty, 0);
+}
+
+function canAddExclusive(wineId, qtyToAdd) {
+  const w = wines.find(x => x.id === wineId);
+  if (!w || !w.ratio || parseInt(w.ratio) === 0) return { ok: true };
+  const ratio = parseInt(w.ratio);
+  const normalInCart = getNormalBottlesInCart();
+  // How many exclusive bottles are already in cart (this wine + others)
+  const alreadyExclusiveQty = cart.filter(it => {
+    const ww = wines.find(x => x.id === it.id);
+    return ww && ww.ratio && parseInt(ww.ratio) > 0;
+  }).reduce((s, it) => s + it.qty, 0);
+  const currentThisWine = cart.find(x => x.id === wineId)?.qty || 0;
+  // Total exclusive after adding
+  const totalExclusiveAfter = alreadyExclusiveQty + qtyToAdd;
+  // Each exclusive bottle "consumes" its ratio of normal bottles
+  // But we need to account for different ratios
+  // Simplified: check if normalInCart >= sum of (each exclusive qty * its ratio)
+  let normalNeeded = 0;
+  cart.forEach(it => {
+    if (it.id === wineId) return; // Will recalc below
+    const ww = wines.find(x => x.id === it.id);
+    if (ww && ww.ratio && parseInt(ww.ratio) > 0) {
+      normalNeeded += it.qty * parseInt(ww.ratio);
+    }
+  });
+  normalNeeded += (currentThisWine + qtyToAdd) * ratio;
+  if (normalNeeded > normalInCart) {
+    const needed = normalNeeded - normalInCart;
+    return {
+      ok: false,
+      msg: `Pour ajouter ${qtyToAdd} bouteille${qtyToAdd>1?'s':''} de cette cuvée exclusive (ratio 1:${ratio}), il vous faut ${normalNeeded} bouteilles ordinaires dans le panier. Il vous en manque ${needed}.`
+    };
+  }
+  return { ok: true };
+}
+
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
 loadAll();
 </script>
+
+<!-- PARAMS LOCK MODAL -->
+<div id="paramsLockModal" style="display:none;position:fixed;inset:0;z-index:600;background:rgba(15,37,72,.85);align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:var(--r);padding:2.5rem;width:100%;max-width:360px;text-align:center;box-shadow:var(--shl)">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="margin-bottom:.8rem">
+      <circle cx="22" cy="22" r="20" stroke="var(--bx)" stroke-width="1.5"/>
+      <path d="M15 22h14M22 15v14" stroke="var(--or)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--bxd);margin-bottom:.4rem">Paramètres</h2>
+    <p style="color:var(--txm);font-size:.82rem;margin-bottom:1.4rem">Accès restreint — entrez le mot de passe paramètres</p>
+    <input type="password" id="paramsLockInput" class="ai" placeholder="••••••••"
+           onkeydown="if(event.key==='Enter')checkParamsLock()"
+           style="text-align:center;letter-spacing:.2em;font-size:1.1rem;margin-bottom:.5rem">
+    <div id="paramsLockErr" style="color:#c0392b;font-size:.8rem;min-height:1.2em;margin-bottom:.8rem"></div>
+    <div style="display:flex;gap:.8rem;justify-content:center">
+      <button class="abtn abtn-s" onclick="closeParamsLock()">Annuler</button>
+      <button class="abtn" onclick="checkParamsLock()">Accéder</button>
+    </div>
+  </div>
+</div>
+
+<!-- CROP MODAL -->
+<div id="cropModal" style="display:none;position:fixed;inset:0;z-index:700;background:rgba(15,37,72,.9);align-items:center;justify-content:center;padding:1rem">
+  <div style="background:#fff;border-radius:var(--r);padding:1.5rem;max-width:520px;width:100%;box-shadow:var(--shl)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--bxd)">Recadrer l'image</h3>
+      <button onclick="closeCropModal()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txm)">✕</button>
+    </div>
+    <p style="font-size:.8rem;color:var(--txm);margin-bottom:1rem">Déplacez et zoomez l'image pour cadrer comme vous le souhaitez.</p>
+    <!-- Crop area -->
+    <div id="cropContainer" style="position:relative;overflow:hidden;background:#f0ece6;margin:0 auto;border:2px solid var(--or);border-radius:8px;touch-action:none;cursor:grab"></div>
+    <!-- Controls -->
+    <div style="display:flex;align-items:center;gap:1rem;margin-top:1rem;flex-wrap:wrap">
+      <label style="font-size:.8rem;color:var(--txm);white-space:nowrap">Zoom</label>
+      <input type="range" id="cropZoom" min="50" max="300" value="100" style="flex:1;accent-color:var(--bx)" oninput="updateCropZoom(this.value)">
+      <span id="cropZoomVal" style="font-size:.8rem;color:var(--txm);min-width:36px">100%</span>
+    </div>
+    <p style="font-size:.75rem;color:var(--txm);margin-top:.5rem;font-style:italic">💡 Glissez l'image pour la repositionner</p>
+    <div style="display:flex;gap:.8rem;margin-top:1.2rem;justify-content:flex-end">
+      <button class="abtn abtn-s" onclick="closeCropModal()">Annuler</button>
+      <button class="abtn" onclick="applyCrop()">Valider le recadrage</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
