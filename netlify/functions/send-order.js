@@ -15,12 +15,18 @@ exports.handler = async function(event) {
   const dateStr = d.toLocaleDateString('fr-FR', { weekday:'long', day:'2-digit', month:'long', year:'numeric' });
   const timeStr = d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
 
-  const itemsHtml = (items||[]).map(i => `
+  const itemsHtml = (items||[]).map(i => {
+    const details = [i.appellation, i.exploitation, i.couleur, i.millesime ? 'Millésime '+i.millesime : ''].filter(Boolean).join(' · ');
+    return `
     <tr>
-      <td style="padding:8px 12px;border-bottom:1px solid #f0e8df">${i.nom||'—'}${i.millesime?` <span style="color:#6B5B4E;font-size:12px">(${i.millesime})</span>`:''}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #f0e8df">
+        <span style="font-weight:600;color:#1A1008">${i.nom||'—'}</span>
+        ${details ? `<br><span style="font-size:12px;color:#6B5B4E">${details}</span>` : ''}
+      </td>
       <td style="padding:8px 12px;border-bottom:1px solid #f0e8df;text-align:center">${i.qty}</td>
       <td style="padding:8px 12px;border-bottom:1px solid #f0e8df;text-align:right;color:#2E5FBF;font-weight:600">${(parseFloat(i.prix)*i.qty).toFixed(2).replace('.',',')} €</td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 
   // ── MAIL ADMIN ─────────────────────────────────────────────────
   const htmlAdmin = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"></head>
