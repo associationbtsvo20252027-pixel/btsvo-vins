@@ -22,8 +22,6 @@ exports.handler = async function(event) {
       <td style="padding:8px 12px;border-bottom:1px solid #f0e8df;text-align:right;color:#2E5FBF;font-weight:600">${(parseFloat(i.prix)*i.qty).toFixed(2).replace('.',',')} €</td>
     </tr>`).join('');
 
-  const itemsText = (items||[]).map(i => `• ${i.nom||'—'}${i.millesime?` (${i.millesime})`:''} × ${i.qty} = ${(parseFloat(i.prix)*i.qty).toFixed(2)} €`).join('\n');
-
   // ── MAIL ADMIN ─────────────────────────────────────────────────
   const htmlAdmin = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"></head>
 <body style="margin:0;padding:0;background:#F8F4EE;font-family:'Helvetica Neue',Arial,sans-serif">
@@ -113,8 +111,8 @@ exports.handler = async function(event) {
 </div></body></html>`;
 
   try {
-    // Mail admin
-    await fetch('https://api.resend.com/emails', {
+    // Mail admin uniquement
+    const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -126,18 +124,11 @@ exports.handler = async function(event) {
       })
     });
 
-    // Mail client
-    await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from: 'Association BTS VO <onboarding@resend.dev>',
-        to: [email],
-        reply_to: TO_EMAIL,
-        subject: `✓ Votre commande BTS VO est bien reçue — ${(total||0).toFixed(2).replace('.',',')} €`,
-        html: htmlClient
-      })
-    });
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('Resend error:', err);
+      return { statusCode: 500, body: `Resend error: ${err}` };
+    }
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch(e) {
