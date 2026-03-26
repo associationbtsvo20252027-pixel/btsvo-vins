@@ -1257,7 +1257,7 @@ function addFM() {
   if (!cwine) return;
   const q = parseInt(document.getElementById('mQty').value) || 1;
   addById(cwine.id, q);
-  closeWM(); openCS();
+  closeWM();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -2394,14 +2394,20 @@ async function toggleOrders(enabled) {
 
 function applyOrdersMode() {
   const enabled = cfg.ordersEnabled !== false;
+  // Bouton panier header
   const cartBtn = document.querySelector('.cart-btn');
   if (cartBtn) cartBtn.style.display = enabled ? '' : 'none';
+  // Boutons ajouter + quantité sur les cartes
   document.querySelectorAll('.wcr').forEach(el => el.style.display = enabled ? '' : 'none');
+  // Bouton commander dans le panier
   const ckbtn = document.querySelector('.ckbtn');
   if (ckbtn) ckbtn.style.display = enabled ? '' : 'none';
+  // Modale vin — zone quantité + bouton ajouter
+  const mcrow = document.querySelector('.mcrow');
+  if (mcrow) mcrow.style.display = enabled ? '' : 'none';
+  // Toggle admin
   const tog = document.getElementById('orderToggle');
   if (tog) tog.checked = enabled;
-  // Vider le panier si désactivé
   if (!enabled) {
     cart = []; renderCart(); updCC();
     document.getElementById('cside').classList.remove('open');
