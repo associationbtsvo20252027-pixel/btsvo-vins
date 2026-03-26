@@ -118,7 +118,7 @@ exports.handler = async function(event) {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'Association BTS VO <commandes@resend.dev>',
+        from: 'Association BTS VO <onboarding@resend.dev>',
         to: [TO_EMAIL],
         reply_to: email,
         subject: `🍷 Nouvelle commande — ${prenom} ${nom} (${(total||0).toFixed(2).replace('.',',')} €)`,
@@ -131,7 +131,7 @@ exports.handler = async function(event) {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'Association BTS VO <commandes@resend.dev>',
+        from: 'Association BTS VO <onboarding@resend.dev>',
         to: [email],
         reply_to: TO_EMAIL,
         subject: `✓ Votre commande BTS VO est bien reçue — ${(total||0).toFixed(2).replace('.',',')} €`,
