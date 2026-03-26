@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,11 +11,13 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
-header{background:var(--bxd);color:#fff;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:76px;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--or)}
+header{background:var(--bxd);color:#fff;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:76px;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--or);gap:.5rem}
 .logo{display:flex;align-items:center;gap:16px;cursor:pointer}
+.campus-logo-header{height:58px;opacity:.92;margin-left:12px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.2))}
+@media(max-width:600px){.campus-logo-header{height:40px;margin-left:6px}}
 .logo-text h1{font-size:1.22rem;font-weight:400;color:var(--orl);letter-spacing:.07em;line-height:1.2}
 .logo-text p{font-size:.7rem;font-weight:300;color:rgba(255,255,255,.6);letter-spacing:.16em;text-transform:uppercase;margin-top:2px}
-.hright{display:flex;align-items:center;gap:1rem}
+.hright{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
 .map-btn{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2);border-radius:var(--rs);padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:.84rem;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap}
 .map-btn:hover{background:rgba(255,255,255,.2);color:#fff}
 .cart-btn{background:rgba(255,255,255,.18);color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:var(--rs);padding:9px 22px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;backdrop-filter:blur(4px)}
@@ -207,16 +210,106 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .vtbl th,.vtbl td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(139,26,46,.07)}
 .vtbl th{border-bottom:2px solid rgba(139,26,46,.12);color:var(--txm);font-weight:500;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
 .vtbl tr:hover td{background:var(--cr)}
-.adot{cursor:pointer;color:transparent;font-size:.65rem;user-select:none;line-height:3}.adot:hover{color:rgba(139,26,46,.2)}
+.adot{cursor:pointer;color:transparent;font-size:.65rem;user-select:none;line-height:3}.adot:hover{color:rgba(41,82,204,.2)}
+.toggle-sw{position:relative;display:inline-block;width:52px;height:28px}
+.toggle-sw input{opacity:0;width:0;height:0}
+.toggle-sl{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:28px;transition:.3s}
+.toggle-sl:before{position:absolute;content:"";height:20px;width:20px;left:4px;bottom:4px;background:#fff;border-radius:50%;transition:.3s}
+input:checked+.toggle-sl{background:var(--bx)}
+input:checked+.toggle-sl:before{transform:translateX(24px)}
 /* SUPABASE STATUS */
 .sb-status{font-size:.75rem;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px}
 .sb-ok{background:#edfaf4;color:#1a6b45}
 .sb-err{background:#fdf0f0;color:#8b1a1a}
 .sb-loading{background:#fdf8e8;color:#7a6010}
 /* TOAST */
-.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--bxd);color:#fff;padding:.75rem 1.5rem;border-radius:var(--rs);font-size:.88rem;z-index:9999;border-top:3px solid var(--or);box-shadow:var(--shl);opacity:0;transition:opacity .3s;pointer-events:none}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--bxd);color:#fff;padding:.75rem 1.5rem;border-radius:var(--rs);font-size:.88rem;z-index:9999;border-top:3px solid var(--or);box-shadow:var(--shl);opacity:0;transition:opacity .3s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.err{background:#1a1a5a;border-top-color:#e05555}
+.toast.warn{background:#2a2a00;border-top-color:#e0b800}
 .toast.show{opacity:1}
-@media(max-width:768px){header{padding:0 1rem}.map-btn span{display:none}main{padding:1rem}.wgrid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem}.cside{width:100vw;right:-100vw}.hero-banner{height:160px}}
+
+/* ═══ RESPONSIVE MOBILE ═══════════════════════ */
+@media(max-width:768px){
+  /* Header */
+  header{padding:0 .8rem;height:64px}
+  .logo-text h1{font-size:1rem}
+  .logo-text p{font-size:.6rem}
+  .map-btn span{display:none}
+  .map-btn{padding:7px 10px}
+  .cart-btn{padding:7px 12px;font-size:.82rem}
+  #logoImgWrap img{max-height:44px;max-width:44px}
+
+  /* Hero */
+  .hero-banner{height:140px}
+  .hero-tag{font-size:1.25rem}
+  .hero-sub{font-size:.68rem}
+  .hero-ov{padding:1.2rem 1rem}
+
+  /* Pills */
+  nav.pills{padding:.6rem 1rem;gap:.4rem}
+  .pill{font-size:.76rem;padding:5px 12px}
+
+  /* Main */
+  main{padding:.8rem}
+  .wgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.9rem}
+  .wcard{border-radius:12px}
+  .wimg{height:180px}
+  .wnom{font-size:1rem}
+  .wpri{font-size:1.25rem}
+  .wcr{gap:5px;padding:0 .8rem .8rem}
+  .qinp{width:34px;font-size:.82rem}
+  .qbtn{width:26px;height:26px;font-size:.95rem}
+  .abtn2{font-size:.76rem;padding:7px 0}
+
+  /* Panier */
+  .cside{width:100vw;right:-100vw}
+  .chdr{padding:1rem}
+  .cfoot{padding:1rem}
+
+  /* Modales */
+  .mbody{grid-template-columns:1fr;gap:1.2rem;padding:1.2rem}
+  .omoda{max-width:100%}
+  .f2{grid-template-columns:1fr}
+
+  /* Carte */
+  .carte-body{padding:1rem}
+  .carte-wrap{max-width:100%}
+  .ville-grid{grid-template-columns:1fr 1fr}
+
+  /* Admin tabs */
+  .atabs{gap:.4rem}
+  .atab{padding:7px 12px;font-size:.78rem}
+  .abody{padding:1rem}
+  .fg2{grid-template-columns:1fr}
+
+  /* Admin tableaux → cartes empilées */
+  .wtbl thead{display:none}
+  .wtbl tbody tr{display:flex;flex-direction:column;background:#fff;border-radius:var(--rs);margin-bottom:.8rem;border:1px solid rgba(41,82,204,.1);padding:.8rem;box-shadow:var(--sh)}
+  .wtbl tbody td{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border:none;font-size:.85rem}
+  .wtbl tbody td::before{content:attr(data-label);font-size:.72rem;color:var(--txm);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-right:.5rem;flex-shrink:0}
+  .vtbl thead{display:none}
+  .vtbl tbody tr{display:flex;flex-direction:column;background:#fff;border-radius:var(--rs);margin-bottom:.8rem;border:1px solid rgba(41,82,204,.1);padding:.8rem}
+  .vtbl tbody td{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border:none;font-size:.85rem}
+  .vtbl tbody td::before{content:attr(data-label);font-size:.72rem;color:var(--txm);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-right:.5rem}
+
+  /* Admin commandes */
+  #orderStats{grid-template-columns:1fr 1fr}
+
+  /* Crop modal */
+  #cropContainer{max-width:100%}
+}
+
+@media(max-width:480px){
+  .wgrid{grid-template-columns:1fr 1fr;gap:.7rem}
+  .wimg{height:160px}
+  .ville-grid{grid-template-columns:1fr}
+  #orderStats{grid-template-columns:1fr 1fr}
+  .atab{padding:6px 10px;font-size:.74rem}
+  header{height:58px}
+  .logo-text h1{font-size:.9rem}
+  .cart-btn span:not(.cart-count){display:none}
+}
+
 </style>
 </head>
 <body>
@@ -238,6 +331,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
       <h1 id="logoTitle">Association BTS VO</h1>
       <p>Millésime 2025-2027</p>
     </div>
+    <img src="data:image/png;base64,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" alt="Beaune Viti Agro Campus" class="campus-logo-header">
   </div>
   <div class="hright">
     <button class="map-btn" onclick="openCarte()">
@@ -561,6 +655,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 
     <!-- COMMANDES -->
     <div class="asec" id="tab-commandes">
+      <div id="stockAlertBanner" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:var(--rs);padding:.8rem 1.2rem;margin-bottom:1rem;font-size:.85rem;color:#856404;border-left:4px solid #ffc107"></div>
       <div class="acard">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
           <h3 style="margin:0;padding:0;border:none">Commandes reçues (<span id="orderCount">0</span>)</h3>
@@ -633,6 +728,19 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 
     <!-- PARAMÈTRES (bannière + logo + mdp) -->
     <div class="asec" id="tab-params">
+      <!-- ON/OFF Commandes -->
+      <div class="acard" style="border:2px solid rgba(41,82,204,.2)">
+        <h3 style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+          <span>Autoriser les commandes</span>
+          <label class="toggle-sw">
+            <input type="checkbox" id="orderToggle" onchange="toggleOrders(this.checked)" checked>
+            <span class="toggle-sl"></span>
+          </label>
+        </h3>
+        <p id="orderToggleMsg" style="font-size:.82rem;color:var(--txm);margin-top:.5rem;line-height:1.6">
+          Les clients peuvent commander. Désactiver pour suspendre toutes les commandes — le panier et les boutons disparaissent du site.
+        </p>
+      </div>
       <!-- Bannière héro -->
       <div class="acard">
         <h3>Bannière héro</h3>
@@ -721,7 +829,8 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
         <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem">Message</div>
         <p id="odMsg" style="font-size:.88rem;color:var(--tx);font-style:italic"></p>
       </div>
-      <div style="display:flex;gap:.7rem;margin-top:1.2rem">
+      <div style="display:flex;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap">
+        <button id="paidToggleBtn" class="abtn" onclick="togglePaid(currentOrderId)" style="padding:8px 18px;font-size:.85rem"></button>
         <button class="abtn abtn-d" onclick="deleteOrder(currentOrderId)" style="padding:8px 18px;font-size:.85rem">Supprimer</button>
         <button class="abtn abtn-s" onclick="closeOrderDetail()" style="padding:8px 18px;font-size:.85rem">Fermer</button>
       </div>
@@ -744,6 +853,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 <footer style="background:var(--bxd);color:rgba(255,255,255,.75);text-align:center;padding:2.5rem 2rem;border-top:2px solid var(--or);margin-top:2rem">
   <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:.9rem">
     <svg width="28" height="28" viewBox="0 0 30 65" fill="none" style="opacity:.5"><rect x="9" y="0" width="12" height="16" rx="3" fill="#D4B068"/><rect x="3" y="14" width="24" height="48" rx="10" fill="#D4B068"/></svg>
+    <img src="data:image/png;base64,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" alt="Beaune Viti Agro Campus" style="height:48px;opacity:.7;margin-top:.5rem">
     <p style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:300;font-style:italic;color:var(--orl);letter-spacing:.02em">Une vente au service d'un projet</p>
     <p style="font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.65);max-width:560px">Cette vente de vins a pour but de financer notre voyage de fin d'études, une aventure que nous préparons avec enthousiasme depuis le début de notre BTS VO. Chaque bouteille achetée contribue directement à ce projet commun. Merci pour votre soutien !</p>
     <p style="font-size:.76rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-top:.5rem">Association BTS VO — Millésime 2025-2027</p>
@@ -865,6 +975,7 @@ function renderAll() {
   renderAnnonce();
   renderPills();
   renderWines();
+  applyOrdersMode();
   document.getElementById('loadingState').style.display = 'none';
   document.getElementById('winesContent').style.display = 'block';
 }
@@ -875,8 +986,9 @@ function renderAll() {
 function showToast(msg, duration = 3000) {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), duration);
+  t.className = 'toast show';
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), duration);
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1166,19 +1278,19 @@ function atc(id) {
 function addById(id, qty) {
   const w = wines.find(x => x.id === id); if (!w) return;
   if (w.unique) {
-    if (cart.find(x => x.id === id)) { alert('Ce vin est limité à 1 bouteille par client.'); return; }
+    if (cart.find(x => x.id === id)) { showError('Ce vin est limité à 1 bouteille par client.'); return; }
     qty = 1;
   }
   if (w.limite && w.stock != null) {
     const inCart = cart.find(x => x.id === id)?.qty || 0;
     const available = w.stock - inCart;
-    if (available <= 0) { alert('Ce vin est épuisé ou déjà au maximum dans votre panier.'); return; }
-    if (qty > available) { qty = available; alert(`Stock limité : seulement ${available} bouteille${available > 1 ? 's' : ''}.`); }
+    if (available <= 0) { showError('Ce vin est épuisé ou déjà au maximum dans votre panier.'); return; }
+    if (qty > available) { qty = available; showError(`Stock limité : seulement ${available} bouteille${available > 1 ? 's' : ''} disponible${available > 1 ? 's' : ''}.`); }
   }
   // Vérification ratio exclusivité
   if (w.ratio && parseInt(w.ratio) > 0) {
     const check = canAddExclusive(id, qty);
-    if (!check.ok) { alert(check.msg); return; }
+    if (!check.ok) { showError(check.msg); return; }
   }
   const ex = cart.find(x => x.id === id);
   if (ex) ex.qty += qty;
@@ -1248,7 +1360,13 @@ function selVille(btn) {
   if (btn.classList.contains('on')) btn.classList.remove('on');
   else { document.querySelectorAll('.ville-pill').forEach(b => b.classList.remove('on')); btn.classList.add('on'); }
 }
-function closeOM() { document.getElementById('oModal').classList.remove('open'); }
+function closeOM() {
+  document.getElementById('oModal').classList.remove('open');
+  document.getElementById('oForm').style.display = 'block';
+  document.getElementById('oSucc').style.display = 'none';
+  const btn = document.getElementById('submitBtn');
+  if (btn) { btn.disabled = false; btn.textContent = 'Envoyer ma commande →'; }
+}
 function fmtTel(el) {
   let v = el.value.replace(/\D/g, '').slice(0, 10);
   el.value = v.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
@@ -1261,14 +1379,14 @@ async function submitOrder() {
   const tel = document.getElementById('oTel').value.trim();
   const pay = document.getElementById('oPay').value;
   const msg = document.getElementById('oMsg').value.trim();
-  if (!pre || !nom || !em) { alert('Merci de remplir Prénom, Nom et Email.'); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Adresse email invalide.'); return; }
-  if (!tel) { alert('Le numéro de téléphone est obligatoire.'); return; }
+  if (!pre || !nom || !em) { showError('Merci de remplir Prénom, Nom et Email.'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('Adresse email invalide.'); return; }
+  if (!tel) { showError('Téléphone obligatoire.'); return; }
   const selBtn = document.querySelector('.ville-pill.on');
   const villeAutre = document.getElementById('oVilleAutre').value.trim();
   let ville = selBtn ? selBtn.textContent.trim() : '';
   if (villeAutre) ville = ville ? ville + ' — ' + villeAutre : villeAutre;
-  if (!ville) { alert('Merci de sélectionner un point de retrait ou de préciser un lieu.'); return; }
+  if (!ville) { showError('Merci de sélectionner un point de retrait.'); return; }
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
@@ -1287,7 +1405,18 @@ async function submitOrder() {
     await sbUpsert('orders', order);
     orders.unshift(order);
 
-    // 2. Envoyer email via Netlify Function
+    // 2. Mettre à jour les stocks
+    for (const item of cart) {
+      const w = wines.find(x => x.id === item.id);
+      if (w && w.limite && w.stock != null) {
+        const newStock = Math.max(0, w.stock - item.qty);
+        w.stock = newStock;
+        if (newStock === 0 && !w.stockEmptyAt) w.stockEmptyAt = new Date().toISOString();
+        try { await sbUpsert('wines', w); } catch(e) { console.warn('Stock update failed:', e); }
+      }
+    }
+
+    // 3. Envoyer emails via Netlify Function
     try {
       await fetch('/.netlify/functions/send-order', {
         method: 'POST',
@@ -1304,9 +1433,11 @@ async function submitOrder() {
     document.getElementById('oForm').style.display = 'none';
     document.getElementById('oSucc').style.display = 'block';
     cart = []; renderCart(); updCC();
+    btn.disabled = false;
+    btn.textContent = 'Envoyer ma commande →';
   } catch(e) {
     console.error(e);
-    alert('Erreur lors de l\'envoi de la commande. Réessayez.');
+    showError('Erreur lors de l\'envoi. Réessayez.');
     btn.disabled = false;
     btn.textContent = 'Envoyer ma commande →';
   }
@@ -1336,6 +1467,7 @@ function swTab(n, btn) {
   document.querySelectorAll('.atab').forEach(b => b.classList.remove('on'));
   document.getElementById('tab-' + n).classList.add('on');
   btn.classList.add('on');
+  if (n === 'commandes') checkStockAlerts();
 }
 function loadAD() {
   renderWList(); renderCBWrap(); renderCatTree(); renderVList(); renderOrderList();
@@ -1351,6 +1483,13 @@ function loadAD() {
     const z = document.getElementById('bnZ'); z.classList.add('hi');
     z.innerHTML = `<img src="${cfg.bn}" style="width:100%;height:100%;object-fit:cover"><button class="rmbn" onclick="rmBanner();event.stopPropagation()">Supprimer</button>`;
   }
+  // Sync toggle commandes
+  const tog = document.getElementById('orderToggle');
+  if (tog) tog.checked = cfg.ordersEnabled !== false;
+  const msg = document.getElementById('orderToggleMsg');
+  if (msg) msg.textContent = cfg.ordersEnabled !== false
+    ? 'Les clients peuvent commander. Désactiver pour suspendre toutes les commandes.'
+    : '⛔ Commandes désactivées — le panier est masqué sur le site.';
   if (cfg.logo) {
     const z = document.getElementById('zLogo'); z.classList.add('hi');
     z.innerHTML = `<img src="${cfg.logo}" style="max-height:80px;max-width:140px;object-fit:contain"><button class="rmbtn" onclick="rmLogo();event.stopPropagation()">✕</button>`;
@@ -1457,7 +1596,7 @@ async function saveWine() {
     ratio:        ratioVal ? parseInt(ratioVal) : null,
     visible:      true,
   };
-  if (!w.appellation || !w.couleur || !w.prix) { alert('Appellation, Couleur et Prix requis.'); return; }
+  if (!w.appellation || !w.couleur || !w.prix) { showError('Appellation, Couleur et Prix sont requis.'); return; }
   const existing = wines.find(x => x.id === id);
   if (existing) w.visible = existing.visible !== undefined ? existing.visible : true;
   try {
@@ -1466,7 +1605,7 @@ async function saveWine() {
     if (idx >= 0) wines[idx] = w; else wines.push(w);
     resetWF(); renderWList(); renderWines(); renderPills();
     showToast('Vin enregistré ✓');
-  } catch(e) { alert('Erreur Supabase : ' + e.message); }
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 function resetWF() {
@@ -1511,7 +1650,7 @@ async function toggleVisible(id) {
     await sbUpsert('wines', w);
     renderWList(); renderWines();
     showToast(w.visible ? 'Vin affiché ✓' : 'Vin masqué');
-  } catch(e) { alert('Erreur: ' + e.message); }
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 async function delWine(id) {
@@ -1521,7 +1660,7 @@ async function delWine(id) {
       wines = wines.filter(x => x.id !== id);
       renderWList(); renderWines();
       showToast('Vin supprimé');
-    } catch(e) { alert('Erreur: ' + e.message); }
+    } catch(e) { showError('Erreur : ' + e.message); }
   });
 }
 
@@ -1534,16 +1673,16 @@ function renderWList() {
     const stockTxt = w.limite && w.stock != null ? `<span style="font-size:.8rem;color:${w.stock <= 3 ? '#c0392b' : 'var(--txm)'}">${w.stock} btl</span>` : '—';
     const badges = [w.nouveau && '🆕', w.limite && '⏳', w.unique && '1️⃣'].filter(Boolean).join(' ');
     return `<tr style="opacity:${vis ? 1 : .45}">
-      <td>${w.iB ? `<img src="${w.iB}" class="wth" onerror="this.style.display='none'">` : `<div class="wthe"></div>`}</td>
-      <td>${w.appellation || '—'}</td>
-      <td style="font-weight:500">${w.nom || '—'} ${badges ? `<span style="font-size:.8rem">${badges}</span>` : ''}</td>
-      <td>${w.millesime || '—'}</td>
-      <td>${w.couleur || '—'}</td>
-      <td style="color:var(--bx);font-weight:500">${w.prix ? parseFloat(w.prix).toFixed(2).replace('.', ',') + ' €' : '—'}</td>
-      <td>${stockTxt}</td>
-      <td>${w.ratio ? `<span style="font-size:.8rem;color:#1B3A6B;font-weight:500">1:${w.ratio}</span>` : '—'}</td>
-      <td><button class="toggle-vis" onclick="toggleVisible('${w.id}')" title="${vis ? 'Masquer' : 'Afficher'}">${vis ? '👁️' : '🙈'}</button></td>
-      <td style="white-space:nowrap">
+      <td data-label="">${w.iB ? `<img src="${w.iB}" class="wth" onerror="this.style.display='none'">` : `<div class="wthe"></div>`}</td>
+      <td data-label="Appellation">${w.appellation || '—'}</td>
+      <td data-label="Nom" style="font-weight:500">${w.nom || '—'} ${badges ? `<span style="font-size:.8rem">${badges}</span>` : ''}</td>
+      <td data-label="Mill.">${w.millesime || '—'}</td>
+      <td data-label="Couleur">${w.couleur || '—'}</td>
+      <td data-label="Prix" style="color:var(--bx);font-weight:500">${w.prix ? parseFloat(w.prix).toFixed(2).replace('.', ',') + ' €' : '—'}</td>
+      <td data-label="Stock">${stockTxt}</td>
+      <td data-label="Ratio">${w.ratio ? `<span style="font-size:.8rem;color:#1B3A6B;font-weight:500">1:${w.ratio}</span>` : '—'}</td>
+      <td data-label="Visible"><button class="toggle-vis" onclick="toggleVisible('${w.id}')" title="${vis ? 'Masquer' : 'Afficher'}">${vis ? '👁️' : '🙈'}</button></td>
+      <td data-label="Actions" style="white-space:nowrap">
         <button class="abtn abtn-s" style="padding:4px 10px;font-size:.76rem" onclick="editWine('${w.id}')">Modifier</button>
         <button class="abtn abtn-d" style="padding:4px 10px;font-size:.76rem" onclick="delWine('${w.id}')">Supprimer</button>
       </td>
@@ -1556,7 +1695,7 @@ function renderWList() {
 // ═══════════════════════════════════════════════════════
 async function saveCat() {
   const nom = document.getElementById('cNom').value.trim();
-  if (!nom) { alert('Nom requis.'); return; }
+  if (!nom) { showError('Nom requis.'); return; }
   const cat = { id: 'c' + Date.now(), nom, "desc": document.getElementById('cDes').value.trim(), parent: document.getElementById('cPar').value || null };
   try {
     await sbUpsert('cats', cat);
@@ -1564,7 +1703,7 @@ async function saveCat() {
     document.getElementById('cNom').value = ''; document.getElementById('cDes').value = ''; document.getElementById('cPar').value = '';
     renderCatTree(); renderCBWrap(); renderPills(); refreshPS(); renderWines();
     showToast('Catégorie ajoutée ✓');
-  } catch(e) { alert('Erreur: ' + e.message); }
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 async function delCatById(id) {
@@ -1576,7 +1715,7 @@ async function delCatById(id) {
       wines.forEach(w => { if (w.cats) w.cats = w.cats.filter(c => !toDel.includes(c)); });
       renderCatTree(); renderCBWrap(); renderPills(); refreshPS(); renderWines();
       showToast('Catégorie supprimée');
-    } catch(e) { alert('Erreur: ' + e.message); }
+    } catch(e) { showError('Erreur : ' + e.message); }
   });
 }
 
@@ -1626,7 +1765,7 @@ async function saveVille() {
   const id  = document.getElementById('veid').value || 'v' + Date.now();
   const nom = document.getElementById('vNom').value.trim();
   const ref = document.getElementById('vRef').value.trim();
-  if (!nom || !ref) { alert('Ville et Référent requis.'); return; }
+  if (!nom || !ref) { showError('Ville et Référent sont requis.'); return; }
   const coords = getCityCoords(nom);
   if (coords.x === 280 && coords.y === 300) { document.getElementById('vNomErr').style.display = 'block'; return; }
   const v = { id, nom, ref };
@@ -1636,7 +1775,7 @@ async function saveVille() {
     if (idx >= 0) villes[idx] = v; else villes.push(v);
     resetVF(); renderVList();
     showToast('Point de retrait enregistré ✓');
-  } catch(e) { alert('Erreur: ' + e.message); }
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 function onVilleInput(val) {
@@ -1685,7 +1824,7 @@ async function delVille(id) {
       villes = villes.filter(x => x.id !== id);
       renderVList();
       showToast('Point de retrait supprimé');
-    } catch(e) { alert('Erreur: ' + e.message); }
+    } catch(e) { showError('Erreur : ' + e.message); }
   });
 }
 function renderVList() {
@@ -1693,9 +1832,9 @@ function renderVList() {
   const tb = document.getElementById('vbody');
   if (!villes.length) { tb.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--txm);padding:2rem">Aucun point de retrait</td></tr>'; return; }
   tb.innerHTML = villes.map(v => `<tr>
-    <td style="font-weight:500">${v.nom}</td>
-    <td>${v.ref}</td>
-    <td style="white-space:nowrap">
+    <td data-label="Ville" style="font-weight:500">${v.nom}</td>
+    <td data-label="Référent">${v.ref}</td>
+    <td data-label="Actions" style="white-space:nowrap">
       <button class="abtn abtn-s" style="padding:4px 10px;font-size:.76rem" onclick="editVille('${v.id}')">Modifier</button>
       <button class="abtn abtn-d" style="padding:4px 10px;font-size:.76rem" onclick="delVille('${v.id}')">Supprimer</button>
     </td>
@@ -1715,7 +1854,7 @@ async function saveAnnonce() {
     const prev = document.getElementById('annoncePreview');
     prev.innerHTML = cfg.aTitre ? '<p style="font-size:.82rem;color:var(--txm);margin-bottom:.4rem;font-weight:500">Annonce active ✓</p>' : '<p style="font-size:.82rem;color:var(--txm);font-style:italic">Aucune annonce active.</p>';
     showToast('Annonce publiée ✓');
-  } catch(e) { alert('Erreur: ' + e.message); }
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 async function clearAnnonce() {
   askConfirm('Supprimer l\'annonce ?', async () => {
@@ -1737,7 +1876,7 @@ async function refreshOrders() {
     orders = o || [];
     renderOrderList();
     showToast('Commandes actualisées ✓');
-  } catch(e) { alert('Erreur: ' + e.message); }
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 function renderOrderList() {
@@ -1814,6 +1953,11 @@ function openOrderDetail(id) {
   const msgWrap = document.getElementById('odMsgWrap');
   if (o.message && o.message !== '—') { document.getElementById('odMsg').textContent = o.message; msgWrap.style.display = 'block'; }
   else msgWrap.style.display = 'none';
+  const paidBtn = document.getElementById('paidToggleBtn');
+  if (paidBtn) {
+    paidBtn.textContent = o.paid ? '✗ Marquer non payé' : '✓ Marquer payé';
+    paidBtn.style.background = o.paid ? '#c0392b' : '#1a6b2a';
+  }
   document.getElementById('orderDetailModal').style.display = 'flex';
 }
 function closeOrderDetail() { document.getElementById('orderDetailModal').style.display = 'none'; currentOrderId = null; }
@@ -1824,7 +1968,7 @@ async function deleteOrder(id) {
       orders = orders.filter(x => x.id !== id);
       closeOrderDetail(); renderOrderList();
       showToast('Commande supprimée');
-    } catch(e) { alert('Erreur: ' + e.message); }
+    } catch(e) { showError('Erreur : ' + e.message); }
   });
 }
 async function clearAllOrders() {
@@ -1833,7 +1977,7 @@ async function clearAllOrders() {
       for (const o of orders) await sbDelete('orders', o.id);
       orders = []; renderOrderList();
       showToast('Toutes les commandes supprimées');
-    } catch(e) { alert('Erreur: ' + e.message); }
+    } catch(e) { showError('Erreur : ' + e.message); }
   });
 }
 
@@ -1981,22 +2125,52 @@ function _initCropImage(dataUrl, sz) {
   };
   document.onmouseup = () => { cropDragging = false; container.style.cursor = 'grab'; };
 
-  // Touch
+  // Touch drag + pinch zoom
+  let lastPinchDist = 0;
   container.ontouchstart = e => {
-    const t = e.touches[0];
-    cropDragging = true; cropStartX = t.clientX; cropStartY = t.clientY;
-    cropOrigX = cropX; cropOrigY = cropY;
+    if (e.touches.length === 1) {
+      const t = e.touches[0];
+      cropDragging = true; cropStartX = t.clientX; cropStartY = t.clientY;
+      cropOrigX = cropX; cropOrigY = cropY;
+    } else if (e.touches.length === 2) {
+      cropDragging = false;
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      lastPinchDist = Math.sqrt(dx*dx + dy*dy);
+    }
     e.preventDefault();
   };
   container.ontouchmove = e => {
-    if (!cropDragging) return;
-    const t = e.touches[0];
-    cropX = cropOrigX + (t.clientX - cropStartX);
-    cropY = cropOrigY + (t.clientY - cropStartY);
-    _applyCropTransform();
+    if (e.touches.length === 1 && cropDragging) {
+      const t = e.touches[0];
+      cropX = cropOrigX + (t.clientX - cropStartX);
+      cropY = cropOrigY + (t.clientY - cropStartY);
+      _applyCropTransform();
+    } else if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (lastPinchDist > 0) {
+        const sz = CROP_SIZES[cropTarget] || {w:300,h:300};
+        const ratio = dist / lastPinchDist;
+        const newScale = Math.min(Math.max(cropScale * ratio, 0.3), 10);
+        const cx = sz.w/2, cy = sz.h/2;
+        cropX = cx - (cx - cropX) * (newScale / cropScale);
+        cropY = cy - (cy - cropY) * (newScale / cropScale);
+        cropScale = newScale;
+        const pct = Math.round(cropScale * 100);
+        document.getElementById('cropZoom').value = pct;
+        document.getElementById('cropZoomVal').textContent = pct + '%';
+        _applyCropTransform();
+      }
+      lastPinchDist = dist;
+    }
     e.preventDefault();
   };
-  container.ontouchend = () => { cropDragging = false; };
+  container.ontouchend = e => {
+    cropDragging = false;
+    if (e.touches.length < 2) lastPinchDist = 0;
+  };
 }
 
 function _applyCropTransform() {
@@ -2026,21 +2200,25 @@ function applyCrop() {
   canvas.width = sz.w; canvas.height = sz.h;
   const ctx = canvas.getContext('2d');
 
-  // Clip circulaire pour logo
   if (cropTarget === 'logo') {
     ctx.beginPath();
     ctx.arc(sz.w / 2, sz.h / 2, sz.w / 2, 0, Math.PI * 2);
     ctx.clip();
   }
 
-  // Dessiner l'image avec la transform actuelle
-  // cropX, cropY = translation de l'image dans le container
-  // cropScale = échelle de l'image
-  ctx.save();
-  ctx.translate(cropX, cropY);
-  ctx.scale(cropScale, cropScale);
-  ctx.drawImage(cropImg, 0, 0, cropImg.naturalWidth, cropImg.naturalHeight);
-  ctx.restore();
+  // Calcul correct : on dessine la zone visible du container
+  // cropX/Y = position de l'image dans le container (peut être négatif)
+  // cropScale = zoom appliqué
+  const srcX = -cropX / cropScale;
+  const srcY = -cropY / cropScale;
+  const srcW = sz.w / cropScale;
+  const srcH = sz.h / cropScale;
+
+  ctx.drawImage(
+    cropImg,
+    srcX, srcY, srcW, srcH,
+    0, 0, sz.w, sz.h
+  );
 
   const result = canvas.toDataURL('image/png');
   closeCropModal();
@@ -2050,17 +2228,19 @@ function applyCrop() {
   } else if (cropTarget === 'banner') {
     setBanner(result);
   } else if (cropTarget === 'bottle') {
-    document.getElementById('iB').value = result;
-    const z = document.getElementById('zB');
-    z.innerHTML = `<img src="${result}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`;
-    z.classList.add('hi');
-    az = null;
+    compressImage(result, 1200, 0.82).then(compressed => {
+      document.getElementById('iB').value = compressed;
+      const z = document.getElementById('zB');
+      z.innerHTML = `<img src="${compressed}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`;
+      z.classList.add('hi'); az = null;
+    });
   } else if (cropTarget === 'desc') {
-    document.getElementById('iD').value = result;
-    const z = document.getElementById('zD');
-    z.innerHTML = `<img src="${result}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>`;
-    z.classList.add('hi');
-    az = null;
+    compressImage(result, 1200, 0.82).then(compressed => {
+      document.getElementById('iD').value = compressed;
+      const z = document.getElementById('zD');
+      z.innerHTML = `<img src="${compressed}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>`;
+      z.classList.add('hi'); az = null;
+    });
   }
 }
 
@@ -2159,6 +2339,121 @@ function canAddExclusive(wineId, qtyToAdd) {
     };
   }
   return { ok: true };
+}
+
+
+// ═══ showError / showWarn ════════════════════
+function showError(msg, duration = 4000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast err show';
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), duration);
+}
+function showWarn(msg, duration = 3500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast warn show';
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ═══ TOGGLE PAYÉ ════════════════════════════
+async function togglePaid(id) {
+  const o = orders.find(x => x.id === id); if (!o) return;
+  const newPaid = !o.paid;
+  const msg = newPaid ? 'Marquer cette commande comme payée ?' : 'Marquer cette commande comme non payée ?';
+  askConfirm(msg, async () => {
+    o.paid = newPaid;
+    try {
+      await sbUpsert('orders', o);
+      const btn = document.getElementById('paidToggleBtn');
+      if (btn) {
+        btn.textContent = o.paid ? '✗ Marquer non payé' : '✓ Marquer payé';
+        btn.style.background = o.paid ? '#c0392b' : '#1a6b2a';
+      }
+      renderOrderList();
+      showToast(o.paid ? 'Commande marquée payée ✓' : 'Commande marquée non payée');
+    } catch(e) { showError('Erreur : ' + e.message); }
+  });
+}
+
+// ═══ TOGGLE COMMANDES ON/OFF ════════════════
+async function toggleOrders(enabled) {
+  cfg.ordersEnabled = enabled;
+  try {
+    await sbSetConfig(cfg);
+    applyOrdersMode();
+    const msg = document.getElementById('orderToggleMsg');
+    if (msg) msg.textContent = enabled
+      ? 'Les clients peuvent commander. Désactiver pour suspendre toutes les commandes.'
+      : '⛔ Commandes désactivées — le panier est masqué sur le site.';
+    showToast(enabled ? 'Commandes activées ✓' : 'Commandes désactivées');
+  } catch(e) { showError('Erreur : ' + e.message); }
+}
+
+function applyOrdersMode() {
+  const enabled = cfg.ordersEnabled !== false;
+  const cartBtn = document.querySelector('.cart-btn');
+  if (cartBtn) cartBtn.style.display = enabled ? '' : 'none';
+  document.querySelectorAll('.wcr').forEach(el => el.style.display = enabled ? '' : 'none');
+  const ckbtn = document.querySelector('.ckbtn');
+  if (ckbtn) ckbtn.style.display = enabled ? '' : 'none';
+  const tog = document.getElementById('orderToggle');
+  if (tog) tog.checked = enabled;
+  // Vider le panier si désactivé
+  if (!enabled) {
+    cart = []; renderCart(); updCC();
+    document.getElementById('cside').classList.remove('open');
+    document.getElementById('covl').classList.remove('open');
+  }
+}
+
+// ═══ NOTIFICATION STOCK ÉPUISÉ ══════════════
+function checkStockAlerts() {
+  const now = Date.now();
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  const alerts = [];
+  wines.forEach(w => {
+    if (w.limite && w.stock === 0) {
+      // Vérifier si rupture récente (< 7 jours) via stockEmptyAt
+      const emptyAt = w.stockEmptyAt ? new Date(w.stockEmptyAt).getTime() : now;
+      if (now - emptyAt < sevenDays) {
+        alerts.push(w.appellation + (w.nom ? ' — ' + w.nom : ''));
+      }
+    }
+  });
+  const alertEl = document.getElementById('stockAlertBanner');
+  if (!alertEl) return;
+  if (alerts.length > 0) {
+    alertEl.style.display = 'block';
+    alertEl.innerHTML = `<strong>⚠ Stock épuisé</strong> — ${alerts.join(', ')}`;
+  } else {
+    alertEl.style.display = 'none';
+  }
+}
+
+// ═══ OVERRIDE renderAll pour appliquer mode commandes ═══
+const _origRenderAll = renderAll;
+
+
+// ═══ COMPRESSION IMAGE ══════════════════════
+function compressImage(dataUrl, maxPx, quality) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if (w > maxPx || h > maxPx) {
+        if (w > h) { h = Math.round(h * maxPx / w); w = maxPx; }
+        else { w = Math.round(w * maxPx / h); h = maxPx; }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+    img.src = dataUrl;
+  });
 }
 
 // ═══════════════════════════════════════════════════════
