@@ -73,7 +73,6 @@ exports.handler = async function(event) {
   const payload = JSON.stringify({
     from: 'Association BTS VO <onboarding@resend.dev>',
     to: [TO_EMAIL],
-    reply_to: email,
     subject: 'Nouvelle commande - ' + prenom + ' ' + nom + ' (' + (total||0).toFixed(2) + ' EUR)',
     html: htmlAdmin
   });
