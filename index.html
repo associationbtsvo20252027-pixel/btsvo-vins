@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADFUlEQVR42u2VXYiUVRjH/895z7wzszM67iaLuSvmhRiJha1G1O6+FJlSgpXN5rbsGGKzBRkEdSV05iQESVAiFC6Jurkf7rqtbezFgjU7uytCJHRhedFV0FVINeuMM/N+nKeLNhxCN90lIZjf3XOe83D+PF8HqFGjRo3/AeQ4Wek4WQmAqh1KKeGorEwmh60bZyyq7buGUkqk09+F/rZvVwTd2sUEEHakB58se6GXAFOJ2TS6ZdXlaZ3J8PNvftE0dx0vgKwHBJV/FoYvSjsqi+XrDxumi9MnO2eUYqE1mYUEiAW0cTI5LBBOzLqeu8lAviEjhe+11qal55IcO7r7F2I3CkKP6wczk8c7pyY+fe688ekrDvhkW3f/O1qTUYrFIgX8xeTRZyoNcfEhCcm/58NbAdCl3hbf2T/azKBmeIU9uRNds45S0lFZOf155xVLyn1WJHHY2Tv0qNZkFirHggJGRpLmXaXE+nvtq8YrzgU+pwEwQBwTpml5zPtgw1p7AgByWvs5/YQPAFMnOnJ+5dqvPpuDS+gBgJmJiLi/f3zlqey1jwoV+WJ93F898cnLf2x/9czTgeHt6xuXHUosd4VbKZEdSQRuOW81bQwVR8f9cSI8ONvXuYqIeP4tvqMMzAeiUFidb4iHhoQlI3NFdICIy5456AXcVXfPb64fYAUQbZCCVwoZTSCPKMBlMOxMJkOLzkDVNHBf32TjZ19f/cbzufRKe/GxgQvLsh7jobqobD7f25H/Z9Tj3QNXiLkwe7prK5QS0NosqgnnM0euWyqFJR23ZGTL2W8T+0K2eDtkx+Ou6z8CADsOHAm3pI+FmJm2vTbaKO3Y/WThYwBwpm7nnX9VwXTgvZHNrakzpi01eAQAWlMDh1tTAz/uTB+rq77c1j34ZXtq6Nz8hhJLLMGNTbdmzebY6ZnC+4bQO732px+gtWnfO5gWxM1hW5yzLLtUqrhPBUFQnzvVdYiUImjNN2u+Ja3cKkMAQPKt4ei2/cPrdvWM3ffs6/31d/UPuNmS+a8/I7rltDDTnZS1Ro0aNQDgT0wPP1Wdqd8vAAAAAElFTkSuQmCC">
 <title>Association BTS VO — Millésime 2025-2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -48,7 +48,7 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .cbadge{position:absolute;top:10px;right:10px;padding:4px 11px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .cr2{background:#f9e8e8;color:#7a1525}.cb2{background:#fdf8e8;color:#5a4d10}.cros{background:#fce8f0;color:#7a1f48}.ceff{background:#e8f0fc;color:#1a3a70}.cliq{background:#f8f0e8;color:#6a3a08}
 .winfo{padding:1rem 1.2rem .6rem;flex:1;display:flex;flex-direction:column;gap:.3rem}
-.wapp{font-size:.71rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
+.wapp{font-size:.73rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
 .wnom{font-family:'Playfair Display',serif;font-size:1.18rem;font-weight:600;color:var(--bxd);line-height:1.25}
 .wmil{font-size:.8rem;color:var(--txm);letter-spacing:.01em}
 .wlab{font-size:.74rem;color:#5A7A99;font-style:italic}
@@ -230,6 +230,9 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
 
 /* ═══ RESPONSIVE MOBILE ═══════════════════════ */
 @media(max-width:768px){
+  .cart-label{display:none}
+  .map-label{display:none}
+
   /* Header */
   header{padding:0 .8rem;height:64px}
   .logo-text h1{font-size:1rem}
@@ -331,16 +334,16 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
       <h1 id="logoTitle">Association BTS VO</h1>
       <p>Millésime 2025-2027</p>
     </div>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAacAAACdCAYAAAAQebfnAAAI70lEQVR42u3da6rbSBAGUMd4KbX/FfVenD/DEC7Jvbbcj6rucyAwkIkl9etTSbL16/l83gAgk7smAEA4AYBwAkA4AYBwAkA4Abtq//0B4QSkCaa//TcIJ2B5MN1ut1toEoQTIJhAOAH/CCYQTkC6YFI1IZwAFRMIJ+C7YFI1IZwAwQTCCXApD+EElAkmVRPCCRBMIJxAMAkmhBNQIphAOAHpgknVhHACAOEEqiZVE8IJEEwgnADBhHACygcTCCcgXTCpmhBOgGAC4QSCCYQTUCaYVE0IJ0AwgXACwQTCCSgTTKomhBMgmEA4gWASTAgnoEQwgXAC0gWTqgnhBKiYQDiBYFI1cZTHwIkUEyapSTl3YdTeggmm+PV8PjOGx8wnlFrnid6++ZxPttVeOO7W6bMtiDXCST+wrfvgSdRuY6+f956cM6/1t4GfV6nNGT9PoJxH58+Lw8OovVA99dzW6G0Iorz0DSqnNydLDAoBk3Fupae98/ahvkE4HbjQ7XJ5pWkHwQRVPRZPtE8+P5Lv7w6Lfe+HRRD+kKpysnCM3dc24QzbYrq+LZ0gIJw2D5AVC62FBcEEL3pMnJA9J1fFiVq18rAoCiYoHU7xw0T8NKB6TdCdLk999+h+lvZGMMHb3HOaF2KR/PNGtuPpXzJ1vw6EU9pFZdQCFYXC68SQagP6FoRTxwmZcaLFlz8zF6WT78GdElKCCS6q/D2nK5N49Pd2vt4DqrwA9/rF+Z/ui+26EAsmWFA5vbs4RbJFYOT+xKLtz1zQev969m6VlHtM8KGsr8x4Z4JfeT1EvLjtEfvf4zNHBdGoNp/1+TsEk6oJPgwnGL14x8bHJpjgG57WY+fFXjCBygmmLOax0bEIJ1A5kczo+1aCCVROsGxxj8L7LphA5cTG4dYWbVcwgcoJ1VOaRV8wgXBCSKUKAMEEwgkBlSKsWoJ9AOEEGwfUK2GRMSBBOMFhAbUyCIG/8LQeFnLHA8IJDlzQBRMIJwSU/Yfq3HOiior3oAQTu823aWO6VzjNfk9Pj7e09n5hXsbFNAbvbySZMIJpkwVpQv9H4nEYB7dp13Ba9avSrcPnz1iIK4VTKzKRqgTUju+hio36OgqMwTi0bf934j2ntsk2ThU3l8tOGKvt8PnZTv/s+2YT6ZVFy8KGqinvIt1u+cMjivbPrLbtso1Hpw6qdn9l9b5/sv0R+56tL9/Z55Zwn3YMpnbLd6kpBp7E9h5/K+fYrHbtOl4eHSdlS9bAVc624nb9gZLvJsgpFWLc6p0ccX1uv3N1xOX1vuN46ly7L5icbcDgjYUd9sq/jQmDJoq0x277U/EeWCu4L1faOZKO3ZmXBXu3b8waZzs8EBGJ9ymKLRTVx4HqZd9gomY/X96P++GNvNuvT1ug5x2/tq6xeJ5UKc3avynHcy/cCbMWh9MuA+xwFnvaZc1ZgdCK9mUMWi9a0nZsO4zle/JJsvslL5f06gVIaCvjXsU13iPxvrXBnWaCnDO5T3+1ekt0XG2TNr96v0zVlLxyQhU3O6Q+feLSmbl9Exwqp1RneibpmZXULu3ejKtyJ30xcVvCyUJ9VKViHLHzmG/G5nj3hI0740zP9yu0x8n9GhPGCu+vm7Ofdj4unHYZ5L4fwUnBFIfP91NCqYxH8QmFoOS9IGiHHnfWcdzMrXyV09fBNCuYnMEBJF9DR1VO7/567WkVk4Cs1S/e0eS4zd3rWVCycjKJ7E+WNmgf/L2+HLhIWRPKbjPF+5xOP1vljIWhJR6bPV4r887PikXBPoyJYyWKt+nyIM1aOUX1hi1ypnly1fRJNVSt+o03xlwUH9OqxBzrxcdt4LKequ3E9mhJPsOJ3v4nTjHxmLeap/eDJtNRJTHdq6Ws/dnMF8e8W9WUMZzCQKdY/7fEx5T5LdHV5m0rcswjKrUlP1h7LzxoEdYnH2uGYLpaia4IqNXrS1xs29Ht+9023t1+1zZ+DO4M1crisw+mjMFsT1qteEfTlVd9t2T9mHkMZ27fIePtfshkEpJnBmWzrdT7VOV35XrNl6vHOvvfpei/+4Sdr7b4xQHbP6Eya4dsc0TfxuTtRvI2iUX7Ep32PQa05/A15Nfz+cxalkLFkNj5nWNRpC8rVWORfI4sa8tZ4QSqF0b2rzbfzEMTIJgoRAgdQuWEULKIQjp+vghUcSCcQAgAwgnBZP9AOIGFX0CBcEIwAcIJBJMwhdF8z4lTF/kQIpCX7zlxWjDFxG1d2TZwc1kPwSREQOUES4IpFm5b8IFwQjANCYPeISWg4AceiGDXYOr9Dp5qL/iLRfsQSbbXJrTJqtdOtDeOPRbNzY+3654Tgmn+Z7YO/751+H+MnznbaMWOLcV+Cid2GtSj39CZ+XJcJNlHj+OfNz+HzDvhxE7BNDMEMi3ikSygTgjD+GaRjkPbp+uxCyeqT6IVi0G2BShbn7UiY2fUNk+vHrvMDw9EcPLZb4bjFnL7jCX3+DqOZ+FE5Yopwxli1kUpkvabcKhfFb1SNXpaD8HkTN9x3eY8On51rMZmY2fKT4AJJwTT+ipFQO1TVXz9s/uxDut/l/WoNBksiu+3waovYc4cF63Y+NxxXnbvA+FEhbPplb8kPrNdPBxB7/k18lcxYuRJgst67FQxsWbxC+Om1MleiTZXOZF1IsWFiXFq9ZThxngs3o92wDb/td22aH9a5zmscmK7YPp6Fu9LsmdXJHFgH7Td2tYrM9glmLJWF6MWgLaoHd/dr1n3PP78u+hUkX6yL6vn1ervuX28feHECcFULbBik35XvSKcEEybhZWFnaN5IILVC32mRTgKVFWgcoKDgiljhaV6QuUEgulyaKiyQOXEBuEU2kH1BConVExrqyuVFaicSBpOKgCBDi/zCxEIphzVFSCcEEylAsplQYQTdAomv2+nggLhRLpgom9AqZ4QTiCYVFAgnBBMvNKGqieEEwgmFRQIJwQT2hSEE4KpZEC5tIdwgh8WTsEkoEA4kaZqEkrrAwqEE4LJQlmib0A44Qye6W2v/RFO8MdiaGEEpvLKDABUTgAgnAAQTgDwqd9HbVStRefRwgAAAABJRU5ErkJggg==" alt="Beaune Viti Agro Campus" class="campus-logo-header">
+    <img src="data:image/png;base64,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" alt="Beaune Viti Agro Campus" class="campus-logo-header">
   </div>
   <div class="hright">
     <button class="map-btn" onclick="openCarte()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span>Points de retrait</span>
+      <span class="map-label">Points de retrait</span>
     </button>
     <button class="cart-btn" onclick="toggleCart()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      Mon panier
+      <span class="cart-label">Mon panier</span>
       <span class="cart-count" id="cc">0</span>
     </button>
   </div>
@@ -505,9 +508,13 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
     <svg width="50" height="50" viewBox="0 0 50 50" fill="none"><path d="M25 5C17 5 11 13 11 22c0 9 6 17 14 20 8-3 14-11 14-20 0-9-6-17-14-17z" fill="rgba(139,26,46,.12)"/><path d="M25 10C19 10 14 17 14 24s5 13 11 15c6-2 11-8 11-15s-5-14-11-14z" fill="rgba(139,26,46,.25)"/><path d="M25 16c-4 0-7 4-7 9s3 8 7 10c4-2 7-5 7-10s-3-9-7-9z" fill="#8B1A2E"/></svg>
     <h2>Administration</h2>
     <p>Association BTS VO — Millésime 2025-2027</p>
+    <div class="fg" style="text-align:left;margin-bottom:.7rem">
+      <label style="font-size:.76rem;font-weight:500;color:var(--txm);display:block;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase">Identifiant</label>
+      <input type="text" id="auser" class="ai" placeholder="ex: anatole" onkeydown="if(event.key==='Enter')doLog()" autocomplete="username">
+    </div>
     <div class="fg" style="text-align:left">
       <label style="font-size:.76rem;font-weight:500;color:var(--txm);display:block;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase">Mot de passe</label>
-      <input type="password" id="apwd" class="ai" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLog()">
+      <input type="password" id="apwd" class="ai" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLog()" autocomplete="current-password">
     </div>
     <div class="logerr" id="logerr"></div>
     <div class="logbtns">
@@ -520,7 +527,10 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
 <!-- ADMIN PANEL -->
 <div class="apanel" id="apanel">
   <div class="atop">
-    <h2>Administration — BTS VO Millésime 2025-2027</h2>
+    <div>
+      <h2>Administration — BTS VO Millésime 2025-2027</h2>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.6);margin-top:2px">Connecté : <span id="adminHeaderName" style="color:var(--orl);font-weight:500"></span></div>
+    </div>
     <div style="display:flex;align-items:center;gap:1rem">
       <div id="syncBar" class="sync-bar sync-ok">Supabase ✓</div>
       <button class="abtn abtn-s" style="padding:7px 18px;font-size:.85rem" onclick="closeAdmin()">✕ Fermer</button>
@@ -533,7 +543,9 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
       <button class="atab" onclick="swTab('commandes',this)">📋 Commandes</button>
       <button class="atab" onclick="swTab('annonce',this)">Annonce</button>
       <button class="atab" onclick="swTab('villes',this)">Points de retrait</button>
+      <button class="atab" onclick="swTab('domaines',this)">🏠 Achats Domaines</button>
       <button class="atab" id="tabBtnParams" onclick="openParamsLock(this)">Paramètres 🔒</button>
+      <button class="atab" id="tabBtnCompte" onclick="swTab('compte',this)">👤 Mon compte</button>
     </div>
 
     <!-- VINS -->
@@ -554,7 +566,15 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
             </select>
           </div>
           <div><label class="al">Label</label><input type="text" class="ai" id="wLab" placeholder="Bio, HVE…"></div>
-          <div><label class="al">Prix (€) *</label><input type="number" class="ai" id="wPrix" placeholder="0.00" step="0.01" min="0"></div>
+          <div><label class="al">Prix de vente (€) *</label><input type="number" class="ai" id="wPrix" placeholder="0.00" step="0.01" min="0" oninput="calcMarge()"></div>
+          <div><label class="al">Prix d'achat HT (€)</label><input type="number" class="ai" id="wPrixAchat" placeholder="0.00" step="0.01" min="0" oninput="calcMarge()"></div>
+        </div>
+        <div id="margeInfo" style="display:none;margin-top:.3rem;background:linear-gradient(135deg,rgba(41,82,204,.04),rgba(41,82,204,.08));border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:.8rem 1.2rem;font-size:.84rem">
+          <span style="color:var(--txm)">Prix achat TTC : </span><strong id="mPrixTTC" style="color:var(--bxd)">—</strong>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <span style="color:var(--txm)">Marge : </span><strong id="mMargeEur" style="color:#1a6b2a">—</strong>
+          &nbsp;&nbsp;
+          <strong id="mMargePct" style="color:#1a6b2a">—</strong>
         </div>
         <div style="margin-top:1rem"><label class="al">Texte descriptif</label><textarea class="ai ata" id="wDes" placeholder="Description, notes…"></textarea></div>
         <div class="fg2" style="margin-top:1rem">
@@ -625,7 +645,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <table class="wtbl">
             <thead><tr>
               <th></th><th>Appellation</th><th>Nom / Cuvée</th><th>Mill.</th>
-              <th>Couleur</th><th>Prix</th><th>Stock</th><th>Ratio</th><th>Visible</th><th>Actions</th>
+              <th>Couleur</th><th>P. Achat HT</th><th>P. Vente</th><th>Marge</th><th>Stock</th><th>Ratio</th><th>Visible</th><th>Actions</th>
             </tr></thead>
             <tbody id="wbody"></tbody>
           </table>
@@ -661,6 +681,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <h3 style="margin:0;padding:0;border:none">Commandes reçues (<span id="orderCount">0</span>)</h3>
           <div style="display:flex;gap:.7rem;flex-wrap:wrap;align-items:center">
             <input type="text" class="ai" id="orderSearch" placeholder="Rechercher…" style="width:200px" oninput="renderOrderList()">
+            <button class="abtn" style="padding:7px 14px;font-size:.82rem" onclick="openManualOrder()">+ Commande manuelle</button>
             <button class="abtn abtn-s" style="padding:7px 14px;font-size:.82rem" onclick="refreshOrders()">🔄 Actualiser</button>
             <button class="abtn abtn-d" style="padding:7px 14px;font-size:.82rem" onclick="clearAllOrders()">Tout effacer</button>
           </div>
@@ -723,6 +744,58 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <thead><tr><th>Ville</th><th>Référent</th><th>Actions</th></tr></thead>
           <tbody id="vbody"></tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- ACHATS DOMAINES -->
+    <div class="asec" id="tab-domaines">
+      <div class="acard" id="domainesListCard">
+        <h3>Achats Domaines</h3>
+        <p style="font-size:.83rem;color:var(--txm);margin-bottom:1.2rem;line-height:1.6">
+          Liste des domaines extraite automatiquement depuis vos vins. Cliquez sur un domaine pour gérer ses commandes.
+        </p>
+        <div id="domainesList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem"></div>
+      </div>
+      <!-- Détail domaine -->
+      <div class="acard" id="domaineDetail" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.2rem">
+          <h3 id="domaineDetailTitle" style="margin:0;padding:0;border:none"></h3>
+          <button class="abtn abtn-s" style="padding:6px 14px;font-size:.82rem" onclick="closeDomaine()">← Retour</button>
+        </div>
+        <!-- Vins de ce domaine -->
+        <div id="domaineVins" style="margin-bottom:1.4rem"></div>
+        <!-- Nouvelle commande -->
+        <div style="background:linear-gradient(135deg,rgba(41,82,204,.04),rgba(41,82,204,.08));border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:1.2rem;margin-bottom:1.4rem">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--bxd);margin-bottom:1rem">Nouvelle commande</h4>
+          <div class="fg2">
+            <div><label class="al">Vin *</label>
+              <select class="ai aisel" id="dcWin"><option value="">— Choisir un vin —</option></select>
+            </div>
+            <div><label class="al">Quantité (bouteilles) *</label>
+              <input type="number" class="ai" id="dcQty" placeholder="ex: 24" min="1" step="1">
+            </div>
+            <div><label class="al">Prix achat TTC total (€)</label>
+              <input type="number" class="ai" id="dcTotal" placeholder="0.00" step="0.01" min="0">
+            </div>
+            <div><label class="al">Lieu de stockage</label>
+              <select class="ai aisel" id="dcLieu">
+                <option value="Au Domaine">Au Domaine</option>
+                <option value="Chez Agathe">Chez Agathe</option>
+                <option value="Chez le livreur">Chez le livreur</option>
+              </select>
+            </div>
+            <div><label class="al">Montant payé (€)</label>
+              <input type="number" class="ai" id="dcPaye" placeholder="0.00" step="0.01" min="0" value="0">
+            </div>
+            <div><label class="al">Notes</label>
+              <input type="text" class="ai" id="dcNotes" placeholder="Optionnel…">
+            </div>
+          </div>
+          <div class="brow"><button class="abtn" onclick="saveDomainCmd()">Enregistrer la commande</button></div>
+        </div>
+        <!-- Historique commandes -->
+        <h4 style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--bxd);margin-bottom:.8rem">Historique des commandes</h4>
+        <div id="domaineCmds"></div>
       </div>
     </div>
 
@@ -791,6 +864,30 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
         <div class="brow"><button class="abtn" onclick="chgPwdParams()">Mettre à jour</button></div>
         <div id="pmsgParams" style="margin-top:.5rem;font-size:.82rem"></div>
       </div>
+      <!-- Gestion comptes -->
+      <div class="acard">
+        <h3>Gestion des comptes admin</h3>
+        <div id="adminAccountsList" style="margin-bottom:1.2rem"></div>
+        <div style="background:linear-gradient(135deg,rgba(41,82,204,.04),rgba(41,82,204,.08));border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:1.2rem">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--bxd);margin-bottom:.8rem">Nouveau compte</h4>
+          <div class="fg2">
+            <div><label class="al">Identifiant *</label><input type="text" class="ai" id="newAdminUser" placeholder="ex: marie"></div>
+            <div><label class="al">Mot de passe *</label><input type="password" class="ai" id="newAdminPwd" placeholder="••••••••"></div>
+          </div>
+          <div class="brow"><button class="abtn" onclick="createAdminAccount()">Créer le compte</button></div>
+          <div id="newAdminMsg" style="margin-top:.5rem;font-size:.82rem"></div>
+        </div>
+      </div>
+      <!-- Logs -->
+      <div class="acard">
+        <h3>Journal d'activité</h3>
+        <p style="font-size:.8rem;color:var(--txm);margin-bottom:.8rem">Non modifiable — les logs sont conservés même si un compte est supprimé.</p>
+        <div style="display:flex;gap:.7rem;margin-bottom:.8rem;flex-wrap:wrap">
+          <input type="text" class="ai" id="logSearch" placeholder="Rechercher…" style="flex:1;min-width:160px" oninput="renderLogs()">
+          <button class="abtn abtn-s" style="padding:7px 14px;font-size:.82rem" onclick="refreshLogs()">🔄 Actualiser</button>
+        </div>
+        <div id="logsList" style="max-height:400px;overflow-y:auto"></div>
+      </div>
       <!-- Supabase info -->
       <div class="acard">
         <h3>Connexion Supabase</h3>
@@ -816,7 +913,8 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
     </div>
     <div style="padding:1.5rem 1.8rem">
       <div style="background:var(--cr);border-radius:var(--rs);padding:1rem 1.2rem;margin-bottom:1.2rem">
-        <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem">Informations client</div>
+        <div id="odSourceBanner" style="display:none;background:rgba(41,82,204,.06);border-radius:var(--rs);padding:.5rem 1rem;margin-bottom:.8rem"></div>
+      <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem">Informations client</div>
         <div id="odClient" style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;font-size:.88rem"></div>
       </div>
       <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem">Détail de la commande</div>
@@ -829,8 +927,47 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
         <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem">Message</div>
         <p id="odMsg" style="font-size:.88rem;color:var(--tx);font-style:italic"></p>
       </div>
-      <div style="display:flex;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap">
+      <!-- Statut commande -->
+      <div style="margin-top:1.2rem;background:var(--cr);border-radius:var(--rs);padding:1rem 1.2rem">
+        <div style="font-size:.76rem;font-weight:500;color:var(--txm);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Statut & Suivi</div>
+        <div class="fg2" style="margin-bottom:.8rem">
+          <div>
+            <label class="al">Statut de la commande</label>
+            <select class="ai aisel" id="odStatut" onchange="updateOrderStatus()">
+              <option value="En attente de contact">⏳ En attente de contact</option>
+              <option value="En préparation">🔧 En préparation</option>
+              <option value="Partiellement livré">📦 Partiellement livré</option>
+              <option value="Livré">✅ Livré</option>
+            </select>
+          </div>
+          <div>
+            <label class="al">Lieu de stockage actuel</label>
+            <select class="ai aisel" id="odLieu" onchange="updateOrderStatus()">
+              <option value="Au Domaine">Au Domaine</option>
+              <option value="Chez Agathe">Chez Agathe</option>
+              <option value="Chez le livreur">Chez le livreur</option>
+              <option value="Récupéré">Récupéré par le client</option>
+            </select>
+          </div>
+        </div>
+        <!-- Suivi paiement partiel -->
+        <div style="margin-bottom:.8rem">
+          <label class="al">Montant déjà payé (€)</label>
+          <div style="display:flex;gap:.6rem;align-items:center">
+            <input type="number" class="ai" id="odMontantPaye" placeholder="0.00" step="0.01" min="0" style="max-width:160px">
+            <button class="abtn" style="padding:7px 14px;font-size:.82rem" onclick="updateOrderStatus()">Mettre à jour</button>
+          </div>
+          <div id="odResteAPayer" style="font-size:.82rem;color:var(--bx);margin-top:4px;font-weight:500"></div>
+        </div>
+        <!-- Livraison partielle -->
+        <div>
+          <label class="al">Notes livraison partielle</label>
+          <input type="text" class="ai" id="odNotesLivraison" placeholder="ex: 6 bouteilles remises le 15/03…">
+        </div>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap">
         <button id="paidToggleBtn" class="abtn" onclick="togglePaid(currentOrderId)" style="padding:8px 18px;font-size:.85rem"></button>
+        <button class="abtn" style="padding:8px 18px;font-size:.85rem;background:#1a6b2a" onclick="saveOrderTracking()">💾 Sauvegarder</button>
         <button class="abtn abtn-d" onclick="deleteOrder(currentOrderId)" style="padding:8px 18px;font-size:.85rem">Supprimer</button>
         <button class="abtn abtn-s" onclick="closeOrderDetail()" style="padding:8px 18px;font-size:.85rem">Fermer</button>
       </div>
@@ -872,13 +1009,11 @@ const SUPABASE_KEY = window.SUPABASE_ANON_KEY || 'sb_publishable__M5pntTggqorwXW
 // ÉTAT GLOBAL
 // ═══════════════════════════════════════════════════════
 let wines = [], cats = [], villes = [], orders = [], cfg = {};
+initSession();
 let cart = [], filterCatId = null, cwine = null, az = null;
 let currentOrderId = null;
 
-// Mot de passe admin stocké en localStorage (modifiable)
-const ADMIN_PW_KEY = 'bvo_admin_pw';
-function getAdminPw(){ return localStorage.getItem(ADMIN_PW_KEY) || 'btsvo2025'; }
-function setAdminPw(pw){ localStorage.setItem(ADMIN_PW_KEY, pw); }
+// Auth via Supabase admins table
 
 // ═══════════════════════════════════════════════════════
 // SUPABASE HELPERS
@@ -1044,7 +1179,8 @@ const bmap = { Rouge:'cr2', Blanc:'cb2', Rosé:'cros', Effervescent:'ceff', Liqu
 function renderWines() {
   const el = document.getElementById('winesContent');
   const vis = wines.filter(w => w.visible !== false);
-  const filtered = filterCatId ? vis.filter(w => (w.cats||[]).includes(filterCatId)) : vis;
+  const filtered = (filterCatId ? vis.filter(w => (w.cats||[]).includes(filterCatId)) : vis)
+    .sort((a,b) => parseFloat(a.prix||0) - parseFloat(b.prix||0));
 
   if (!filtered.length) {
     el.innerHTML = `<div class="empty"><h3>Aucun vin disponible</h3><p>La sélection est en cours de mise à jour.</p></div>`;
@@ -1095,7 +1231,7 @@ function wCard(w) {
     <div class="wimg">${img}${ph}${w.couleur?`<span class="cbadge ${bmap[w.couleur]||'cr2'}">${w.couleur}</span>`:''}</div>
     <div class="winfo">
       <div class="wapp">${w.appellation||''}</div>
-      <div class="wnom">${w.nom||''}</div>
+      <div class="wnom">${w.nom || w.appellation || ''}</div>
       ${w.exploitation?`<div class="wmil" style="font-style:italic">${w.exploitation}</div>`:''}
       <div class="wmil">${w.millesime?'Millésime '+w.millesime:''}</div>
       <div class="wlab">${w.label||''}</div>
@@ -1114,8 +1250,10 @@ function wCard(w) {
 
 function renderPills() {
   const nav = document.getElementById('pillsNav');
+  // Seulement les catégories principales (pas sous-cats)
+  const mainCats = cats.filter(c => !c.parent);
   nav.innerHTML = `<button class="pill ${!filterCatId?'on':''}" onclick="filterCat(null,this)">Tous les vins</button>`
-    + cats.map(c => `<button class="pill ${filterCatId===c.id?'on':''}" onclick="filterCat('${c.id}',this)">${c.parent?'↳ ':''} ${c.nom}</button>`).join('');
+    + mainCats.map(c => `<button class="pill ${filterCatId===c.id?'on':''}" onclick="filterCat('${c.id}',this)">${c.nom}</button>`).join('');
 }
 function filterCat(id, btn) {
   filterCatId = id;
@@ -1406,6 +1544,7 @@ async function submitOrder() {
     // 1. Enregistrer dans Supabase
     await sbUpsert('orders', order);
     orders.unshift(order);
+    addLog('Commande enregistrée (client)', order.prenom + ' ' + order.nom + ' — ' + order.total.toFixed(2) + ' €');
 
     // 2. Mettre à jour les stocks
     for (const item of cart) {
@@ -1450,9 +1589,28 @@ async function submitOrder() {
 // ═══════════════════════════════════════════════════════
 function openLog()  { document.getElementById('alog').style.display = 'flex'; document.getElementById('apwd').value = ''; document.getElementById('logerr').textContent = ''; }
 function closeLog() { document.getElementById('alog').style.display = 'none'; }
-function doLog() {
-  if (document.getElementById('apwd').value === getAdminPw()) { closeLog(); openAdmin(); }
-  else document.getElementById('logerr').textContent = 'Mot de passe incorrect.';
+async function doLog() {
+  const user = document.getElementById('auser').value.trim();
+  const pwd  = document.getElementById('apwd').value.trim();
+  if (!user || !pwd) { document.getElementById('logerr').textContent = 'Identifiant et mot de passe requis.'; return; }
+  document.getElementById('logerr').textContent = 'Connexion…';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/admins?username=eq.${encodeURIComponent(user)}&password=eq.${encodeURIComponent(pwd)}&select=id,username`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const data = await res.json();
+    if (data && data.length > 0) {
+      currentAdmin = data[0];
+      sessionStorage.setItem('bvo_admin', JSON.stringify(currentAdmin));
+      closeLog();
+      openAdmin();
+      addLog('Connexion', 'Connexion au panneau admin');
+    } else {
+      document.getElementById('logerr').textContent = 'Identifiant ou mot de passe incorrect.';
+    }
+  } catch(e) {
+    document.getElementById('logerr').textContent = 'Erreur de connexion.';
+  }
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1460,16 +1618,25 @@ function doLog() {
 // ═══════════════════════════════════════════════════════
 async function openAdmin() {
   document.getElementById('apanel').classList.add('open');
-  await loadAll();
+  await Promise.all([loadAll(), loadAdminsAndLogs()]);
   loadAD();
+  loadCompteTab();
 }
-function closeAdmin() { document.getElementById('apanel').classList.remove('open'); }
+function closeAdmin() {
+  addLog('Déconnexion', 'Fermeture du panneau admin');
+  document.getElementById('apanel').classList.remove('open');
+  currentAdmin = null;
+  sessionStorage.removeItem('bvo_admin');
+}
 function swTab(n, btn) {
   document.querySelectorAll('.asec').forEach(s => s.classList.remove('on'));
   document.querySelectorAll('.atab').forEach(b => b.classList.remove('on'));
   document.getElementById('tab-' + n).classList.add('on');
   btn.classList.add('on');
   if (n === 'commandes') checkStockAlerts();
+  if (n === 'domaines') { closeDomaine(); renderDomainesList(); }
+  if (n === 'compte') loadCompteTab();
+  if (n === 'params') { renderAdminAccountsList(); renderLogs(); }
 }
 function loadAD() {
   renderWList(); renderCBWrap(); renderCatTree(); renderVList(); renderOrderList();
@@ -1596,6 +1763,7 @@ async function saveWine() {
     stock:        limite ? parseInt(document.getElementById('wStock').value) || 0 : null,
     unique:       document.getElementById('wUnique').checked,
     ratio:        ratioVal ? parseInt(ratioVal) : null,
+    prixAchat:    document.getElementById('wPrixAchat').value || null,
     visible:      true,
   };
   if (!w.appellation || !w.couleur || !w.prix) { showError('Appellation, Couleur et Prix sont requis.'); return; }
@@ -1606,13 +1774,15 @@ async function saveWine() {
     const idx = wines.findIndex(x => x.id === id);
     if (idx >= 0) wines[idx] = w; else wines.push(w);
     resetWF(); renderWList(); renderWines(); renderPills();
+    addLog('Vin enregistré', w.appellation + (w.nom ? ' - ' + w.nom : ''));
     showToast('Vin enregistré ✓');
   } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 function resetWF() {
   document.getElementById('eid').value = ''; document.getElementById('wft').textContent = 'Ajouter un vin';
-  ['wApp2','wNom2','wExp','wMil','wLab','wPrix','wDes','wStock','wRatio'].forEach(id => document.getElementById(id).value = '');
+  ['wApp2','wNom2','wExp','wMil','wLab','wPrix','wPrixAchat','wDes','wStock','wRatio'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('margeInfo').style.display='none';
   document.getElementById('wCoul').value = '';
   document.getElementById('wNouveau').checked = false;
   document.getElementById('wLimite').checked = false;
@@ -1637,6 +1807,8 @@ function editWine(id) {
   document.getElementById('wLimite').checked  = !!w.limite;
   document.getElementById('wUnique').checked  = !!w.unique;
   document.getElementById('wRatio').value = w.ratio || '';
+  document.getElementById('wPrixAchat').value = w.prixAchat || '';
+  calcMarge();
   if (w.limite && w.stock != null) { document.getElementById('wStock').value = w.stock; document.getElementById('stockField').style.display = 'block'; }
   else document.getElementById('stockField').style.display = 'none';
   if (w.iB) { document.getElementById('iB').value = w.iB; const z = document.getElementById('zB'); z.innerHTML = `<img src="${w.iB}"><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`; z.classList.add('hi'); } else clrZ('zB','iB');
@@ -1661,6 +1833,7 @@ async function delWine(id) {
       await sbDelete('wines', id);
       wines = wines.filter(x => x.id !== id);
       renderWList(); renderWines();
+      addLog('Vin supprimé', id);
       showToast('Vin supprimé');
     } catch(e) { showError('Erreur : ' + e.message); }
   });
@@ -1669,18 +1842,27 @@ async function delWine(id) {
 function renderWList() {
   document.getElementById('wcount').textContent = wines.length;
   const tb = document.getElementById('wbody');
-  if (!wines.length) { tb.innerHTML = '<tr><td colspan="9" style="text-align:center;color:var(--txm);padding:2rem">Aucun vin</td></tr>'; return; }
-  tb.innerHTML = wines.map(w => {
+  const sortedWines = [...wines].sort((a,b) => parseFloat(a.prix||0) - parseFloat(b.prix||0));
+  if (!wines.length) { tb.innerHTML = '<tr><td colspan="12" style="text-align:center;color:var(--txm);padding:2rem">Aucun vin</td></tr>'; return; }
+  tb.innerHTML = sortedWines.map(w => {
     const vis = w.visible !== false;
     const stockTxt = w.limite && w.stock != null ? `<span style="font-size:.8rem;color:${w.stock <= 3 ? '#c0392b' : 'var(--txm)'}">${w.stock} btl</span>` : '—';
     const badges = [w.nouveau && '🆕', w.limite && '⏳', w.unique && '1️⃣'].filter(Boolean).join(' ');
+    const pAchat = w.prixAchat ? parseFloat(w.prixAchat) : null;
+    const pTTC   = pAchat ? (pAchat * 1.2) : null;
+    const pVente = w.prix ? parseFloat(w.prix) : null;
+    const margeEur = (pTTC && pVente) ? (pVente - pTTC) : null;
+    const margePct = (pTTC && pVente && pTTC > 0) ? ((pVente - pTTC) / pTTC * 100) : null;
+    const margeColor = margeEur > 0 ? '#1a6b2a' : '#c0392b';
     return `<tr style="opacity:${vis ? 1 : .45}">
       <td data-label="">${w.iB ? `<img src="${w.iB}" class="wth" onerror="this.style.display='none'">` : `<div class="wthe"></div>`}</td>
       <td data-label="Appellation">${w.appellation || '—'}</td>
-      <td data-label="Nom" style="font-weight:500">${w.nom || '—'} ${badges ? `<span style="font-size:.8rem">${badges}</span>` : ''}</td>
+      <td data-label="Nom" style="font-weight:500">${w.nom || w.appellation || '—'} ${badges ? `<span style="font-size:.8rem">${badges}</span>` : ''}</td>
       <td data-label="Mill.">${w.millesime || '—'}</td>
       <td data-label="Couleur">${w.couleur || '—'}</td>
-      <td data-label="Prix" style="color:var(--bx);font-weight:500">${w.prix ? parseFloat(w.prix).toFixed(2).replace('.', ',') + ' €' : '—'}</td>
+      <td data-label="P.Achat HT" style="font-size:.82rem;color:var(--txm)">${pAchat ? pAchat.toFixed(2).replace('.',',') + ' €' : '—'}</td>
+      <td data-label="P.Vente" style="color:var(--bx);font-weight:500">${pVente ? pVente.toFixed(2).replace('.',',') + ' €' : '—'}</td>
+      <td data-label="Marge" style="font-weight:500;color:${margeColor}">${margeEur != null ? margeEur.toFixed(2).replace('.',',') + ' €' + (margePct != null ? ' (' + margePct.toFixed(0) + '%)' : '') : '—'}</td>
       <td data-label="Stock">${stockTxt}</td>
       <td data-label="Ratio">${w.ratio ? `<span style="font-size:.8rem;color:#1B3A6B;font-weight:500">1:${w.ratio}</span>` : '—'}</td>
       <td data-label="Visible"><button class="toggle-vis" onclick="toggleVisible('${w.id}')" title="${vis ? 'Masquer' : 'Afficher'}">${vis ? '👁️' : '🙈'}</button></td>
@@ -1935,6 +2117,14 @@ function openOrderDetail(id) {
   const dateStr = d.toLocaleDateString('fr-FR', { weekday:'long', day:'2-digit', month:'long', year:'numeric' });
   const timeStr = d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
   document.getElementById('odTitle').textContent = o.prenom + ' ' + o.nom;
+  // Afficher source et enregistré par si commande manuelle
+  const sourceBanner = document.getElementById('odSourceBanner');
+  if (sourceBanner) {
+    if (o.source) {
+      sourceBanner.style.display = 'block';
+      sourceBanner.innerHTML = '<span style="font-size:.78rem;color:var(--bx)">📋 ' + o.source + (o.enregistrePar ? ' — Enregistré par : <strong>' + o.enregistrePar + '</strong>' : '') + '</span>';
+    } else sourceBanner.style.display = 'none';
+  }
   document.getElementById('odClient').innerHTML = [
     ['Email', o.email], ['Téléphone', o.tel || '—'],
     ['Ville retrait', o.ville || '—'], ['Paiement', o.paiement || '—'],
@@ -1959,6 +2149,22 @@ function openOrderDetail(id) {
   if (paidBtn) {
     paidBtn.textContent = o.paid ? '✗ Marquer non payé' : '✓ Marquer payé';
     paidBtn.style.background = o.paid ? '#c0392b' : '#1a6b2a';
+  }
+  // Charger statut et suivi
+  const statutSel = document.getElementById('odStatut');
+  const lieuSel   = document.getElementById('odLieu');
+  const montantEl = document.getElementById('odMontantPaye');
+  const notesEl   = document.getElementById('odNotesLivraison');
+  if (statutSel) statutSel.value = o.statut || 'En attente de contact';
+  if (lieuSel)   lieuSel.value   = o.lieu   || 'Au Domaine';
+  if (montantEl) montantEl.value = o.montantPaye || '';
+  if (notesEl)   notesEl.value   = o.notesLivraison || '';
+  // Reste à payer
+  const reste = document.getElementById('odResteAPayer');
+  if (reste) {
+    const mp = parseFloat(o.montantPaye || 0);
+    const restant = (o.total || 0) - mp;
+    reste.textContent = mp > 0 ? `Reste à payer : ${restant.toFixed(2).replace('.',',')} €` : '';
   }
   document.getElementById('orderDetailModal').style.display = 'flex';
 }
@@ -2093,7 +2299,7 @@ function _initCropImage(dataUrl, sz) {
   container.innerHTML = '';
   cropImg = document.createElement('img');
   cropImg.src = dataUrl;
-  cropImg.style.cssText = 'position:absolute;top:0;left:0;transform-origin:0 0;user-select:none;pointer-events:none;max-width:none;';
+  cropImg.style.cssText = 'position:absolute;top:0;left:0;transform-origin:0px 0px;user-select:none;pointer-events:none;max-width:none;display:block;';
   container.appendChild(cropImg);
 
   cropImg.onload = () => {
@@ -2199,7 +2405,8 @@ function applyCrop() {
   if (!cropImg) return;
   const sz = CROP_SIZES[cropTarget] || { w: 300, h: 300 };
   const canvas = document.createElement('canvas');
-  canvas.width = sz.w; canvas.height = sz.h;
+  canvas.width = sz.w;
+  canvas.height = sz.h;
   const ctx = canvas.getContext('2d');
 
   if (cropTarget === 'logo') {
@@ -2208,21 +2415,20 @@ function applyCrop() {
     ctx.clip();
   }
 
-  // Calcul correct : on dessine la zone visible du container
-  // cropX/Y = position de l'image dans le container (peut être négatif)
-  // cropScale = zoom appliqué
-  const srcX = -cropX / cropScale;
-  const srcY = -cropY / cropScale;
-  const srcW = sz.w / cropScale;
-  const srcH = sz.h / cropScale;
-
+  // La transform CSS est : translate(cropX, cropY) scale(cropScale) avec transform-origin: 0 0
+  // Donc la position réelle du pixel (0,0) de l'image dans le container est (cropX, cropY)
+  // Pour dessiner ce que voit le container [0,0 → sz.w,sz.h] :
+  // on map container(px,py) → image(px,py) via : imgX = (px - cropX) / cropScale
   ctx.drawImage(
     cropImg,
-    srcX, srcY, srcW, srcH,
-    0, 0, sz.w, sz.h
+    -cropX / cropScale,      // srcX : coin haut-gauche du container dans l'image
+    -cropY / cropScale,      // srcY
+    sz.w / cropScale,        // srcW : largeur du container en coordonnées image
+    sz.h / cropScale,        // srcH
+    0, 0, sz.w, sz.h         // destination : tout le canvas
   );
 
-  const result = canvas.toDataURL('image/png');
+  const result = canvas.toDataURL('image/jpeg', 0.92);
   closeCropModal();
 
   if (cropTarget === 'logo') {
@@ -2464,11 +2670,580 @@ function compressImage(dataUrl, maxPx, quality) {
   });
 }
 
+
+// ═══ CALCUL MARGE ══════════════════════════
+function calcMarge() {
+  const pa = parseFloat(document.getElementById('wPrixAchat')?.value);
+  const pv = parseFloat(document.getElementById('wPrix')?.value);
+  const info = document.getElementById('margeInfo');
+  if (!info) return;
+  if (!pa || !pv) { info.style.display = 'none'; return; }
+  const ttc = pa * 1.2;
+  const margeEur = pv - ttc;
+  const margePct = ttc > 0 ? ((pv - ttc) / ttc * 100) : 0;
+  info.style.display = 'block';
+  document.getElementById('mPrixTTC').textContent = ttc.toFixed(2).replace('.',',') + ' €';
+  const color = margeEur >= 0 ? '#1a6b2a' : '#c0392b';
+  document.getElementById('mMargeEur').style.color = color;
+  document.getElementById('mMargePct').style.color = color;
+  document.getElementById('mMargeEur').textContent = (margeEur >= 0 ? '+' : '') + margeEur.toFixed(2).replace('.',',') + ' €/btl';
+  document.getElementById('mMargePct').textContent = '(' + margePct.toFixed(1) + '%)';
+}
+
+// ═══ ACHATS DOMAINES ══════════════════════
+let currentDomaine = null;
+let domainCmds = []; // stocké dans cfg.domainCmds
+
+function renderDomainesList() {
+  const el = document.getElementById('domainesList');
+  if (!el) return;
+  const domainesMap = {};
+  wines.forEach(w => {
+    if (!w.exploitation) return;
+    if (!domainesMap[w.exploitation]) domainesMap[w.exploitation] = [];
+    domainesMap[w.exploitation].push(w);
+  });
+  const domaines = Object.keys(domainesMap).sort();
+  if (!domaines.length) {
+    el.innerHTML = "<p style='color:var(--txm);font-style:italic;font-size:.88rem'>Aucun domaine &mdash; ajoutez un nom d'exploitation dans vos vins.</p>";
+    return;
+  }
+  el.innerHTML = '';
+  domaines.forEach(d => {
+    const cmds = (cfg.domainCmds || []).filter(c => c.domaine === d);
+    const totalCmd  = cmds.reduce((s,c) => s + (parseFloat(c.total)||0), 0);
+    const totalPaye = cmds.reduce((s,c) => s + (parseFloat(c.paye)||0), 0);
+    const reste = totalCmd - totalPaye;
+    const vinsD = domainesMap[d];
+    const card = document.createElement('div');
+    card.style.cssText = 'background:#fff;border-radius:var(--rs);padding:1rem 1.2rem;border:1px solid rgba(41,82,204,.12);cursor:pointer;transition:all .18s;margin-bottom:.4rem';
+    card.addEventListener('mouseover', function() { this.style.borderColor='rgba(41,82,204,.4)'; this.style.background='var(--cr)'; });
+    card.addEventListener('mouseout',  function() { this.style.borderColor='rgba(41,82,204,.12)'; this.style.background='#fff'; });
+    card.addEventListener('click', function() { openDomaine(d); });
+    const nameDiv = document.createElement('div');
+    nameDiv.style.cssText = "font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--bxd);margin-bottom:.4rem";
+    nameDiv.textContent = d;
+    card.appendChild(nameDiv);
+    const infoDiv = document.createElement('div');
+    infoDiv.style.cssText = 'font-size:.78rem;color:var(--txm)';
+    infoDiv.textContent = vinsD.length + ' vin' + (vinsD.length>1?'s':'') + ' • ' + cmds.length + ' commande' + (cmds.length>1?'s':'');
+    card.appendChild(infoDiv);
+    if (reste > 0) {
+      const resteDiv = document.createElement('div');
+      resteDiv.style.cssText = 'font-size:.78rem;color:#c0392b;margin-top:3px;font-weight:500';
+      resteDiv.textContent = 'Reste : ' + reste.toFixed(2).replace('.',',') + ' €';
+      card.appendChild(resteDiv);
+    }
+    el.appendChild(card);
+  });
+}
+
+function openDomaine(nom) {
+  currentDomaine = nom;
+  document.getElementById('domainesListCard').style.display = 'none';
+  const detail = document.getElementById('domaineDetail');
+  detail.style.display = 'block';
+  document.getElementById('domaineDetailTitle').textContent = '🏠 ' + nom;
+  // Vins de ce domaine
+  const vinsD = wines.filter(w => w.exploitation === nom);
+  document.getElementById('domaineVins').innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem">'
+    + vinsD.map(w => `<span style="background:var(--cr);border:1px solid rgba(41,82,204,.15);border-radius:20px;padding:3px 12px;font-size:.8rem;color:var(--tx)">${w.appellation||''} ${w.nom||''} ${w.millesime?'('+w.millesime+')':''}</span>`).join('')
+    + '</div>';
+  // Remplir select vins
+  const sel = document.getElementById('dcWin');
+  sel.innerHTML = '<option value="">— Choisir —</option>' + vinsD.map(w => `<option value="${w.id}">${w.appellation||''} ${w.nom||''} ${w.millesime?'('+w.millesime+')':''}</option>`).join('');
+  renderDomaineCmds();
+}
+
+function closeDomaine() {
+  currentDomaine = null;
+  document.getElementById('domaineDetail').style.display = 'none';
+  document.getElementById('domainesListCard').style.display = 'block';
+}
+
+function renderDomaineCmds() {
+  const el = document.getElementById('domaineCmds');
+  const cmds = (cfg.domainCmds || []).filter(c => c.domaine === currentDomaine)
+    .sort((a,b) => new Date(b.date) - new Date(a.date));
+  if (!cmds.length) { el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucune commande pour ce domaine.</p>'; return; }
+  el.innerHTML = cmds.map(c => {
+    const total = parseFloat(c.total||0);
+    const paye  = parseFloat(c.paye||0);
+    const reste = total - paye;
+    const pctPaye = total > 0 ? Math.round(paye/total*100) : 0;
+    const statColor = reste <= 0 ? '#1a6b2a' : paye > 0 ? '#b56a00' : '#c0392b';
+    const statLabel = reste <= 0 ? '✓ Payé' : paye > 0 ? `Partiel (${paye.toFixed(2).replace('.',',')} € / ${total.toFixed(2).replace('.',',')} €)` : 'Impayé';
+    return `<div style="background:var(--cr);border-radius:var(--rs);padding:.9rem 1.1rem;margin-bottom:.6rem;border:1px solid rgba(41,82,204,.08)">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem">
+        <span style="font-weight:500;font-size:.9rem">${c.vinNom || '—'} × ${c.qty} btl</span>
+        <span style="font-size:.75rem;padding:2px 9px;border-radius:20px;font-weight:500;background:${statColor}22;color:${statColor};border:1px solid ${statColor}44">${statLabel}</span>
+      </div>
+      <div style="font-size:.78rem;color:var(--txm);display:flex;flex-wrap:wrap;gap:.8rem">
+        <span>📅 ${new Date(c.date).toLocaleDateString('fr-FR')}</span>
+        <span>📍 ${c.lieu||'—'}</span>
+        ${c.total ? `<span>💰 Total : ${total.toFixed(2).replace('.',',')} €</span>` : ''}
+        ${reste > 0 ? `<span style="color:#c0392b;font-weight:500">Reste : ${reste.toFixed(2).replace('.',',')} €</span>` : ''}
+        ${c.notes ? `<span>📝 ${c.notes}</span>` : ''}
+      </div>
+      <div style="display:flex;gap:.5rem;margin-top:.7rem;align-items:center">
+        <input type="number" placeholder="Montant payé €" value="${c.paye||0}" step="0.01" min="0"
+          style="width:130px;border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:5px 8px;font-size:.82rem;font-family:'DM Sans',sans-serif"
+          id="payeInput_${c.id}">
+        <select id="lieuInput_${c.id}" style="border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:5px 8px;font-size:.82rem;font-family:'DM Sans',sans-serif">
+          <option ${c.lieu==='Au Domaine'?'selected':''}>Au Domaine</option>
+          <option ${c.lieu==='Chez Agathe'?'selected':''}>Chez Agathe</option>
+          <option ${c.lieu==='Chez le livreur'?'selected':''}>Chez le livreur</option>
+        </select>
+        <button class="abtn" style="padding:5px 12px;font-size:.78rem" onclick="updateDomainCmd('${c.id}')">Mettre à jour</button>
+        <button class="abtn abtn-d" style="padding:5px 10px;font-size:.78rem" onclick="deleteDomainCmd('${c.id}')">Suppr.</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function saveDomainCmd() {
+  const winId = document.getElementById('dcWin').value;
+  const qty   = document.getElementById('dcQty').value;
+  if (!winId || !qty) { showError('Vin et quantité requis.'); return; }
+  const w = wines.find(x => x.id === winId);
+  const cmd = {
+    id: 'dc_' + Date.now(),
+    domaine: currentDomaine,
+    vinId: winId,
+    vinNom: [w?.appellation, w?.nom, w?.millesime ? '(' + w.millesime + ')' : ''].filter(Boolean).join(' '),
+    qty: parseInt(qty),
+    total: document.getElementById('dcTotal').value || 0,
+    paye:  document.getElementById('dcPaye').value  || 0,
+    lieu:  document.getElementById('dcLieu').value,
+    notes: document.getElementById('dcNotes').value,
+    date:  new Date().toISOString(),
+  };
+  if (!cfg.domainCmds) cfg.domainCmds = [];
+  cfg.domainCmds.push(cmd);
+  try {
+    await sbSetConfig(cfg);
+    ['dcQty','dcTotal','dcNotes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('dcPaye').value = '0';
+    document.getElementById('dcWin').value = '';
+    renderDomaineCmds(); renderDomainesList();
+    showToast('Commande enregistrée ✓');
+  } catch(e) { showError('Erreur : ' + e.message); }
+}
+
+async function updateDomainCmd(id) {
+  const cmd = (cfg.domainCmds||[]).find(c => c.id === id);
+  if (!cmd) return;
+  cmd.paye = document.getElementById('payeInput_' + id)?.value || 0;
+  cmd.lieu = document.getElementById('lieuInput_' + id)?.value || cmd.lieu;
+  try {
+    await sbSetConfig(cfg);
+    renderDomaineCmds(); renderDomainesList();
+    showToast('Commande mise à jour ✓');
+  } catch(e) { showError('Erreur : ' + e.message); }
+}
+
+async function deleteDomainCmd(id) {
+  askConfirm('Supprimer cette commande domaine ?', async () => {
+    cfg.domainCmds = (cfg.domainCmds||[]).filter(c => c.id !== id);
+    try {
+      await sbSetConfig(cfg);
+      renderDomaineCmds(); renderDomainesList();
+      showToast('Commande supprimée');
+    } catch(e) { showError('Erreur : ' + e.message); }
+  });
+}
+
+// ═══ SUIVI COMMANDES CLIENTS ════════════════
+async function updateOrderStatus() {
+  // Juste mettre à jour l'affichage reste à payer
+  const montant = parseFloat(document.getElementById('odMontantPaye')?.value || 0);
+  const o = orders.find(x => x.id === currentOrderId);
+  const reste = o ? (o.total || 0) - montant : 0;
+  const resteEl = document.getElementById('odResteAPayer');
+  if (resteEl) resteEl.textContent = montant > 0 ? 'Reste à payer : ' + reste.toFixed(2).replace('.',',') + ' €' : '';
+}
+
+async function saveOrderTracking() {
+  const o = orders.find(x => x.id === currentOrderId); if (!o) return;
+  o.statut = document.getElementById('odStatut')?.value || 'En attente de contact';
+  o.lieu   = document.getElementById('odLieu')?.value   || 'Au Domaine';
+  o.montantPaye = parseFloat(document.getElementById('odMontantPaye')?.value || 0);
+  o.notesLivraison = document.getElementById('odNotesLivraison')?.value || '';
+  try {
+    await sbUpsert('orders', o);
+    renderOrderList();
+    showToast('Suivi mis à jour ✓');
+  } catch(e) { showError('Erreur : ' + e.message); }
+}
+
+
+// ═══ AUTH SYSTEM ════════════════════════════
+let currentAdmin = null;
+let allLogs = [];
+let allAdmins = [];
+
+// Charger session depuis sessionStorage
+function initSession() {
+  const saved = sessionStorage.getItem('bvo_admin');
+  if (saved) {
+    try { currentAdmin = JSON.parse(saved); } catch(e) {}
+  }
+}
+
+// Logger une action
+async function addLog(action, detail) {
+  if (!currentAdmin) return;
+  const log = {
+    id: 'log_' + Date.now(),
+    username: currentAdmin.username,
+    action,
+    detail: detail || '',
+    created_at: new Date().toISOString()
+  };
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/logs`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(log)
+    });
+    allLogs.unshift(log);
+    renderLogs();
+  } catch(e) { console.warn('Log failed:', e); }
+}
+
+// Charger comptes + logs
+async function loadAdminsAndLogs() {
+  try {
+    const [ra, rl] = await Promise.all([
+      fetch(`${SUPABASE_URL}/rest/v1/admins?select=id,username,created_at&order=created_at.asc`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      }),
+      fetch(`${SUPABASE_URL}/rest/v1/logs?select=*&order=created_at.desc&limit=200`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      })
+    ]);
+    allAdmins = await ra.json() || [];
+    allLogs   = await rl.json() || [];
+  } catch(e) { console.warn('Load admins/logs failed:', e); }
+}
+
+function renderLogs() {
+  const el = document.getElementById('logsList');
+  if (!el) return;
+  const search = (document.getElementById('logSearch')?.value || '').toLowerCase();
+  const filtered = search
+    ? allLogs.filter(l => (l.username+l.action+l.detail).toLowerCase().includes(search))
+    : allLogs;
+  if (!filtered.length) {
+    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem;text-align:center;padding:1rem">Aucun log.</p>';
+    return;
+  }
+  el.innerHTML = filtered.map(l => {
+    const d = new Date(l.created_at);
+    const dateStr = d.toLocaleDateString('fr-FR', {day:'2-digit',month:'2-digit',year:'numeric'});
+    const timeStr = d.toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
+    return '<div style="display:flex;gap:.8rem;align-items:flex-start;padding:.55rem 0;border-bottom:1px solid rgba(41,82,204,.07)">'
+      + '<div style="font-size:.72rem;color:var(--txm);white-space:nowrap;min-width:100px">' + dateStr + '<br>' + timeStr + '</div>'
+      + '<div style="flex:1"><span style="font-size:.8rem;font-weight:600;color:var(--bxd)">' + (l.username||'—') + '</span>'
+      + ' <span style="font-size:.78rem;color:var(--txm)">→ ' + l.action + '</span>'
+      + (l.detail ? '<br><span style="font-size:.75rem;color:var(--txm);font-style:italic">' + l.detail + '</span>' : '')
+      + '</div></div>';
+  }).join('');
+}
+
+async function refreshLogs() {
+  await loadAdminsAndLogs();
+  renderLogs();
+  renderAdminAccountsList();
+  showToast('Logs actualisés ✓');
+}
+
+function renderAdminAccountsList() {
+  const el = document.getElementById('adminAccountsList');
+  if (!el) return;
+  el.innerHTML = '';
+  if (!allAdmins.length) {
+    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucun compte.</p>';
+    return;
+  }
+  allAdmins.forEach(a => {
+    const isSelf = currentAdmin && a.username === currentAdmin.username;
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid rgba(41,82,204,.07)';
+    const avatar = document.createElement('div');
+    avatar.style.cssText = 'width:34px;height:34px;border-radius:50%;background:var(--bx);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.9rem;flex-shrink:0';
+    avatar.textContent = a.username.charAt(0).toUpperCase();
+    const info = document.createElement('div');
+    info.style.flex = '1';
+    info.innerHTML = '<div style="font-weight:500;font-size:.9rem;color:var(--tx)">' + a.username + (isSelf ? ' <span style="font-size:.72rem;color:var(--bx);font-weight:400">(vous)</span>' : '') + '</div>';
+    row.appendChild(avatar);
+    row.appendChild(info);
+    if (!isSelf) {
+      const btn = document.createElement('button');
+      btn.className = 'abtn abtn-d';
+      btn.style.cssText = 'padding:4px 10px;font-size:.76rem';
+      btn.textContent = 'Supprimer';
+      btn.addEventListener('click', () => deleteAdminAccount(a.id, a.username));
+      row.appendChild(btn);
+    }
+    el.appendChild(row);
+  });
+}
+
+async function createAdminAccount() {
+  const user = document.getElementById('newAdminUser').value.trim();
+  const pwd  = document.getElementById('newAdminPwd').value.trim();
+  const msg  = document.getElementById('newAdminMsg');
+  if (!user || !pwd) { msg.style.color='#c0392b'; msg.textContent='Identifiant et mot de passe requis.'; return; }
+  if (allAdmins.find(a => a.username === user)) { msg.style.color='#c0392b'; msg.textContent='Cet identifiant existe déjà.'; return; }
+  const newAdmin = { id: 'admin_' + Date.now(), username: user, password: pwd };
+  try {
+    await sbUpsert('admins', newAdmin);
+    allAdmins.push(newAdmin);
+    document.getElementById('newAdminUser').value = '';
+    document.getElementById('newAdminPwd').value = '';
+    msg.style.color = 'var(--bx)';
+    msg.textContent = 'Compte créé ✓';
+    renderAdminAccountsList();
+    addLog('Compte créé', 'Nouveau compte : ' + user);
+    showToast('Compte ' + user + ' créé ✓');
+  } catch(e) { msg.style.color='#c0392b'; msg.textContent='Erreur : ' + e.message; }
+}
+
+async function deleteAdminAccount(id, username) {
+  askConfirm('Supprimer le compte ' + username + ' ? Ses logs seront conservés.', async () => {
+    try {
+      await sbDelete('admins', id);
+      allAdmins = allAdmins.filter(a => a.id !== id);
+      renderAdminAccountsList();
+      addLog('Compte supprimé', 'Suppression du compte : ' + username);
+      showToast('Compte supprimé');
+    } catch(e) { showError('Erreur : ' + e.message); }
+  });
+}
+
+async function changeMyPassword() {
+  if (!currentAdmin) return;
+  const p1 = document.getElementById('cpNew').value.trim();
+  const p2 = document.getElementById('cpNew2').value.trim();
+  const msg = document.getElementById('cpMsg');
+  if (!p1) { msg.style.color='#c0392b'; msg.textContent='Entrez un nouveau mot de passe.'; return; }
+  if (p1 !== p2) { msg.style.color='#c0392b'; msg.textContent='Les mots de passe ne correspondent pas.'; return; }
+  try {
+    const admin = allAdmins.find(a => a.id === currentAdmin.id);
+    if (admin) admin.password = p1;
+    await sbUpsert('admins', { ...currentAdmin, password: p1 });
+    currentAdmin.password = p1;
+    sessionStorage.setItem('bvo_admin', JSON.stringify(currentAdmin));
+    document.getElementById('cpNew').value = '';
+    document.getElementById('cpNew2').value = '';
+    msg.style.color = 'var(--bx)';
+    msg.textContent = 'Mot de passe mis à jour ✓';
+    addLog('Mot de passe modifié', 'Changement de mot de passe');
+    showToast('Mot de passe mis à jour ✓');
+  } catch(e) { msg.style.color='#c0392b'; msg.textContent='Erreur : ' + e.message; }
+}
+
+function loadCompteTab() {
+  if (!currentAdmin) return;
+  const avatar = document.getElementById('adminAvatar');
+  const name   = document.getElementById('adminNameDisplay');
+  const header = document.getElementById('adminHeaderName');
+  if (avatar) avatar.textContent = currentAdmin.username.charAt(0).toUpperCase();
+  if (name)   name.textContent   = currentAdmin.username;
+  if (header) header.textContent = currentAdmin.username;
+}
+
+
+// ═══ COMMANDES MANUELLES ════════════════════
+let manualLines = [];
+
+function openManualOrder() {
+  manualLines = [];
+  document.getElementById('moEnregistrePar').textContent = currentAdmin ? currentAdmin.username : '—';
+  ['moPre','moNom','moEmail','moTel','moMsg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('moPay').value = '';
+  document.getElementById('moStatut').value = 'En attente de contact';
+  document.getElementById('moMontantPaye').value = '0';
+  // Remplir villes
+  const sel = document.getElementById('moVille');
+  sel.innerHTML = '<option value="">— Choisir —</option>' + villes.map(v => '<option>' + v.nom + '</option>').join('');
+  renderManualLines();
+  document.getElementById('manualOrderModal').style.display = 'flex';
+}
+function closeManualOrder() {
+  document.getElementById('manualOrderModal').style.display = 'none';
+  manualLines = [];
+}
+
+function addManualLine() {
+  manualLines.push({ wineId: '', qty: 1 });
+  renderManualLines();
+}
+
+function renderManualLines() {
+  const el = document.getElementById('moLines');
+  if (!manualLines.length) {
+    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.84rem;text-align:center;padding:.8rem">Aucun vin ajouté. Cliquez sur "+ Ajouter un vin".</p>';
+    document.getElementById('moTotal').textContent = '';
+    return;
+  }
+  el.innerHTML = '';
+  let total = 0;
+  manualLines.forEach((line, i) => {
+    const w = wines.find(x => x.id === line.wineId);
+    if (w && line.qty) total += parseFloat(w.prix||0) * line.qty;
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem;flex-wrap:wrap';
+    // Select vin
+    const sel = document.createElement('select');
+    sel.className = 'ai aisel';
+    sel.style.flex = '1';
+    sel.style.minWidth = '160px';
+    sel.innerHTML = '<option value="">— Choisir un vin —</option>'
+      + wines.filter(x => x.visible !== false).map(x =>
+          '<option value="' + x.id + '" ' + (line.wineId === x.id ? 'selected' : '') + '>'
+          + (x.appellation||'') + ' ' + (x.nom||'') + (x.millesime ? ' (' + x.millesime + ')' : '')
+          + ' — ' + (x.prix ? parseFloat(x.prix).toFixed(2) + '€' : '—')
+          + '</option>'
+        ).join('');
+    sel.onchange = function() { manualLines[i].wineId = this.value; renderManualLines(); };
+    // Qty
+    const qty = document.createElement('input');
+    qty.type = 'number'; qty.min = '1'; qty.value = line.qty;
+    qty.style.cssText = 'width:70px;border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:9px 8px;font-family:"DM Sans",sans-serif;font-size:.9rem';
+    qty.oninput = function() { manualLines[i].qty = parseInt(this.value)||1; renderManualLines(); };
+    // Prix ligne
+    const prix = document.createElement('span');
+    prix.style.cssText = 'font-size:.88rem;color:var(--bx);font-weight:500;min-width:60px;text-align:right';
+    prix.textContent = (w && line.qty) ? (parseFloat(w.prix||0)*line.qty).toFixed(2).replace('.',',') + ' €' : '';
+    // Suppr
+    const rm = document.createElement('button');
+    rm.className = 'abtn abtn-d';
+    rm.style.cssText = 'padding:4px 10px;font-size:.78rem';
+    rm.textContent = '✕';
+    rm.onclick = function() { manualLines.splice(i, 1); renderManualLines(); };
+    div.appendChild(sel); div.appendChild(qty); div.appendChild(prix); div.appendChild(rm);
+    el.appendChild(div);
+  });
+  document.getElementById('moTotal').textContent = 'Total : ' + total.toFixed(2).replace('.',',') + ' €';
+}
+
+async function saveManualOrder() {
+  const pre  = document.getElementById('moPre').value.trim();
+  const nom  = document.getElementById('moNom').value.trim();
+  const ville = document.getElementById('moVille').value;
+  if (!pre || !nom) { showError('Prénom et Nom requis.'); return; }
+  if (!ville) { showError('Point de retrait requis.'); return; }
+  const validLines = manualLines.filter(l => l.wineId && l.qty > 0);
+  if (!validLines.length) { showError('Ajoutez au moins un vin.'); return; }
+
+  const items = validLines.map(l => {
+    const w = wines.find(x => x.id === l.wineId);
+    return { id: l.wineId, nom: w?.nom||w?.appellation||'—', appellation: w?.appellation, exploitation: w?.exploitation, couleur: w?.couleur, millesime: w?.millesime, prix: w?.prix||0, qty: l.qty };
+  });
+  const total = items.reduce((s,i) => s + parseFloat(i.prix)*i.qty, 0);
+
+  const order = {
+    id: 'cmd_' + Date.now(),
+    date: new Date().toISOString(),
+    prenom: pre,
+    nom,
+    email:  document.getElementById('moEmail').value.trim() || '',
+    tel:    document.getElementById('moTel').value.trim() || '',
+    ville,
+    paiement: document.getElementById('moPay').value || '',
+    message:  document.getElementById('moMsg').value.trim() || '',
+    items,
+    total: parseFloat(total.toFixed(2)),
+    statut: document.getElementById('moStatut').value,
+    montantPaye: parseFloat(document.getElementById('moMontantPaye').value)||0,
+    enregistrePar: currentAdmin ? currentAdmin.username : '—',
+    source: 'Manuel (bon papier)'
+  };
+
+  try {
+    await sbUpsert('orders', order);
+    orders.unshift(order);
+    addLog('Commande manuelle', pre + ' ' + nom + ' — ' + total.toFixed(2) + ' €');
+    closeManualOrder();
+    renderOrderList();
+    showToast('Commande enregistrée ✓');
+  } catch(e) { showError('Erreur : ' + e.message); }
+}
+
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
 loadAll();
 </script>
+
+
+<!-- MODALE COMMANDE MANUELLE -->
+<div id="manualOrderModal" style="display:none;position:fixed;inset:0;z-index:650;background:rgba(15,37,72,.85);align-items:center;justify-content:center;padding:1rem;overflow-y:auto">
+  <div style="background:#fff;border-radius:var(--r);max-width:640px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(15,37,72,.4)">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.8rem;border-bottom:1px solid rgba(41,82,204,.15)">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--bxd)">Commande manuelle</h3>
+      <button onclick="closeManualOrder()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--txm)">✕</button>
+    </div>
+    <div style="padding:1.5rem 1.8rem">
+      <div style="background:rgba(41,82,204,.05);border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:.8rem 1rem;margin-bottom:1.2rem;font-size:.82rem;color:var(--bxd)">
+        📋 Bon de commande papier — Enregistré par : <strong id="moEnregistrePar"></strong>
+      </div>
+      <!-- Client -->
+      <div class="fg2">
+        <div class="fg"><label>Prénom *</label><input type="text" id="moPre" class="ai" placeholder="Prénom"></div>
+        <div class="fg"><label>Nom *</label><input type="text" id="moNom" class="ai" placeholder="Nom"></div>
+      </div>
+      <div class="fg2">
+        <div class="fg"><label>Email</label><input type="email" id="moEmail" class="ai" placeholder="optionnel"></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" id="moTel" class="ai" placeholder="06 00 00 00 00"></div>
+      </div>
+      <div class="fg2">
+        <div class="fg"><label>Point de retrait *</label>
+          <select id="moVille" class="ai aisel">
+            <option value="">— Choisir —</option>
+          </select>
+        </div>
+        <div class="fg"><label>Paiement</label>
+          <select id="moPay" class="ai aisel">
+            <option value="">— Non précisé —</option>
+            <option>Espèces</option><option>Chèque</option><option>Virement</option><option>Carte bancaire</option>
+          </select>
+        </div>
+      </div>
+      <!-- Vins -->
+      <div style="margin-bottom:1rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+          <label class="al" style="margin:0">Vins commandés *</label>
+          <button class="abtn abtn-s" style="padding:4px 12px;font-size:.78rem" onclick="addManualLine()">+ Ajouter un vin</button>
+        </div>
+        <div id="moLines"></div>
+        <div id="moTotal" style="text-align:right;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--bx);font-weight:600;margin-top:.5rem"></div>
+      </div>
+      <div class="fg"><label>Message / Notes</label><input type="text" id="moMsg" class="ai" placeholder="Optionnel…"></div>
+      <div class="fg2">
+        <div class="fg"><label>Statut</label>
+          <select id="moStatut" class="ai aisel">
+            <option>En attente de contact</option>
+            <option>En préparation</option>
+            <option>Partiellement livré</option>
+            <option>Livré</option>
+          </select>
+        </div>
+        <div class="fg"><label>Montant déjà payé (€)</label>
+          <input type="number" id="moMontantPaye" class="ai" placeholder="0.00" step="0.01" min="0" value="0">
+        </div>
+      </div>
+      <button class="subbtn" onclick="saveManualOrder()">Enregistrer la commande</button>
+    </div>
+  </div>
+</div>
 
 <!-- PARAMS LOCK MODAL -->
 <div id="paramsLockModal" style="display:none;position:fixed;inset:0;z-index:600;background:rgba(15,37,72,.85);align-items:center;justify-content:center">
