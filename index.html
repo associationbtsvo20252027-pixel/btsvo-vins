@@ -9,7 +9,7 @@
 <style>
 :root{--bx:#2E5FBF;--bxd:#1B3A6B;--or:#4A7FE8;--orl:#7B9FF8;--cr:#F8F4EE;--crd:#EDE6D9;--tx:#1A1008;--txm:#6B5B4E;--wh:#FFF;--r:16px;--rs:10px;--sh:0 2px 16px rgba(90,20,10,.09);--shl:0 8px 40px rgba(90,20,10,.16)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M14 1L27 14L14 27L1 14Z' fill='none' stroke='rgba(41%2C82%2C204%2C0.06)' stroke-width='0.8'/%3E%3C/svg%3E")}
 h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
 header{background:var(--bxd);color:#fff;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:76px;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--or);gap:.5rem}
 .logo{display:flex;align-items:center;gap:16px;cursor:pointer}
@@ -42,8 +42,8 @@ main{padding:2.5rem;max-width:1400px;margin:0 auto}
 .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.6rem}
 .wcard{background:var(--wh);border-radius:var(--r);overflow:hidden;border:1px solid rgba(139,26,46,.08);box-shadow:var(--sh);cursor:pointer;transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column}
 .wcard:hover{transform:translateY(-5px);box-shadow:var(--shl)}
-.wimg{background:var(--cr);height:220px;display:flex;align-items:center;justify-content:center;padding:1.4rem 1.2rem;position:relative}
-.wimg img{max-height:190px;max-width:100%;object-fit:contain}
+.wimg{background:var(--cr);height:220px;display:flex;align-items:center;justify-content:center;padding:.4rem .4rem;position:relative;overflow:hidden}
+.wimg img{height:100%;width:100%;object-fit:cover}
 .wnoph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;opacity:.18}
 .cbadge{position:absolute;top:10px;right:10px;padding:4px 11px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .cr2{background:#f9e8e8;color:#7a1525}.cb2{background:#fdf8e8;color:#5a4d10}.cros{background:#fce8f0;color:#7a1f48}.ceff{background:#e8f0fc;color:#1a3a70}.cliq{background:#f8f0e8;color:#6a3a08}
@@ -313,6 +313,10 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
   .cart-btn span:not(.cart-count){display:none}
 }
 
+
+/* Action lourde */
+.heavy-pw-modal{display:none;position:fixed;inset:0;z-index:800;background:rgba(15,37,72,.88);align-items:center;justify-content:center}
+.heavy-pw-modal.open{display:flex}
 </style>
 </head>
 <body>
@@ -368,6 +372,11 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
 </div>
 
 <!-- PILLS -->
+<div style="background:var(--crd);padding:.5rem 2.5rem .3rem;border-bottom:none;display:flex;align-items:center;gap:.5rem">
+  <span style="font-size:.72rem;color:var(--txm);font-weight:500;letter-spacing:.06em;text-transform:uppercase">Trier par</span>
+  <button class="pill on" id="sortPrix" onclick="setSort('prix',this)" style="font-size:.75rem;padding:4px 12px">Prix ↑</button>
+  <button class="pill" id="sortAlpha" onclick="setSort('alpha',this)" style="font-size:.75rem;padding:4px 12px">A–Z exploitation</button>
+</div>
 <nav class="pills" id="pillsNav">
   <button class="pill on" onclick="filterCat(null,this)">Tous les vins</button>
 </nav>
@@ -489,6 +498,11 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <option value="Carte bancaire">Carte bancaire</option>
         </select>
       </div>
+      <div class="fg"><label>Recommandé par (optionnel)</label>
+        <select id="oParrain" class="fg" style="width:100%;border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--tx);background:var(--cr);appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232E5FBF'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 14px center;cursor:pointer" id="oParrain">
+          <option value="">— Personne en particulier —</option>
+        </select>
+      </div>
       <div class="fg"><label>Message (optionnel)</label><input type="text" id="oMsg" placeholder="Précisions, livraison…"></div>
       <p style="font-size:.77rem;color:var(--txm);font-style:italic;margin-bottom:.8rem">Notre équipe vous contactera pour confirmer.</p>
       <button class="subbtn" id="submitBtn" onclick="submitOrder()">Envoyer ma commande →</button>
@@ -557,6 +571,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <div><label class="al">Appellation *</label><input type="text" class="ai" id="wApp2" placeholder="ex: Pommard…"></div>
           <div><label class="al">Nom de la cuvée</label><input type="text" class="ai" id="wNom2" placeholder="Nom de la cuvée"></div>
           <div><label class="al">Nom de l'exploitation</label><input type="text" class="ai" id="wExp" placeholder="ex: Domaine Dupont"></div>
+          <div><label class="al">Contact exploitation</label><input type="text" class="ai" id="wContact" placeholder="ex: Jean Dupont — 06 12 34 56 78"></div>
           <div><label class="al">Millésime</label><input type="text" class="ai" id="wMil" placeholder="ex: 2021"></div>
           <div><label class="al">Couleur *</label>
             <select class="ai aisel" id="wCoul">
@@ -582,7 +597,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
             <label class="al">Photo bouteille — cliquez puis Ctrl+V</label>
             <div class="ipz" id="zB" onclick="setAZ('zB')" tabindex="0" title="Cliquez puis Ctrl+V pour recadrer">
               <svg width="24" height="50" viewBox="0 0 24 50" fill="none"><rect x="7" y="0" width="10" height="14" rx="3" fill="rgba(139,26,46,.15)"/><rect x="2" y="12" width="20" height="34" rx="8" fill="rgba(139,26,46,.15)"/></svg>
-              <span>Cliquer ici puis Ctrl+V</span><span class="hint">pour coller la photo</span>
+              <span>Cliquer ici puis Ctrl+V</span><span class="hint">l'image sera compressée auto.</span>
               <button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>
             </div>
             <input type="hidden" id="iB">
@@ -591,7 +606,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
             <label class="al">Photo descriptive — cliquez puis Ctrl+V</label>
             <div class="ipz" id="zD" onclick="setAZ('zD')" tabindex="0" title="Cliquez puis Ctrl+V pour recadrer">
               <svg width="28" height="22" viewBox="0 0 28 22" fill="none"><rect x="1" y="1" width="26" height="20" rx="3" fill="rgba(139,26,46,.12)"/><circle cx="8" cy="9" r="3" fill="rgba(139,26,46,.2)"/><path d="M1 17l6-5 5 4 5-6 11 8" stroke="rgba(139,26,46,.25)" stroke-width="1.5" stroke-linecap="round"/></svg>
-              <span>Cliquer ici puis Ctrl+V</span><span class="hint">pour coller la photo</span>
+              <span>Cliquer ici puis Ctrl+V</span><span class="hint">l'image sera compressée auto.</span>
               <button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>
             </div>
             <input type="hidden" id="iD">
@@ -680,7 +695,14 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
           <h3 style="margin:0;padding:0;border:none">Commandes reçues (<span id="orderCount">0</span>)</h3>
           <div style="display:flex;gap:.7rem;flex-wrap:wrap;align-items:center">
-            <input type="text" class="ai" id="orderSearch" placeholder="Rechercher…" style="width:200px" oninput="renderOrderList()">
+            <input type="text" class="ai" id="orderSearch" placeholder="Rechercher…" style="width:160px" oninput="renderOrderList()">
+            <select class="ai aisel" id="orderFilterStatut" style="width:170px" onchange="renderOrderList()">
+              <option value="">Tous les statuts</option>
+              <option>En attente de contact</option>
+              <option>En préparation</option>
+              <option>Partiellement livré</option>
+              <option>Livré</option>
+            </select>
             <button class="abtn" style="padding:7px 14px;font-size:.82rem" onclick="openManualOrder()">+ Commande manuelle</button>
             <button class="abtn abtn-s" style="padding:7px 14px;font-size:.82rem" onclick="refreshOrders()">🔄 Actualiser</button>
             <button class="abtn abtn-d" style="padding:7px 14px;font-size:.82rem" onclick="clearAllOrders()">Tout effacer</button>
@@ -769,7 +791,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <h4 style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--bxd);margin-bottom:1rem">Nouvelle commande</h4>
           <div class="fg2">
             <div><label class="al">Vin *</label>
-              <select class="ai aisel" id="dcWin"><option value="">— Choisir un vin —</option></select>
+              <select class="ai aisel" id="dcWin" onchange="autofillDomainPrice()" ><option value="">— Choisir un vin —</option></select>
             </div>
             <div><label class="al">Quantité (bouteilles) *</label>
               <input type="number" class="ai" id="dcQty" placeholder="ex: 24" min="1" step="1">
@@ -844,21 +866,25 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
         </div>
         <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoFile(event)">
       </div>
-      <!-- Mot de passe admin -->
+
+      <!-- Mot de passe action lourde -->
       <div class="acard">
-        <h3>Changer le mot de passe admin</h3>
+        <h3>Mot de passe — Actions lourdes</h3>
+        <p style="font-size:.82rem;color:var(--txm);margin-bottom:.8rem">Requis pour supprimer une commande, effacer toutes les commandes, supprimer un vin.</p>
         <div class="fg2">
-          <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="np" placeholder="••••••••"></div>
-          <div><label class="al">Confirmer</label><input type="password" class="ai" id="cp2" placeholder="••••••••"></div>
+          <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="newHeavyPw" placeholder="••••••••"></div>
+          <div><label class="al">Confirmer</label><input type="password" class="ai" id="newHeavyPw2" placeholder="••••••••"></div>
         </div>
-        <div class="brow"><button class="abtn" onclick="chgPwd()">Mettre à jour</button></div>
-        <div id="pmsg" style="margin-top:.5rem;font-size:.82rem"></div>
+        <div class="brow"><button class="abtn" onclick="saveHeavyPw()">Mettre à jour</button></div>
+        <div id="heavyPwMsg" style="margin-top:.5rem;font-size:.82rem"></div>
       </div>
-      <!-- Mot de passe paramètres -->
+      <!-- Code paramètres -->
       <div class="acard">
-        <h3>Changer le mot de passe Paramètres</h3>
+        <h3>Changer le code d'accès Paramètres</h3>
+        <p style="font-size:.82rem;color:var(--txm);margin-bottom:.8rem">Code actuel requis pour modifier.</p>
         <div class="fg2">
-          <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="npParams" placeholder="••••••••"></div>
+          <div><label class="al">Code actuel</label><input type="password" class="ai" id="npParamsOld" placeholder="••••••••"></div>
+          <div><label class="al">Nouveau code</label><input type="password" class="ai" id="npParams" placeholder="••••••••"></div>
           <div><label class="al">Confirmer</label><input type="password" class="ai" id="cpParams2" placeholder="••••••••"></div>
         </div>
         <div class="brow"><button class="abtn" onclick="chgPwdParams()">Mettre à jour</button></div>
@@ -1180,7 +1206,10 @@ function renderWines() {
   const el = document.getElementById('winesContent');
   const vis = wines.filter(w => w.visible !== false);
   const filtered = (filterCatId ? vis.filter(w => (w.cats||[]).includes(filterCatId)) : vis)
-    .sort((a,b) => parseFloat(a.prix||0) - parseFloat(b.prix||0));
+    .sort((a,b) => {
+      if (currentSort === 'alpha') return (a.exploitation||'').localeCompare(b.exploitation||'', 'fr');
+      return parseFloat(a.prix||0) - parseFloat(b.prix||0);
+    });
 
   if (!filtered.length) {
     el.innerHTML = `<div class="empty"><h3>Aucun vin disponible</h3><p>La sélection est en cours de mise à jour.</p></div>`;
@@ -1230,7 +1259,7 @@ function wCard(w) {
   return `<div class="wcard" onclick="openWM('${w.id}')">
     <div class="wimg">${img}${ph}${w.couleur?`<span class="cbadge ${bmap[w.couleur]||'cr2'}">${w.couleur}</span>`:''}</div>
     <div class="winfo">
-      <div class="wapp">${w.appellation||''}</div>
+      <div class="wapp">${w.nom ? w.appellation||'' : ''}</div>
       <div class="wnom">${w.nom || w.appellation || ''}</div>
       ${w.exploitation?`<div class="wmil" style="font-style:italic">${w.exploitation}</div>`:''}
       <div class="wmil">${w.millesime?'Millésime '+w.millesime:''}</div>
@@ -1271,16 +1300,15 @@ function renderLogo() {
   const imgWrap = document.getElementById('logoImgWrap'), svgWrap = document.getElementById('logoSvgWrap');
   if (cfg.logo) { document.getElementById('logoImg').src = cfg.logo; imgWrap.style.display = 'block'; svgWrap.style.display = 'none'; }
   else { imgWrap.style.display = 'none'; svgWrap.style.display = 'block'; }
-  // Update admin logo zone
   const zLogo = document.getElementById('zLogo');
   const inner = document.getElementById('zLogoInner');
   const rmBtn = document.getElementById('rmLogoBtn');
   if (!zLogo) return;
   if (cfg.logo) {
-    if (inner) inner.innerHTML = `<img src="${cfg.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    if (inner) { inner.innerHTML = ''; const img = document.createElement('img'); img.src = cfg.logo; img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:50%'; inner.appendChild(img); }
     if (rmBtn) rmBtn.style.display = 'block';
   } else {
-    if (inner) inner.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="4" width="30" height="24" rx="3" stroke="rgba(41,82,204,.3)" stroke-width="1.5"/><path d="M10 20l4-5 4 3 4-6" stroke="rgba(41,82,204,.3)" stroke-width="1.5" stroke-linecap="round"/></svg><p style="font-size:.78rem;color:var(--txm);text-align:center;padding:0 12px">Cliquer pour uploader</p>`;
+    if (inner) inner.innerHTML = '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="4" width="30" height="24" rx="3" stroke="rgba(41,82,204,.3)" stroke-width="1.5"/><path d="M10 20l4-5 4 3 4-6" stroke="rgba(41,82,204,.3)" stroke-width="1.5" stroke-linecap="round"/></svg><p style="font-size:.78rem;color:var(--txm);text-align:center;padding:0 12px">Cliquer pour uploader<br><span style="font-size:.7rem;opacity:.6">ou Ctrl+V après avoir cliqué</span></p>';
     if (rmBtn) rmBtn.style.display = 'none';
   }
 }
@@ -1363,7 +1391,7 @@ function renderCarte() {
 // ═══════════════════════════════════════════════════════
 function openWM(id) {
   const w = wines.find(x => x.id === id); if (!w) return; cwine = w;
-  document.getElementById('mApp').textContent = w.appellation || '';
+  document.getElementById('mApp').textContent = w.nom ? (w.appellation || '') : '';
   document.getElementById('mNom').textContent = w.nom || '';
   document.getElementById('mPri').textContent = w.prix ? parseFloat(w.prix).toFixed(2).replace('.', ',') + ' €' : '';
   document.getElementById('mDes').textContent = w.desc || 'Aucune description disponible.';
@@ -1486,6 +1514,12 @@ function openOM() {
   vb.innerHTML = villes.map(v => `<button type="button" class="ville-pill" onclick="selVille(this)">${v.nom}</button>`).join('');
   document.getElementById('oVilleAutre').value = '';
   ['oPre', 'oNom2', 'oEmail', 'oTel', 'oMsg'].forEach(id => document.getElementById(id).value = '');
+  // Remplir liste admins pour "recommandé par"
+  const parrainSel = document.getElementById('oParrain');
+  if (parrainSel) {
+    parrainSel.innerHTML = '<option value="">— Personne en particulier —</option>'
+      + allAdmins.map(a => '<option value="' + a.username + '">' + a.username + '</option>').join('');
+  }
   document.getElementById('oPay').value = '';
   document.getElementById('oForm').style.display = 'block';
   document.getElementById('oSucc').style.display = 'none';
@@ -1692,8 +1726,8 @@ document.addEventListener('paste', function(e) {
 function clrZ(zid, iid) {
   document.getElementById(iid).value = '';
   const z = document.getElementById(zid); z.classList.remove('hi');
-  if (zid === 'zB') z.innerHTML = `<svg width="24" height="50" viewBox="0 0 24 50" fill="none"><rect x="7" y="0" width="10" height="14" rx="3" fill="rgba(139,26,46,.15)"/><rect x="2" y="12" width="20" height="34" rx="8" fill="rgba(139,26,46,.15)"/></svg><span>Cliquer ici puis Ctrl+V</span><span class="hint">pour coller la photo</span><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`;
-  else z.innerHTML = `<svg width="28" height="22" viewBox="0 0 28 22" fill="none"><rect x="1" y="1" width="26" height="20" rx="3" fill="rgba(139,26,46,.12)"/><circle cx="8" cy="9" r="3" fill="rgba(139,26,46,.2)"/><path d="M1 17l6-5 5 4 5-6 11 8" stroke="rgba(139,26,46,.25)" stroke-width="1.5" stroke-linecap="round"/></svg><span>Cliquer ici puis Ctrl+V</span><span class="hint">pour coller la photo</span><button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>`;
+  if (zid === 'zB') z.innerHTML = `<svg width="24" height="50" viewBox="0 0 24 50" fill="none"><rect x="7" y="0" width="10" height="14" rx="3" fill="rgba(139,26,46,.15)"/><rect x="2" y="12" width="20" height="34" rx="8" fill="rgba(139,26,46,.15)"/></svg><span>Cliquer ici puis Ctrl+V</span><span class="hint">l'image sera compressée auto.</span><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`;
+  else z.innerHTML = `<svg width="28" height="22" viewBox="0 0 28 22" fill="none"><rect x="1" y="1" width="26" height="20" rx="3" fill="rgba(139,26,46,.12)"/><circle cx="8" cy="9" r="3" fill="rgba(139,26,46,.2)"/><path d="M1 17l6-5 5 4 5-6 11 8" stroke="rgba(139,26,46,.25)" stroke-width="1.5" stroke-linecap="round"/></svg><span>Cliquer ici puis Ctrl+V</span><span class="hint">l'image sera compressée auto.</span><button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>`;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1717,7 +1751,7 @@ function triggerLogoUpload() { document.getElementById('logoFileInput').click();
 function handleLogoFile(e) {
   const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
-  reader.onload = ev => setLogo(ev.target.result);
+  reader.onload = ev => compressAndSetLogo(ev.target.result);
   reader.readAsDataURL(file);
   e.target.value = '';
 }
@@ -1728,8 +1762,10 @@ async function setLogo(data) {
   showToast('Logo mis à jour ✓');
 }
 async function rmLogo() {
-  cfg.logo = ''; await sbSetConfig(cfg); renderLogo();
-  showToast('Logo supprimé');
+  askConfirm('Supprimer le logo ?', async () => {
+    cfg.logo = ''; await sbSetConfig(cfg); renderLogo();
+    showToast('Logo supprimé');
+  });
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1750,6 +1786,7 @@ async function saveWine() {
     appellation:  document.getElementById('wApp2').value.trim(),
     nom:          document.getElementById('wNom2').value.trim(),
     exploitation: document.getElementById('wExp').value.trim(),
+    contact:      document.getElementById('wContact').value.trim(),
     millesime:    document.getElementById('wMil').value.trim(),
     couleur:      document.getElementById('wCoul').value,
     label:        document.getElementById('wLab').value.trim(),
@@ -1781,7 +1818,7 @@ async function saveWine() {
 
 function resetWF() {
   document.getElementById('eid').value = ''; document.getElementById('wft').textContent = 'Ajouter un vin';
-  ['wApp2','wNom2','wExp','wMil','wLab','wPrix','wPrixAchat','wDes','wStock','wRatio'].forEach(id => document.getElementById(id).value = '');
+  ['wApp2','wNom2','wExp','wContact','wMil','wLab','wPrix','wPrixAchat','wDes','wStock','wRatio'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('margeInfo').style.display='none';
   document.getElementById('wCoul').value = '';
   document.getElementById('wNouveau').checked = false;
@@ -1797,7 +1834,8 @@ function editWine(id) {
   document.getElementById('eid').value = w.id; document.getElementById('wft').textContent = 'Modifier le vin';
   document.getElementById('wApp2').value = w.appellation || '';
   document.getElementById('wNom2').value = w.nom || '';
-  document.getElementById('wExp').value  = w.exploitation || '';
+  document.getElementById('wExp').value     = w.exploitation || '';
+  document.getElementById('wContact').value = w.contact || '';
   document.getElementById('wMil').value  = w.millesime || '';
   document.getElementById('wCoul').value = w.couleur || '';
   document.getElementById('wLab').value  = w.label || '';
@@ -1828,7 +1866,8 @@ async function toggleVisible(id) {
 }
 
 async function delWine(id) {
-  askConfirm('Supprimer ce vin définitivement ?', async () => {
+  const w = wines.find(x => x.id === id);
+  askHeavyAction('Supprimer un vin', (w ? w.appellation + (w.nom ? ' - ' + w.nom : '') : 'Ce vin') + ' sera supprimé définitivement.', async () => {
     try {
       await sbDelete('wines', id);
       wines = wines.filter(x => x.id !== id);
@@ -2065,9 +2104,11 @@ async function refreshOrders() {
 
 function renderOrderList() {
   const search = (document.getElementById('orderSearch')?.value || '').toLowerCase().trim();
-  const list = search
+  const filterStatut = document.getElementById('orderFilterStatut')?.value || '';
+  let list = search
     ? orders.filter(o => (o.prenom + ' ' + o.nom).toLowerCase().includes(search) || o.email.toLowerCase().includes(search))
     : orders;
+  if (filterStatut) list = list.filter(o => (o.statut||'En attente de contact') === filterStatut);
 
   document.getElementById('orderCount').textContent = orders.length;
 
@@ -2170,20 +2211,22 @@ function openOrderDetail(id) {
 }
 function closeOrderDetail() { document.getElementById('orderDetailModal').style.display = 'none'; currentOrderId = null; }
 async function deleteOrder(id) {
-  askConfirm('Supprimer cette commande ?', async () => {
+  askHeavyAction('Supprimer une commande', 'Cette action est irréversible. Entrez le mot de passe.', async () => {
     try {
       await sbDelete('orders', id);
       orders = orders.filter(x => x.id !== id);
+      addLog('Commande supprimée', id);
       closeOrderDetail(); renderOrderList();
       showToast('Commande supprimée');
     } catch(e) { showError('Erreur : ' + e.message); }
   });
 }
 async function clearAllOrders() {
-  askConfirm(`Effacer toutes les commandes (${orders.length}) ? Cette action est irréversible.`, async () => {
+  askHeavyAction('Effacer toutes les commandes', `${orders.length} commandes seront supprimées définitivement.`, async () => {
     try {
       for (const o of orders) await sbDelete('orders', o.id);
       orders = []; renderOrderList();
+      addLog('Toutes commandes effacées', orders.length + ' commandes');
       showToast('Toutes les commandes supprimées');
     } catch(e) { showError('Erreur : ' + e.message); }
   });
@@ -2227,7 +2270,12 @@ function checkParamsLock() {
   const val = document.getElementById('paramsLockInput').value;
   if (val === getParamsPw()) {
     closeParamsLock();
-    swTab('params', window._paramBtn || document.getElementById('tabBtnParams'));
+    // D'abord aller sur Vins, puis ouvrir params dans un 2e temps
+    const vinsBtn = document.querySelector('.atab[onclick*="vins"]');
+    if (vinsBtn) swTab('vins', vinsBtn);
+    setTimeout(() => {
+      swTab('params', window._paramBtn || document.getElementById('tabBtnParams'));
+    }, 50);
   } else {
     document.getElementById('paramsLockErr').textContent = 'Mot de passe incorrect.';
     document.getElementById('paramsLockInput').value = '';
@@ -2235,263 +2283,34 @@ function checkParamsLock() {
   }
 }
 function chgPwdParams() {
-  const p1 = document.getElementById('npParams').value;
-  const p2 = document.getElementById('cpParams2').value;
-  const m  = document.getElementById('pmsgParams');
-  if (!p1) { m.style.color='#c0392b'; m.textContent='Entrez un mot de passe.'; return; }
-  if (p1 !== p2) { m.style.color='#c0392b'; m.textContent='Les mots de passe ne correspondent pas.'; return; }
+  const old = document.getElementById('npParamsOld')?.value;
+  const p1  = document.getElementById('npParams').value;
+  const p2  = document.getElementById('cpParams2').value;
+  const m   = document.getElementById('pmsgParams');
+  if (old !== getParamsPw()) { m.style.color='#c0392b'; m.textContent='Code actuel incorrect.'; return; }
+  if (!p1) { m.style.color='#c0392b'; m.textContent='Entrez un nouveau code.'; return; }
+  if (p1 !== p2) { m.style.color='#c0392b'; m.textContent='Les codes ne correspondent pas.'; return; }
   setParamsPw(p1);
+  document.getElementById('npParamsOld').value = '';
   document.getElementById('npParams').value = '';
   document.getElementById('cpParams2').value = '';
-  m.style.color = 'var(--bx)'; m.textContent = 'Mot de passe Paramètres mis à jour !';
-  showToast('Mot de passe Paramètres mis à jour ✓');
+  m.style.color = 'var(--bx)'; m.textContent = 'Code Paramètres mis à jour !';
+  addLog('Code Paramètres modifié', '');
+  showToast('Code Paramètres mis à jour ✓');
 }
 
 // ═══════════════════════════════════════════════
 // CROP MODAL
 // ═══════════════════════════════════════════════
-let cropTarget = null; // 'logo' | 'banner' | 'bottle' | 'desc'
-let cropImg = null;
-let cropX = 0, cropY = 0, cropScale = 1;
-let cropDragging = false, cropStartX = 0, cropStartY = 0;
-let cropOrigX = 0, cropOrigY = 0;
-let cropSourceData = null;
 
-const CROP_SIZES = {
-  logo:   { w: 200, h: 200, radius: '50%' },
-  banner: { w: 480, h: 180, radius: '8px' },
-  bottle: { w: 200, h: 300, radius: '8px' },
-  desc:   { w: 380, h: 220, radius: '8px' },
-};
 
-function openCropModal(target, dataUrl) {
-  cropTarget = target;
-  const sz = CROP_SIZES[target] || { w: 300, h: 300, radius: '8px' };
-  const container = document.getElementById('cropContainer');
-  container.style.width  = sz.w + 'px';
-  container.style.height = sz.h + 'px';
-  container.style.borderRadius = sz.radius;
-  container.innerHTML = '';
 
-  if (dataUrl) {
-    cropSourceData = dataUrl;
-    _initCropImage(dataUrl, sz);
-  } else if (target === 'logo') {
-    document.getElementById('logoFileInput').onchange = function(e) {
-      const file = e.target.files[0]; if (!file) return;
-      const reader = new FileReader();
-      reader.onload = ev => {
-        cropSourceData = ev.target.result;
-        _initCropImage(ev.target.result, sz);
-      };
-      reader.readAsDataURL(file);
-      e.target.value = '';
-    };
-    document.getElementById('logoFileInput').click();
-    document.getElementById('cropModal').style.display = 'flex';
-    return;
-  }
-  document.getElementById('cropModal').style.display = 'flex';
-}
 
-function _initCropImage(dataUrl, sz) {
-  const container = document.getElementById('cropContainer');
-  container.innerHTML = '';
-  cropImg = document.createElement('img');
-  cropImg.src = dataUrl;
-  cropImg.style.cssText = 'position:absolute;top:0;left:0;transform-origin:0px 0px;user-select:none;pointer-events:none;max-width:none;display:block;';
-  container.appendChild(cropImg);
 
-  cropImg.onload = () => {
-    const scaleW = sz.w / cropImg.naturalWidth;
-    const scaleH = sz.h / cropImg.naturalHeight;
-    cropScale = Math.max(scaleW, scaleH);
-    cropX = (sz.w - cropImg.naturalWidth * cropScale) / 2;
-    cropY = (sz.h - cropImg.naturalHeight * cropScale) / 2;
-    // Set slider min/max based on image
-    const minScale = Math.max(scaleW, scaleH);
-    const slider = document.getElementById('cropZoom');
-    slider.min = Math.round(minScale * 100);
-    slider.max = Math.round(minScale * 100 * 4);
-    slider.value = Math.round(cropScale * 100);
-    document.getElementById('cropZoomVal').textContent = Math.round(cropScale * 100) + '%';
-    _applyCropTransform();
-  };
 
-  // Drag events
-  container.onmousedown = e => {
-    cropDragging = true; cropStartX = e.clientX; cropStartY = e.clientY;
-    cropOrigX = cropX; cropOrigY = cropY;
-    container.style.cursor = 'grabbing';
-    e.preventDefault();
-  };
-  document.onmousemove = e => {
-    if (!cropDragging) return;
-    cropX = cropOrigX + (e.clientX - cropStartX);
-    cropY = cropOrigY + (e.clientY - cropStartY);
-    _applyCropTransform();
-  };
-  document.onmouseup = () => { cropDragging = false; container.style.cursor = 'grab'; };
 
-  // Touch drag + pinch zoom
-  let lastPinchDist = 0;
-  container.ontouchstart = e => {
-    if (e.touches.length === 1) {
-      const t = e.touches[0];
-      cropDragging = true; cropStartX = t.clientX; cropStartY = t.clientY;
-      cropOrigX = cropX; cropOrigY = cropY;
-    } else if (e.touches.length === 2) {
-      cropDragging = false;
-      const dx = e.touches[0].clientX - e.touches[1].clientX;
-      const dy = e.touches[0].clientY - e.touches[1].clientY;
-      lastPinchDist = Math.sqrt(dx*dx + dy*dy);
-    }
-    e.preventDefault();
-  };
-  container.ontouchmove = e => {
-    if (e.touches.length === 1 && cropDragging) {
-      const t = e.touches[0];
-      cropX = cropOrigX + (t.clientX - cropStartX);
-      cropY = cropOrigY + (t.clientY - cropStartY);
-      _applyCropTransform();
-    } else if (e.touches.length === 2) {
-      const dx = e.touches[0].clientX - e.touches[1].clientX;
-      const dy = e.touches[0].clientY - e.touches[1].clientY;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if (lastPinchDist > 0) {
-        const sz = CROP_SIZES[cropTarget] || {w:300,h:300};
-        const ratio = dist / lastPinchDist;
-        const newScale = Math.min(Math.max(cropScale * ratio, 0.3), 10);
-        const cx = sz.w/2, cy = sz.h/2;
-        cropX = cx - (cx - cropX) * (newScale / cropScale);
-        cropY = cy - (cy - cropY) * (newScale / cropScale);
-        cropScale = newScale;
-        const pct = Math.round(cropScale * 100);
-        document.getElementById('cropZoom').value = pct;
-        document.getElementById('cropZoomVal').textContent = pct + '%';
-        _applyCropTransform();
-      }
-      lastPinchDist = dist;
-    }
-    e.preventDefault();
-  };
-  container.ontouchend = e => {
-    cropDragging = false;
-    if (e.touches.length < 2) lastPinchDist = 0;
-  };
-}
 
-function _applyCropTransform() {
-  if (!cropImg) return;
-  cropImg.style.transform = `translate(${cropX}px,${cropY}px) scale(${cropScale})`;
-}
-
-function updateCropZoom(val) {
-  if (!cropImg) return;
-  const sz = CROP_SIZES[cropTarget] || { w: 300, h: 300 };
-  const cx = sz.w / 2, cy = sz.h / 2;
-  const oldScale = cropScale;
-  const newScale = val / 100;
-  // Zoom centré sur le milieu du cadre
-  cropX = cx - (cx - cropX) * (newScale / oldScale);
-  cropY = cy - (cy - cropY) * (newScale / oldScale);
-  cropScale = newScale;
-  document.getElementById('cropZoom').value = val;
-  document.getElementById('cropZoomVal').textContent = Math.round(val) + '%';
-  _applyCropTransform();
-}
-
-function applyCrop() {
-  if (!cropImg) return;
-  const sz = CROP_SIZES[cropTarget] || { w: 300, h: 300 };
-  const canvas = document.createElement('canvas');
-  canvas.width = sz.w;
-  canvas.height = sz.h;
-  const ctx = canvas.getContext('2d');
-
-  if (cropTarget === 'logo') {
-    ctx.beginPath();
-    ctx.arc(sz.w / 2, sz.h / 2, sz.w / 2, 0, Math.PI * 2);
-    ctx.clip();
-  }
-
-  // La transform CSS est : translate(cropX, cropY) scale(cropScale) avec transform-origin: 0 0
-  // Donc la position réelle du pixel (0,0) de l'image dans le container est (cropX, cropY)
-  // Pour dessiner ce que voit le container [0,0 → sz.w,sz.h] :
-  // on map container(px,py) → image(px,py) via : imgX = (px - cropX) / cropScale
-  ctx.drawImage(
-    cropImg,
-    -cropX / cropScale,      // srcX : coin haut-gauche du container dans l'image
-    -cropY / cropScale,      // srcY
-    sz.w / cropScale,        // srcW : largeur du container en coordonnées image
-    sz.h / cropScale,        // srcH
-    0, 0, sz.w, sz.h         // destination : tout le canvas
-  );
-
-  const result = canvas.toDataURL('image/jpeg', 0.92);
-  closeCropModal();
-
-  if (cropTarget === 'logo') {
-    setLogo(result);
-  } else if (cropTarget === 'banner') {
-    setBanner(result);
-  } else if (cropTarget === 'bottle') {
-    compressImage(result, 1200, 0.82).then(compressed => {
-      document.getElementById('iB').value = compressed;
-      const z = document.getElementById('zB');
-      z.innerHTML = `<img src="${compressed}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zB','iB');event.stopPropagation()">✕</button>`;
-      z.classList.add('hi'); az = null;
-    });
-  } else if (cropTarget === 'desc') {
-    compressImage(result, 1200, 0.82).then(compressed => {
-      document.getElementById('iD').value = compressed;
-      const z = document.getElementById('zD');
-      z.innerHTML = `<img src="${compressed}" style="max-height:120px;max-width:100%;object-fit:contain;border-radius:6px"><button class="rmbtn" onclick="clrZ('zD','iD');event.stopPropagation()">✕</button>`;
-      z.classList.add('hi'); az = null;
-    });
-  }
-}
-
-function closeCropModal() {
-  document.getElementById('cropModal').style.display = 'none';
-  cropTarget = null; cropImg = null; cropSourceData = null;
-  cropDragging = false; az = null;
-  document.onmousemove = null; document.onmouseup = null;
-}
-
-// Override setAZ pour ouvrir le crop au paste
-const _origPaste = document.onpaste;
-document.addEventListener('paste', function(e) {
-  if (!az) return;
-  const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-  for (const it of items) {
-    if (it.type.indexOf('image') === 0) {
-      const rd = new FileReader();
-      rd.onload = ev => {
-        const data = ev.target.result;
-        if (az === 'bnZ') { openCropModal('banner', data); return; }
-        if (az === 'zLogo') { openCropModal('logo', data); return; }
-        if (az === 'zB') { openCropModal('bottle', data); return; }
-        if (az === 'zD') { openCropModal('desc', data); return; }
-      };
-      rd.readAsDataURL(it.getAsFile()); e.preventDefault(); return;
-    }
-  }
-}, true);
-
-// Override zone click for bottle/desc to also open crop
-document.addEventListener('click', function(e) {
-  const zB = document.getElementById('zB');
-  const zD = document.getElementById('zD');
-  const bnZ = document.getElementById('bnZ');
-  if (zB && zB.contains(e.target) && !e.target.classList.contains('rmbtn')) {
-    az = 'zB';
-  }
-  if (zD && zD.contains(e.target) && !e.target.classList.contains('rmbtn')) {
-    az = 'zD';
-  }
-});
-
+// ═══ PASTE DIRECT (sans crop) ══════════════════
 // Logo zone click → file picker → crop
 document.addEventListener('DOMContentLoaded', () => {});
 
@@ -2811,7 +2630,7 @@ async function saveDomainCmd() {
     domaine: currentDomaine,
     vinId: winId,
     vinNom: [w?.appellation, w?.nom, w?.millesime ? '(' + w.millesime + ')' : ''].filter(Boolean).join(' '),
-    qty: parseInt(qty),
+    qty: parseInt(qty, 10) || 0,
     total: document.getElementById('dcTotal').value || 0,
     paye:  document.getElementById('dcPaye').value  || 0,
     lieu:  document.getElementById('dcLieu').value,
@@ -3177,6 +2996,140 @@ async function saveManualOrder() {
   } catch(e) { showError('Erreur : ' + e.message); }
 }
 
+
+function editAdminPassword(id, username) {
+  const newPwd = prompt('Nouveau mot de passe pour ' + username + ' :');
+  if (!newPwd || !newPwd.trim()) return;
+  askConfirm('Changer le mot de passe de ' + username + ' ?', async () => {
+    try {
+      const admin = allAdmins.find(a => a.id === id);
+      if (admin) admin.password = newPwd.trim();
+      await sbUpsert('admins', { id, username, password: newPwd.trim() });
+      addLog('Mot de passe modifié', 'Compte : ' + username);
+      showToast('Mot de passe de ' + username + ' mis à jour ✓');
+    } catch(e) { showError('Erreur : ' + e.message); }
+  });
+}
+
+
+// ═══ COMPRESSION + SET DIRECT ═══════════════
+function compressAndSetBanner(data) {
+  compressImage(data, 1400, 0.88).then(compressed => {
+    setBanner(compressed);
+  });
+}
+
+function compressAndSetLogo(data) {
+  compressImage(data, 400, 0.92).then(compressed => {
+    setLogo(compressed);
+  });
+}
+
+function setZoneImage(z, src, zid, iid) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.style.cssText = 'max-height:120px;max-width:100%;object-fit:contain;border-radius:6px';
+  const btn = document.createElement('button');
+  btn.className = 'rmbtn';
+  btn.textContent = '✕';
+  btn.onclick = function(e) { clrZ(zid, iid); e.stopPropagation(); };
+  z.innerHTML = '';
+  z.appendChild(img);
+  z.appendChild(btn);
+  z.classList.add('hi');
+}
+
+function compressAndSetBottle(data) {
+  compressImage(data, 600, 0.85).then(function(compressed) {
+    document.getElementById('iB').value = compressed;
+    const z = document.getElementById('zB');
+    setZoneImage(z, compressed, 'zB', 'iB');
+    az = null;
+    showToast('Photo bouteille ajoutée ✓');
+  });
+}
+
+function compressAndSetDesc(data) {
+  compressImage(data, 900, 0.85).then(function(compressed) {
+    document.getElementById('iD').value = compressed;
+    const z = document.getElementById('zD');
+    setZoneImage(z, compressed, 'zD', 'iD');
+    az = null;
+    showToast('Photo descriptive ajoutée ✓');
+  });
+}
+
+
+// ═══ TRI ════════════════════════════════════
+let currentSort = 'prix';
+function setSort(type, btn) {
+  currentSort = type;
+  document.querySelectorAll('#sortPrix, #sortAlpha').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderWines();
+}
+
+
+// ═══ MOT DE PASSE ACTION LOURDE ════════════
+const HEAVY_PW_KEY = 'bvo_heavy_pw';
+function getHeavyPw(){ return localStorage.getItem(HEAVY_PW_KEY) || 'action2025'; }
+function setHeavyPw(pw){ localStorage.setItem(HEAVY_PW_KEY, pw); }
+
+let _heavyCallback = null;
+
+function askHeavyAction(title, desc, cb) {
+  _heavyCallback = cb;
+  document.getElementById('heavyPwTitle').textContent = title;
+  document.getElementById('heavyPwDesc').textContent = desc;
+  document.getElementById('heavyPwInput').value = '';
+  document.getElementById('heavyPwErr').textContent = '';
+  document.getElementById('heavyPwModal').classList.add('open');
+  setTimeout(() => document.getElementById('heavyPwInput').focus(), 100);
+}
+function closeHeavyPw() {
+  document.getElementById('heavyPwModal').classList.remove('open');
+  _heavyCallback = null;
+}
+function checkHeavyPw() {
+  const val = document.getElementById('heavyPwInput').value;
+  if (val === getHeavyPw()) {
+    closeHeavyPw();
+    if (_heavyCallback) _heavyCallback();
+  } else {
+    document.getElementById('heavyPwErr').textContent = 'Mot de passe incorrect.';
+    document.getElementById('heavyPwInput').value = '';
+    document.getElementById('heavyPwInput').focus();
+  }
+}
+function saveHeavyPw() {
+  const p1 = document.getElementById('newHeavyPw').value;
+  const p2 = document.getElementById('newHeavyPw2').value;
+  const m  = document.getElementById('heavyPwMsg');
+  if (!p1) { m.style.color='#c0392b'; m.textContent='Entrez un mot de passe.'; return; }
+  if (p1 !== p2) { m.style.color='#c0392b'; m.textContent='Les mots de passe ne correspondent pas.'; return; }
+  setHeavyPw(p1);
+  document.getElementById('newHeavyPw').value = '';
+  document.getElementById('newHeavyPw2').value = '';
+  m.style.color = 'var(--bx)'; m.textContent = 'Mot de passe actions lourdes mis à jour !';
+  showToast('Mot de passe mis à jour ✓');
+}
+
+// ═══ FIX QUANTITÉ COMMANDE DOMAINE ══════════
+// Le champ qty retourne une string - forcer parseInt
+
+function autofillDomainPrice() {
+  const winId = document.getElementById('dcWin')?.value;
+  const qtyEl = document.getElementById('dcQty');
+  const totalEl = document.getElementById('dcTotal');
+  if (!winId || !totalEl) return;
+  const w = wines.find(x => x.id === winId);
+  if (w && w.prixAchat) {
+    const qty = parseInt(qtyEl?.value || 1);
+    const ttc = parseFloat(w.prixAchat) * 1.2;
+    totalEl.value = (ttc * qty).toFixed(2);
+  }
+}
+
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
@@ -3265,13 +3218,6 @@ loadAll();
   </div>
 </div>
 
-<!-- CROP MODAL -->
-<div id="cropModal" style="display:none;position:fixed;inset:0;z-index:700;background:rgba(15,37,72,.9);align-items:center;justify-content:center;padding:1rem">
-  <div style="background:#fff;border-radius:var(--r);padding:1.5rem;max-width:520px;width:100%;box-shadow:var(--shl)">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--bxd)">Recadrer l'image</h3>
-      <button onclick="closeCropModal()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txm)">✕</button>
-    </div>
     <p style="font-size:.8rem;color:var(--txm);margin-bottom:1rem">Déplacez et zoomez l'image pour cadrer comme vous le souhaitez.</p>
     <!-- Crop area -->
     <div id="cropContainer" style="position:relative;overflow:hidden;background:#f0ece6;margin:0 auto;border:2px solid var(--or);border-radius:8px;touch-action:none;cursor:grab"></div>
@@ -3285,6 +3231,24 @@ loadAll();
     <div style="display:flex;gap:.8rem;margin-top:1.2rem;justify-content:flex-end">
       <button class="abtn abtn-s" onclick="closeCropModal()">Annuler</button>
       <button class="abtn" onclick="applyCrop()">Valider le recadrage</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MOT DE PASSE ACTION LOURDE -->
+<div class="heavy-pw-modal" id="heavyPwModal">
+  <div style="background:#fff;border-radius:var(--r);padding:2rem;max-width:360px;width:90%;text-align:center;box-shadow:var(--shl)">
+    <div style="font-size:2rem;margin-bottom:.5rem">⚠️</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--bxd);margin-bottom:.4rem" id="heavyPwTitle">Action irréversible</h3>
+    <p style="font-size:.82rem;color:var(--txm);margin-bottom:1.2rem" id="heavyPwDesc">Entrez le mot de passe pour confirmer.</p>
+    <input type="password" id="heavyPwInput" class="ai" placeholder="Mot de passe action lourde"
+      onkeydown="if(event.key==='Enter')checkHeavyPw()"
+      style="text-align:center;margin-bottom:.5rem">
+    <div id="heavyPwErr" style="color:#c0392b;font-size:.8rem;min-height:1.2em;margin-bottom:.8rem"></div>
+    <div style="display:flex;gap:.8rem;justify-content:center">
+      <button class="abtn abtn-s" onclick="closeHeavyPw()">Annuler</button>
+      <button class="abtn abtn-d" onclick="checkHeavyPw()">Confirmer</button>
     </div>
   </div>
 </div>
