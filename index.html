@@ -555,6 +555,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
   </div>
   <div class="abody">
     <div class="atabs">
+      <button class="atab" id="tabBtnDashboard" onclick="swTab('dashboard',this)">📊 Tableau de bord</button>
       <button class="atab on" onclick="swTab('vins',this)">Vins</button>
       <button class="atab" onclick="swTab('cats',this)">Catégories</button>
       <button class="atab" onclick="swTab('commandes',this)">📋 Commandes</button>
@@ -1665,6 +1666,9 @@ async function openAdmin() {
   await Promise.all([loadAll(), loadAdminsAndLogs()]);
   loadAD();
   loadCompteTab();
+  // Sélectionner l'onglet Vins par défaut
+  const vinsBtn = document.querySelector('.atab[onclick*="vins"]');
+  if (vinsBtn) swTab('vins', vinsBtn);
 }
 function closeAdmin() {
   addLog('Déconnexion', 'Fermeture du panneau admin');
