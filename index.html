@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -930,6 +931,45 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
           <p style="font-size:.84rem;color:#1a6b45;font-weight:500">✓ Connexion Supabase active</p>
           <p style="font-size:.78rem;color:#1a6b45;margin-top:4px">Les données sont synchronisées en temps réel pour tous les visiteurs.</p>
         </div>
+      </div>
+    </div>
+
+    <!-- TABLEAU DE BORD -->
+    <div class="asec" id="tab-dashboard">
+      <div id="dashGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1.4rem"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem">
+        <div class="acard" style="margin:0">
+          <h3 style="font-size:1rem;margin-bottom:1rem">🍷 Top vins vendus</h3>
+          <div id="dashTopWines"></div>
+        </div>
+        <div class="acard" style="margin:0">
+          <h3 style="font-size:1rem;margin-bottom:1rem">📋 Commandes par statut</h3>
+          <div id="dashStatuts"></div>
+        </div>
+      </div>
+      <div class="acard">
+        <h3 style="font-size:1rem;margin-bottom:1rem">👤 Activité par admin</h3>
+        <div id="dashAdmins"></div>
+      </div>
+    </div>
+
+    <!-- MON COMPTE -->
+    <div class="asec" id="tab-compte">
+      <div class="acard">
+        <h3>Mon compte</h3>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--bx);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:1.4rem;font-weight:600;color:#fff" id="adminAvatar"></div>
+          <div>
+            <div style="font-family:Georgia,serif;font-size:1.2rem;color:var(--bxd)" id="adminNameDisplay"></div>
+            <div style="font-size:.78rem;color:var(--txm)">Connecté en tant qu'administrateur</div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="cpNew" placeholder="••••••••"></div>
+          <div><label class="al">Confirmer</label><input type="password" class="ai" id="cpNew2" placeholder="••••••••"></div>
+        </div>
+        <div class="brow"><button class="abtn" onclick="changeMyPassword()">Mettre à jour mon mot de passe</button></div>
+        <div id="cpMsg" style="margin-top:.5rem;font-size:.82rem"></div>
       </div>
     </div>
 
@@ -3602,47 +3642,6 @@ loadAll();
       </div>
       <button class="subbtn" onclick="saveManualOrder()">Enregistrer la commande</button>
     </div>
-    <!-- TABLEAU DE BORD -->
-    <div class="asec" id="tab-dashboard">
-      <!-- KPIs -->
-      <div id="dashGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1.4rem"></div>
-      <!-- Ligne 2 : top vins + commandes par statut -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem">
-        <div class="acard" style="margin:0">
-          <h3 style="font-size:1rem;margin-bottom:1rem">🍷 Top vins vendus</h3>
-          <div id="dashTopWines"></div>
-        </div>
-        <div class="acard" style="margin:0">
-          <h3 style="font-size:1rem;margin-bottom:1rem">📋 Commandes par statut</h3>
-          <div id="dashStatuts"></div>
-        </div>
-      </div>
-      <!-- Ligne 3 : stats par admin -->
-      <div class="acard">
-        <h3 style="font-size:1rem;margin-bottom:1rem">👤 Activité par admin</h3>
-        <div id="dashAdmins"></div>
-      </div>
-    </div>
-    <!-- MON COMPTE -->
-    <div class="asec" id="tab-compte">
-      <div class="acard">
-        <h3>Mon compte</h3>
-        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--bx);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:1.4rem;font-weight:600;color:#fff" id="adminAvatar"></div>
-          <div>
-            <div style="font-family:Georgia,serif;font-size:1.2rem;color:var(--bxd)" id="adminNameDisplay"></div>
-            <div style="font-size:.78rem;color:var(--txm)">Connecté en tant qu'administrateur</div>
-          </div>
-        </div>
-        <div class="fg2">
-          <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="cpNew" placeholder="••••••••"></div>
-          <div><label class="al">Confirmer</label><input type="password" class="ai" id="cpNew2" placeholder="••••••••"></div>
-        </div>
-        <div class="brow"><button class="abtn" onclick="changeMyPassword()">Mettre à jour mon mot de passe</button></div>
-        <div id="cpMsg" style="margin-top:.5rem;font-size:.82rem"></div>
-      </div>
-    </div>
-
   </div>
 </div>
 
