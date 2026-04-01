@@ -1667,7 +1667,7 @@ async function openAdmin() {
   loadAD();
   loadCompteTab();
   // Sélectionner l'onglet Vins par défaut
-  const vinsBtn = document.querySelector('.atab[onclick*="vins"]');
+  const vinsBtn = document.querySelector('.atab[onclick*=\'vins\']');
   if (vinsBtn) swTab('vins', vinsBtn);
 }
 function closeAdmin() {
