@@ -2862,9 +2862,15 @@ function renderAdminAccountsList() {
     row.appendChild(avatar);
     row.appendChild(info);
     if (!isSelf) {
+      const btnEdit = document.createElement('button');
+      btnEdit.className = 'abtn abtn-s';
+      btnEdit.style.cssText = 'padding:4px 10px;font-size:.76rem';
+      btnEdit.textContent = 'Modifier mdp';
+      btnEdit.addEventListener('click', () => editAdminPassword(a.id, a.username));
+      row.appendChild(btnEdit);
       const btn = document.createElement('button');
       btn.className = 'abtn abtn-d';
-      btn.style.cssText = 'padding:4px 10px;font-size:.76rem';
+      btn.style.cssText = 'padding:4px 10px;font-size:.76rem;margin-left:4px';
       btn.textContent = 'Supprimer';
       btn.addEventListener('click', () => deleteAdminAccount(a.id, a.username));
       row.appendChild(btn);
