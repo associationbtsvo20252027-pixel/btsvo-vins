@@ -314,7 +314,6 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
 
 /* Action lourde */
 .heavy-pw-modal{display:none;position:fixed;inset:0;z-index:800;background:rgba(15,37,72,.88);align-items:center;justify-content:center}
-.heavy-pw-modal.open{display:flex}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -498,7 +497,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
         </select>
       </div>
       <div class="fg"><label>Recommandé par (optionnel)</label>
-        <select id="oParrain" class="fg" style="width:100%;border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--tx);background:var(--cr);appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232E5FBF'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 14px center;cursor:pointer" id="oParrain">
+        <select id="oParrain" class="ai aisel">
           <option value="">— Personne en particulier —</option>
         </select>
       </div>
@@ -3158,11 +3157,11 @@ function askHeavyAction(title, desc, cb) {
   document.getElementById('heavyPwDesc').textContent = desc;
   document.getElementById('heavyPwInput').value = '';
   document.getElementById('heavyPwErr').textContent = '';
-  document.getElementById('heavyPwModal').classList.add('open');
+  document.getElementById('heavyPwModal').style.display = 'flex';
   setTimeout(() => document.getElementById('heavyPwInput').focus(), 100);
 }
 function closeHeavyPw() {
-  document.getElementById('heavyPwModal').classList.remove('open');
+  document.getElementById('heavyPwModal').style.display = 'none';
   _heavyCallback = null;
 }
 function checkHeavyPw() {
@@ -3577,6 +3576,12 @@ function searchClient(q) {
   });
 }
 
+
+function showPage(p) {
+  // Retour à l'accueil
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
@@ -3668,7 +3673,7 @@ loadAll();
 
 
 <!-- MOT DE PASSE ACTION LOURDE -->
-<div class="heavy-pw-modal" id="heavyPwModal">
+<div class="heavy-pw-modal" id="heavyPwModal" style="display:none">
   <div style="background:#fff;border-radius:var(--r);padding:2rem;max-width:360px;width:90%;text-align:center;box-shadow:var(--shl)">
     <div style="font-size:2rem;margin-bottom:.5rem">⚠️</div>
     <h3 style="font-family:Georgia,serif;font-size:1.3rem;color:var(--bxd);margin-bottom:.4rem" id="heavyPwTitle">Action irréversible</h3>
