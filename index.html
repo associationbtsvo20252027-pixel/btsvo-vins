@@ -794,6 +794,7 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
         <p style="font-size:.83rem;color:var(--txm);margin-bottom:1.2rem;line-height:1.6">
           Liste des domaines extraite automatiquement depuis vos vins. Cliquez sur un domaine pour gérer ses commandes.
         </p>
+        <div id="domainesGlobalSummary" style="margin-bottom:1.2rem"></div>
         <div id="domainesList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem"></div>
       </div>
       <!-- Détail domaine -->
@@ -986,21 +987,13 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
     <div class="asec" id="tab-compte">
       <div class="acard">
         <h3>Mon compte</h3>
+        <p style="font-size:.82rem;color:var(--txm);margin-bottom:1rem;font-style:italic">Pour assigner un domaine à un compte, rendez-vous dans Paramètres → Gestion des comptes.</p>
         <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem">
           <div style="width:52px;height:52px;border-radius:50%;background:var(--bx);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:1.4rem;font-weight:600;color:#fff" id="adminAvatar"></div>
           <div>
             <div style="font-family:Georgia,serif;font-size:1.2rem;color:var(--bxd)" id="adminNameDisplay"></div>
             <div style="font-size:.78rem;color:var(--txm)">Connecté en tant qu'administrateur</div>
           </div>
-        </div>
-        <!-- Lien domaine -->
-        <div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(41,82,204,.1)">
-          <label class="al">Mon domaine (exploitation)</label>
-          <select class="ai aisel" id="cpDomaine" style="margin-bottom:.6rem">
-            <option value="">— Aucun domaine assigné —</option>
-          </select>
-          <button class="abtn abtn-s" style="padding:6px 14px;font-size:.82rem" onclick="saveMyDomaine()">Enregistrer</button>
-          <div id="cpDomaineMsg" style="margin-top:.4rem;font-size:.82rem"></div>
         </div>
         <div class="fg2">
           <div><label class="al">Nouveau mot de passe</label><input type="password" class="ai" id="cpNew" placeholder="••••••••"></div>
@@ -1738,7 +1731,12 @@ async function doLog() {
     });
     const data = await res.json();
     if (data && data.length > 0) {
-      currentAdmin = data[0];
+      // Charger aussi le domaine
+      const r2 = await fetch(`${SUPABASE_URL}/rest/v1/admins?id=eq.${data[0].id}&select=id,username,domaine`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const fullAdmin = await r2.json();
+      currentAdmin = fullAdmin && fullAdmin[0] ? fullAdmin[0] : data[0];
       sessionStorage.setItem('bvo_admin', JSON.stringify(currentAdmin));
       closeLog();
       openAdmin();
@@ -1757,6 +1755,14 @@ async function doLog() {
 async function openAdmin() {
   document.getElementById('apanel').classList.add('open');
   await Promise.all([loadAll(), loadAdminsAndLogs()]);
+  // Rafraîchir le domaine de currentAdmin depuis Supabase
+  if (currentAdmin) {
+    const refreshed = allAdmins.find(a => a.id === currentAdmin.id);
+    if (refreshed) {
+      currentAdmin.domaine = refreshed.domaine || '';
+      sessionStorage.setItem('bvo_admin', JSON.stringify(currentAdmin));
+    }
+  }
   loadAD();
   loadCompteTab();
   // Sélectionner l'onglet Vins par défaut
@@ -1777,7 +1783,7 @@ function swTab(n, btn) {
   if (n === 'commandes') checkStockAlerts();
   if (n === 'dashboard') renderDashboard();
   if (n === 'domaines') { closeDomaine(); renderDomainesList(); }
-  if (n === 'compte') { loadCompteTab(); loadDomaineSelect(); }
+  if (n === 'compte') loadCompteTab();
   if (n === 'monboulot') renderMonBoulot();
   if (n === 'params') { renderAdminAccountsList(); renderLogs(); }
 }
@@ -2636,24 +2642,60 @@ let domainCmds = []; // stocké dans cfg.domainCmds
 
 function renderDomainesList() {
   const el = document.getElementById('domainesList');
+  const sumEl = document.getElementById('domainesGlobalSummary');
   if (!el) return;
+
+  // Marquer commandes orphelines (commande client supprimée)
+  const orderIds = new Set(orders.map(o => o.id));
+  (cfg.domainCmds || []).forEach(c => {
+    c.orphan = c.orderId && !orderIds.has(c.orderId);
+  });
+
   // Regrouper par domaine
   const domainesMap = {};
-  // Domaines depuis les vins
   wines.forEach(w => {
     if (w.exploitation && !domainesMap[w.exploitation]) {
       domainesMap[w.exploitation] = { vins: [], cmds: [] };
     }
     if (w.exploitation) domainesMap[w.exploitation].vins.push(w);
   });
-  // Domaines depuis les commandes
   (cfg.domainCmds || []).forEach(c => {
     if (!domainesMap[c.domaine]) domainesMap[c.domaine] = { vins: [], cmds: [] };
     domainesMap[c.domaine].cmds.push(c);
   });
   const domaines = Object.keys(domainesMap).sort();
+
+  // ── BANDEAU RÉSUMÉ GLOBAL ──
+  if (sumEl) {
+    const allCmds = cfg.domainCmds || [];
+    const grandTotal = allCmds.reduce((s,c) => s + parseFloat(c.total||0), 0);
+    const grandPaye  = allCmds.reduce((s,c) => s + parseFloat(c.paye||0), 0);
+    const grandBtl   = allCmds.reduce((s,c) => s + (parseInt(c.qty)||0), 0);
+    const grandReste = grandTotal - grandPaye;
+    const orphans    = allCmds.filter(c => c.orphan).length;
+
+    sumEl.innerHTML = '';
+    if (allCmds.length === 0) {
+      sumEl.innerHTML = '<div style="background:var(--cr);border-radius:var(--rs);padding:1rem 1.2rem;color:var(--txm);font-size:.85rem;font-style:italic">Aucun achat domaine pour l\'instant. Les commandes clients génèrent automatiquement les achats correspondants.</div>';
+    } else {
+      const card = document.createElement('div');
+      card.style.cssText = 'background:linear-gradient(135deg,var(--bxd),var(--bx));color:#fff;border-radius:var(--rs);padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem';
+      card.innerHTML = '<div>'
+        + '<div style="font-size:.74rem;color:var(--orl);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem">Résumé global</div>'
+        + '<div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:baseline">'
+          + '<div><span style="font-family:Georgia,serif;font-size:1.4rem;font-weight:600">' + grandBtl + '</span> <span style="font-size:.82rem;color:rgba(255,255,255,.7)">bouteilles</span></div>'
+          + '<div><span style="font-family:Georgia,serif;font-size:1.4rem;font-weight:600">' + grandTotal.toFixed(2).replace('.',',') + ' €</span> <span style="font-size:.82rem;color:rgba(255,255,255,.7)">à payer</span></div>'
+          + '<div><span style="font-family:Georgia,serif;font-size:1.4rem;font-weight:600;color:' + (grandReste > 0 ? '#FFB57A' : '#9DDEAA') + '">' + grandReste.toFixed(2).replace('.',',') + ' €</span> <span style="font-size:.82rem;color:rgba(255,255,255,.7)">restant</span></div>'
+        + '</div>'
+        + (orphans > 0 ? '<div style="margin-top:.5rem;background:rgba(255,180,100,.2);color:#FFD9A0;border:1px solid rgba(255,180,100,.4);border-radius:6px;padding:4px 10px;font-size:.78rem;display:inline-block">⚠ ' + orphans + ' achat(s) orphelin(s) — commande client supprimée</div>' : '')
+        + '</div>';
+      sumEl.appendChild(card);
+    }
+  }
+
+  // ── CARTES DOMAINES ──
   if (!domaines.length) {
-    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.88rem">Aucun domaine \u2014 ajoutez un nom d\u2019exploitation dans vos vins.</p>';
+    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.88rem">Aucun domaine — ajoutez un nom d\u2019exploitation dans vos vins.</p>';
     return;
   }
   el.innerHTML = '';
@@ -2663,6 +2705,7 @@ function renderDomainesList() {
     const totalPaye = data.cmds.reduce((s,c) => s + (parseFloat(c.paye)||0), 0);
     const reste = totalCmd - totalPaye;
     const nbBtl = data.cmds.reduce((s,c) => s + (parseInt(c.qty)||0), 0);
+    const nbOrphans = data.cmds.filter(c => c.orphan).length;
 
     const card = document.createElement('div');
     card.style.cssText = 'background:#fff;border-radius:var(--rs);padding:1rem 1.2rem;border:1px solid rgba(41,82,204,.12);cursor:pointer;transition:all .18s;margin-bottom:.4rem';
@@ -2672,7 +2715,8 @@ function renderDomainesList() {
 
     const nameDiv = document.createElement('div');
     nameDiv.style.cssText = 'font-family:Georgia,serif;font-size:1.1rem;font-weight:600;color:var(--bxd);margin-bottom:.4rem';
-    nameDiv.textContent = '\ud83c\udfe0 ' + d;
+    nameDiv.innerHTML = '\ud83c\udfe0 ' + d
+      + (nbOrphans > 0 ? ' <span style="font-size:.72rem;background:#fff3e0;color:#b56a00;border:1px solid #f0c070;padding:1px 7px;border-radius:20px;font-weight:500;margin-left:4px">⚠ ' + nbOrphans + ' orphelin' + (nbOrphans>1?'s':'') + '</span>' : '');
     card.appendChild(nameDiv);
 
     const infoDiv = document.createElement('div');
@@ -2697,6 +2741,7 @@ function renderDomainesList() {
     el.appendChild(card);
   });
 }
+
 
 
 function openDomaine(nom) {
@@ -2760,12 +2805,13 @@ function renderDomaineCmds() {
     const statColor = reste <= 0 && total > 0 ? '#1a6b2a' : paye > 0 ? '#b56a00' : '#c0392b';
     const statLabel = reste <= 0 && total > 0 ? '\u2713 Pay\u00e9' : paye > 0 ? 'Partiel' : 'Impay\u00e9';
     const sourceTag = c.auto ? '<span style="font-size:.7rem;background:rgba(41,82,204,.1);color:var(--bx);padding:2px 7px;border-radius:20px;margin-left:.5rem">Auto</span>' : '';
+    const orphanTag = c.orphan ? '<span style="font-size:.7rem;background:#fff3e0;color:#b56a00;border:1px solid #f0c070;padding:2px 7px;border-radius:20px;margin-left:.4rem">⚠ Commande supprimée</span>' : '';
     const clientInfo = c.orderClient ? '<span style="font-size:.76rem;color:var(--txm)">\ud83d\udc64 ' + c.orderClient + (c.orderNumero ? ' \u00b7 #' + c.orderNumero : '') + '</span>' : '';
 
     const div = document.createElement('div');
     div.style.cssText = 'background:var(--cr);border-radius:var(--rs);padding:.9rem 1.1rem;margin-bottom:.6rem;border:1px solid rgba(41,82,204,.08)';
     div.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem">'
-      + '<div><span style="font-weight:500;font-size:.92rem">' + (c.vinNom || '\u2014') + ' \u00d7 ' + c.qty + ' btl</span>' + sourceTag + '</div>'
+      + '<div><span style="font-weight:500;font-size:.92rem">' + (c.vinNom || '\u2014') + ' \u00d7 ' + c.qty + ' btl</span>' + sourceTag + orphanTag + '</div>'
       + '<span style="font-size:.75rem;padding:2px 9px;border-radius:20px;font-weight:500;background:' + statColor + '22;color:' + statColor + ';border:1px solid ' + statColor + '44">' + statLabel + '</span>'
       + '</div>'
       + (clientInfo ? '<div style="margin-bottom:.4rem">' + clientInfo + '</div>' : '')
@@ -2963,18 +3009,35 @@ function renderAdminAccountsList() {
     el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucun compte.</p>';
     return;
   }
+  // Liste des domaines disponibles
+  const domainesMap = {};
+  wines.forEach(w => { if (w.exploitation) domainesMap[w.exploitation] = true; });
+  const domaines = Object.keys(domainesMap).sort();
+
   allAdmins.forEach(a => {
     const isSelf = currentAdmin && a.username === currentAdmin.username;
     const row = document.createElement('div');
-    row.style.cssText = 'display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid rgba(41,82,204,.07)';
+    row.style.cssText = 'display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid rgba(41,82,204,.07);flex-wrap:wrap';
     const avatar = document.createElement('div');
     avatar.style.cssText = 'width:34px;height:34px;border-radius:50%;background:var(--bx);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.9rem;flex-shrink:0';
     avatar.textContent = a.username.charAt(0).toUpperCase();
     const info = document.createElement('div');
     info.style.flex = '1';
-    info.innerHTML = '<div style="font-weight:500;font-size:.9rem;color:var(--tx)">' + a.username + (isSelf ? ' <span style="font-size:.72rem;color:var(--bx);font-weight:400">(vous)</span>' : '') + '</div>';
+    info.style.minWidth = '140px';
+    info.innerHTML = '<div style="font-weight:500;font-size:.9rem;color:var(--tx)">' + a.username + (isSelf ? ' <span style="font-size:.72rem;color:var(--bx);font-weight:400">(vous)</span>' : '') + '</div>'
+      + (a.domaine ? '<div style="font-size:.74rem;color:var(--txm)">🏠 ' + a.domaine + '</div>' : '<div style="font-size:.74rem;color:var(--txm);font-style:italic">Aucun domaine</div>');
     row.appendChild(avatar);
     row.appendChild(info);
+
+    // Select domaine
+    const domSel = document.createElement('select');
+    domSel.className = 'ai aisel';
+    domSel.style.cssText = 'min-width:180px;font-size:.82rem;padding:5px 8px';
+    domSel.innerHTML = '<option value="">— Aucun domaine —</option>'
+      + domaines.map(d => '<option value="' + d + '" ' + (a.domaine === d ? 'selected' : '') + '>' + d + '</option>').join('');
+    domSel.addEventListener('change', () => assignAdminDomaine(a.id, a.username, domSel.value));
+    row.appendChild(domSel);
+
     if (!isSelf) {
       const btnEdit = document.createElement('button');
       btnEdit.className = 'abtn abtn-s';
@@ -2984,7 +3047,7 @@ function renderAdminAccountsList() {
       row.appendChild(btnEdit);
       const btn = document.createElement('button');
       btn.className = 'abtn abtn-d';
-      btn.style.cssText = 'padding:4px 10px;font-size:.76rem;margin-left:4px';
+      btn.style.cssText = 'padding:4px 10px;font-size:.76rem';
       btn.textContent = 'Supprimer';
       btn.addEventListener('click', () => deleteAdminAccount(a.id, a.username));
       row.appendChild(btn);
@@ -3049,7 +3112,6 @@ async function changeMyPassword() {
 
 function loadCompteTab() {
   if (!currentAdmin) return;
-  loadDomaineSelect();
   const avatar = document.getElementById('adminAvatar');
   const name   = document.getElementById('adminNameDisplay');
   const header = document.getElementById('adminHeaderName');
@@ -3535,7 +3597,78 @@ function renderDashboard() {
     }
   }
 
-  // Stats par admin
+  // Top vendeurs (basé sur "Avec qui avez-vous traité ?" = champ responsable)
+  const vendeurStats = {};
+  orders.forEach(o => {
+    const v = o.responsable || 'Non attribué';
+    if (!vendeurStats[v]) vendeurStats[v] = { cmds: 0, ca: 0, marge: 0, btl: 0 };
+    vendeurStats[v].cmds++;
+    vendeurStats[v].ca += parseFloat(o.total||0);
+    vendeurStats[v].btl += (o.items||[]).reduce((s,i) => s + (i.qty||0), 0);
+    (o.items||[]).forEach(i => {
+      const w = wines.find(x => x.id === i.id);
+      if (w && w.prixAchat) {
+        const ttc = parseFloat(w.prixAchat) * 1.2;
+        vendeurStats[v].marge += (parseFloat(i.prix||0) - ttc) * (i.qty||0);
+      }
+    });
+  });
+  const tvEl = document.getElementById('dashTopVendeurs');
+  if (tvEl) {
+    tvEl.innerHTML = '';
+    // Trier : Non attribué toujours en dernier
+    const sortedV = Object.entries(vendeurStats).sort((a,b) => {
+      if (a[0] === 'Non attribué') return 1;
+      if (b[0] === 'Non attribué') return -1;
+      return b[1].ca - a[1].ca;
+    });
+    if (!sortedV.length) {
+      tvEl.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucune commande.</p>';
+    } else {
+      const maxCA = Math.max(...sortedV.filter(([n]) => n !== 'Non attribué').map(([_,s]) => s.ca), 1);
+      sortedV.forEach(function(entry, idx) {
+        const name = entry[0], s = entry[1];
+        const isOrphan = name === 'Non attribué';
+        const rank = !isOrphan ? (idx + 1) : null;
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;align-items:center;gap:1rem;padding:.65rem 0;border-bottom:1px solid rgba(41,82,204,.06)' + (isOrphan ? ';opacity:.7' : '');
+        // Médaille / rang
+        const rankEl = document.createElement('div');
+        rankEl.style.cssText = 'width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:600;font-size:.9rem;font-family:Georgia,serif';
+        if (rank === 1) { rankEl.style.background = 'linear-gradient(135deg,#FFD700,#FFA500)'; rankEl.style.color = '#fff'; rankEl.textContent = '🥇'; }
+        else if (rank === 2) { rankEl.style.background = 'linear-gradient(135deg,#C0C0C0,#909090)'; rankEl.style.color = '#fff'; rankEl.textContent = '🥈'; }
+        else if (rank === 3) { rankEl.style.background = 'linear-gradient(135deg,#CD7F32,#8B5A2B)'; rankEl.style.color = '#fff'; rankEl.textContent = '🥉'; }
+        else if (rank) { rankEl.style.background = 'var(--cr)'; rankEl.style.color = 'var(--txm)'; rankEl.textContent = '#' + rank; }
+        else { rankEl.style.background = '#f0f0f0'; rankEl.style.color = '#999'; rankEl.textContent = '—'; }
+        row.appendChild(rankEl);
+        // Infos
+        const info = document.createElement('div');
+        info.style.flex = '1';
+        info.style.minWidth = '120px';
+        const margeColor = s.marge >= 0 ? '#1a6b2a' : '#c0392b';
+        info.innerHTML = '<div style="font-weight:600;font-size:.92rem;color:var(--bxd)">' + name + '</div>'
+          + '<div style="font-size:.74rem;color:var(--txm);margin-top:1px">' + s.cmds + ' commande' + (s.cmds>1?'s':'') + ' · ' + s.btl + ' btl · Marge <span style="color:' + margeColor + ';font-weight:500">' + s.marge.toFixed(2).replace('.',',') + ' €</span></div>';
+        // Barre + CA
+        if (!isOrphan) {
+          const barWrap = document.createElement('div');
+          barWrap.style.cssText = 'width:80px;height:6px;background:rgba(41,82,204,.1);border-radius:3px;flex-shrink:0';
+          const bar = document.createElement('div');
+          bar.style.cssText = 'height:6px;background:var(--bx);border-radius:3px;width:' + Math.round(s.ca/maxCA*100) + '%';
+          barWrap.appendChild(bar);
+          info.appendChild(barWrap);
+        }
+        row.appendChild(info);
+        const ca = document.createElement('div');
+        ca.style.cssText = 'text-align:right;flex-shrink:0';
+        ca.innerHTML = '<div style="font-family:Georgia,serif;font-size:1.05rem;font-weight:600;color:var(--bx)">' + s.ca.toFixed(2).replace('.',',') + ' €</div>'
+          + '<div style="font-size:.72rem;color:var(--txm)">CA</div>';
+        row.appendChild(ca);
+        tvEl.appendChild(row);
+      });
+    }
+  }
+
+  // Stats par admin (saisie)
   const adminStats = {};
   orders.forEach(o => {
     const a = o.enregistrePar || 'Site web';
@@ -3989,6 +4122,34 @@ async function applyPartialPayment(montant) {
     renderDomainesList();
     addLog('Paiement domaine', currentDomaine + ' — ' + montant.toFixed(2) + ' €');
     showToast('✓ ' + montant.toFixed(2).replace('.',',') + ' € payé');
+  } catch(e) { showError('Erreur : ' + e.message); }
+}
+
+
+async function assignAdminDomaine(adminId, username, domaine) {
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/admins?id=eq.${adminId}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ domaine: domaine || null })
+    });
+    if (!r.ok) throw new Error(await r.text());
+    // Mettre à jour localement
+    const a = allAdmins.find(x => x.id === adminId);
+    if (a) a.domaine = domaine || '';
+    // Si c'est l'admin courant, mettre à jour aussi
+    if (currentAdmin && currentAdmin.id === adminId) {
+      currentAdmin.domaine = domaine || '';
+      sessionStorage.setItem('bvo_admin', JSON.stringify(currentAdmin));
+    }
+    addLog('Domaine assigné', username + ' → ' + (domaine || 'aucun'));
+    renderAdminAccountsList();
+    showToast('Domaine ' + (domaine ? 'assigné' : 'retiré') + ' ✓');
   } catch(e) { showError('Erreur : ' + e.message); }
 }
 
