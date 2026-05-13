@@ -786,7 +786,10 @@ input:checked+.toggle-sl:before{transform:translateX(24px)}
       <div class="acard" id="domainesListCard">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem">
           <h3 style="margin:0;padding:0;border:none">Achats Domaines</h3>
-          <button class="abtn abtn-s" style="padding:7px 14px;font-size:.82rem" onclick="exportDomainesExcel()">↓ Export Excel</button>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="abtn abtn-s" style="padding:7px 14px;font-size:.82rem" onclick="regenerateAllDomainPurchases()" title="Crée les lignes d'achat pour toutes les commandes existantes">🔄 Synchroniser commandes</button>
+            <button class="abtn abtn-s" style="padding:7px 14px;font-size:.82rem" onclick="exportDomainesExcel()">↓ Export Excel</button>
+          </div>
         </div>
         <p style="font-size:.83rem;color:var(--txm);margin-bottom:1.2rem;line-height:1.6">
           Liste des domaines extraite automatiquement depuis vos vins. Cliquez sur un domaine pour gérer ses commandes.
@@ -1677,6 +1680,8 @@ async function submitOrder() {
     // 1. Enregistrer dans Supabase
     await sbUpsert('orders', order);
     orders.unshift(order);
+    // Auto-générer les achats domaines
+    await generateDomainPurchaseFromOrder(order);
     addLog('Commande enregistrée (client)', order.prenom + ' ' + order.nom + ' — ' + order.total.toFixed(2) + ' €');
 
     // 2. Mettre à jour les stocks
@@ -2632,46 +2637,67 @@ let domainCmds = []; // stocké dans cfg.domainCmds
 function renderDomainesList() {
   const el = document.getElementById('domainesList');
   if (!el) return;
+  // Regrouper par domaine
   const domainesMap = {};
+  // Domaines depuis les vins
   wines.forEach(w => {
-    if (!w.exploitation) return;
-    if (!domainesMap[w.exploitation]) domainesMap[w.exploitation] = [];
-    domainesMap[w.exploitation].push(w);
+    if (w.exploitation && !domainesMap[w.exploitation]) {
+      domainesMap[w.exploitation] = { vins: [], cmds: [] };
+    }
+    if (w.exploitation) domainesMap[w.exploitation].vins.push(w);
+  });
+  // Domaines depuis les commandes
+  (cfg.domainCmds || []).forEach(c => {
+    if (!domainesMap[c.domaine]) domainesMap[c.domaine] = { vins: [], cmds: [] };
+    domainesMap[c.domaine].cmds.push(c);
   });
   const domaines = Object.keys(domainesMap).sort();
   if (!domaines.length) {
-    el.innerHTML = "<p style='color:var(--txm);font-style:italic;font-size:.88rem'>Aucun domaine &mdash; ajoutez un nom d'exploitation dans vos vins.</p>";
+    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.88rem">Aucun domaine \u2014 ajoutez un nom d\u2019exploitation dans vos vins.</p>';
     return;
   }
   el.innerHTML = '';
   domaines.forEach(d => {
-    const cmds = (cfg.domainCmds || []).filter(c => c.domaine === d);
-    const totalCmd  = cmds.reduce((s,c) => s + (parseFloat(c.total)||0), 0);
-    const totalPaye = cmds.reduce((s,c) => s + (parseFloat(c.paye)||0), 0);
+    const data = domainesMap[d];
+    const totalCmd  = data.cmds.reduce((s,c) => s + (parseFloat(c.total)||0), 0);
+    const totalPaye = data.cmds.reduce((s,c) => s + (parseFloat(c.paye)||0), 0);
     const reste = totalCmd - totalPaye;
-    const vinsD = domainesMap[d];
+    const nbBtl = data.cmds.reduce((s,c) => s + (parseInt(c.qty)||0), 0);
+
     const card = document.createElement('div');
     card.style.cssText = 'background:#fff;border-radius:var(--rs);padding:1rem 1.2rem;border:1px solid rgba(41,82,204,.12);cursor:pointer;transition:all .18s;margin-bottom:.4rem';
     card.addEventListener('mouseover', function() { this.style.borderColor='rgba(41,82,204,.4)'; this.style.background='var(--cr)'; });
     card.addEventListener('mouseout',  function() { this.style.borderColor='rgba(41,82,204,.12)'; this.style.background='#fff'; });
     card.addEventListener('click', function() { openDomaine(d); });
+
     const nameDiv = document.createElement('div');
-    nameDiv.style.cssText = "font-family:Georgia,serif;font-size:1.05rem;font-weight:600;color:var(--bxd);margin-bottom:.4rem";
-    nameDiv.textContent = d;
+    nameDiv.style.cssText = 'font-family:Georgia,serif;font-size:1.1rem;font-weight:600;color:var(--bxd);margin-bottom:.4rem';
+    nameDiv.textContent = '\ud83c\udfe0 ' + d;
     card.appendChild(nameDiv);
+
     const infoDiv = document.createElement('div');
-    infoDiv.style.cssText = 'font-size:.78rem;color:var(--txm)';
-    infoDiv.textContent = vinsD.length + ' vin' + (vinsD.length>1?'s':'') + ' • ' + cmds.length + ' commande' + (cmds.length>1?'s':'');
+    infoDiv.style.cssText = 'font-size:.8rem;color:var(--txm);margin-bottom:.5rem';
+    infoDiv.textContent = data.vins.length + ' vin' + (data.vins.length>1?'s':'') + ' \u00b7 ' + data.cmds.length + ' commande' + (data.cmds.length>1?'s':'') + ' \u00b7 ' + nbBtl + ' btl';
     card.appendChild(infoDiv);
-    if (reste > 0) {
-      const resteDiv = document.createElement('div');
-      resteDiv.style.cssText = 'font-size:.78rem;color:#c0392b;margin-top:3px;font-weight:500';
-      resteDiv.textContent = 'Reste : ' + reste.toFixed(2).replace('.',',') + ' €';
-      card.appendChild(resteDiv);
+
+    if (totalCmd > 0) {
+      const totalDiv = document.createElement('div');
+      totalDiv.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;padding-top:.5rem;border-top:1px solid rgba(41,82,204,.08)';
+      const left = document.createElement('div');
+      left.innerHTML = '<div style="font-size:.72rem;color:var(--txm);letter-spacing:.06em;text-transform:uppercase">\u00c0 payer</div>'
+        + '<div style="font-family:Georgia,serif;font-size:1.2rem;font-weight:600;color:' + (reste > 0 ? '#c0392b' : '#1a6b2a') + '">' + reste.toFixed(2).replace('.',',') + ' \u20ac</div>';
+      const right = document.createElement('div');
+      right.style.textAlign = 'right';
+      right.innerHTML = '<div style="font-size:.72rem;color:var(--txm);letter-spacing:.06em;text-transform:uppercase">Pay\u00e9</div>'
+        + '<div style="font-size:.88rem;color:var(--txm);font-weight:500">' + totalPaye.toFixed(2).replace('.',',') + ' \u20ac / ' + totalCmd.toFixed(2).replace('.',',') + ' \u20ac</div>';
+      totalDiv.appendChild(left);
+      totalDiv.appendChild(right);
+      card.appendChild(totalDiv);
     }
     el.appendChild(card);
   });
 }
+
 
 function openDomaine(nom) {
   currentDomaine = nom;
@@ -2698,43 +2724,73 @@ function closeDomaine() {
 
 function renderDomaineCmds() {
   const el = document.getElementById('domaineCmds');
+  if (!el) return;
   const cmds = (cfg.domainCmds || []).filter(c => c.domaine === currentDomaine)
     .sort((a,b) => new Date(b.date) - new Date(a.date));
-  if (!cmds.length) { el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucune commande pour ce domaine.</p>'; return; }
-  el.innerHTML = cmds.map(c => {
+  if (!cmds.length) {
+    el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucune commande pour ce domaine.</p>';
+    return;
+  }
+
+  // Header avec total à payer
+  const totalCmd  = cmds.reduce((s,c) => s + (parseFloat(c.total)||0), 0);
+  const totalPaye = cmds.reduce((s,c) => s + (parseFloat(c.paye)||0), 0);
+  const reste = totalCmd - totalPaye;
+
+  el.innerHTML = '';
+
+  // Bandeau total
+  if (totalCmd > 0) {
+    const headerCard = document.createElement('div');
+    headerCard.style.cssText = 'background:linear-gradient(135deg,var(--bxd),var(--bx));color:#fff;border-radius:var(--rs);padding:1.1rem 1.4rem;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem';
+    headerCard.innerHTML = '<div>'
+      + '<div style="font-size:.74rem;color:var(--orl);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem">Total \u00e0 payer au domaine</div>'
+      + '<div style="font-family:Georgia,serif;font-size:1.8rem;font-weight:600">' + reste.toFixed(2).replace('.',',') + ' \u20ac</div>'
+      + '<div style="font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.2rem">Pay\u00e9 ' + totalPaye.toFixed(2).replace('.',',') + ' \u20ac sur ' + totalCmd.toFixed(2).replace('.',',') + ' \u20ac</div>'
+      + '</div>'
+      + (reste > 0 ? '<button class="abtn" style="background:#fff;color:var(--bxd);padding:8px 18px;font-size:.85rem;border:none;font-weight:500" onclick="openPayAllModal()">\ud83d\udcb0 Payer une partie</button>' : '');
+    el.appendChild(headerCard);
+  }
+
+  // Liste détaillée
+  cmds.forEach(c => {
     const total = parseFloat(c.total||0);
     const paye  = parseFloat(c.paye||0);
     const reste = total - paye;
-    const pctPaye = total > 0 ? Math.round(paye/total*100) : 0;
-    const statColor = reste <= 0 ? '#1a6b2a' : paye > 0 ? '#b56a00' : '#c0392b';
-    const statLabel = reste <= 0 ? '✓ Payé' : paye > 0 ? `Partiel (${paye.toFixed(2).replace('.',',')} € / ${total.toFixed(2).replace('.',',')} €)` : 'Impayé';
-    return `<div style="background:var(--cr);border-radius:var(--rs);padding:.9rem 1.1rem;margin-bottom:.6rem;border:1px solid rgba(41,82,204,.08)">
-      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem">
-        <span style="font-weight:500;font-size:.9rem">${c.vinNom || '—'} × ${c.qty} btl</span>
-        <span style="font-size:.75rem;padding:2px 9px;border-radius:20px;font-weight:500;background:${statColor}22;color:${statColor};border:1px solid ${statColor}44">${statLabel}</span>
-      </div>
-      <div style="font-size:.78rem;color:var(--txm);display:flex;flex-wrap:wrap;gap:.8rem">
-        <span>📅 ${new Date(c.date).toLocaleDateString('fr-FR')}</span>
-        <span>📍 ${c.lieu||'—'}</span>
-        ${c.total ? `<span>💰 Total : ${total.toFixed(2).replace('.',',')} €</span>` : ''}
-        ${reste > 0 ? `<span style="color:#c0392b;font-weight:500">Reste : ${reste.toFixed(2).replace('.',',')} €</span>` : ''}
-        ${c.notes ? `<span>📝 ${c.notes}</span>` : ''}
-      </div>
-      <div style="display:flex;gap:.5rem;margin-top:.7rem;align-items:center">
-        <input type="number" placeholder="Montant payé €" value="${c.paye||0}" step="0.01" min="0"
-          style="width:130px;border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:5px 8px;font-size:.82rem;font-family:'DM Sans',sans-serif"
-          id="payeInput_${c.id}">
-        <select id="lieuInput_${c.id}" style="border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:5px 8px;font-size:.82rem;font-family:'DM Sans',sans-serif">
-          <option ${c.lieu==='Au Domaine'?'selected':''}>Au Domaine</option>
-          <option ${c.lieu==='Chez Agathe'?'selected':''}>Chez Agathe</option>
-          <option ${c.lieu==='Chez le livreur'?'selected':''}>Chez le livreur</option>
-        </select>
-        <button class="abtn" style="padding:5px 12px;font-size:.78rem" onclick="updateDomainCmd('${c.id}')">Mettre à jour</button>
-        <button class="abtn abtn-d" style="padding:5px 10px;font-size:.78rem" onclick="deleteDomainCmd('${c.id}')">Suppr.</button>
-      </div>
-    </div>`;
-  }).join('');
+    const statColor = reste <= 0 && total > 0 ? '#1a6b2a' : paye > 0 ? '#b56a00' : '#c0392b';
+    const statLabel = reste <= 0 && total > 0 ? '\u2713 Pay\u00e9' : paye > 0 ? 'Partiel' : 'Impay\u00e9';
+    const sourceTag = c.auto ? '<span style="font-size:.7rem;background:rgba(41,82,204,.1);color:var(--bx);padding:2px 7px;border-radius:20px;margin-left:.5rem">Auto</span>' : '';
+    const clientInfo = c.orderClient ? '<span style="font-size:.76rem;color:var(--txm)">\ud83d\udc64 ' + c.orderClient + (c.orderNumero ? ' \u00b7 #' + c.orderNumero : '') + '</span>' : '';
+
+    const div = document.createElement('div');
+    div.style.cssText = 'background:var(--cr);border-radius:var(--rs);padding:.9rem 1.1rem;margin-bottom:.6rem;border:1px solid rgba(41,82,204,.08)';
+    div.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem">'
+      + '<div><span style="font-weight:500;font-size:.92rem">' + (c.vinNom || '\u2014') + ' \u00d7 ' + c.qty + ' btl</span>' + sourceTag + '</div>'
+      + '<span style="font-size:.75rem;padding:2px 9px;border-radius:20px;font-weight:500;background:' + statColor + '22;color:' + statColor + ';border:1px solid ' + statColor + '44">' + statLabel + '</span>'
+      + '</div>'
+      + (clientInfo ? '<div style="margin-bottom:.4rem">' + clientInfo + '</div>' : '')
+      + '<div style="font-size:.78rem;color:var(--txm);display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:.5rem">'
+      + '<span>\ud83d\udcc5 ' + new Date(c.date).toLocaleDateString('fr-FR') + '</span>'
+      + '<span>\ud83d\udccd ' + (c.lieu||'\u2014') + '</span>'
+      + (total > 0 ? '<span>\ud83d\udcb0 ' + total.toFixed(2).replace('.',',') + ' \u20ac</span>' : '')
+      + (reste > 0 ? '<span style="color:#c0392b;font-weight:500">Reste : ' + reste.toFixed(2).replace('.',',') + ' \u20ac</span>' : '')
+      + '</div>'
+      + '<div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">'
+      + '<input type="number" placeholder="Pay\u00e9 \u20ac" value="' + (c.paye||0) + '" step="0.01" min="0" '
+      + 'style="width:110px;border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:5px 8px;font-size:.82rem;font-family:DM Sans,sans-serif" '
+      + 'id="payeInput_' + c.id + '">'
+      + '<select id="lieuInput_' + c.id + '" style="border:1px solid rgba(41,82,204,.2);border-radius:var(--rs);padding:5px 8px;font-size:.82rem;font-family:DM Sans,sans-serif">'
+      + '<option ' + (c.lieu==='Au Domaine'?'selected':'') + '>Au Domaine</option>'
+      + '<option ' + (c.lieu==='Chez Agathe'?'selected':'') + '>Chez Agathe</option>'
+      + '<option ' + (c.lieu==='Chez le livreur'?'selected':'') + '>Chez le livreur</option>'
+      + '</select>'
+      + '<button class="abtn" style="padding:5px 12px;font-size:.78rem" onclick="updateDomainCmd(\'' + c.id + '\')">Mettre \u00e0 jour</button>'
+      + '<button class="abtn abtn-d" style="padding:5px 10px;font-size:.78rem" onclick="deleteDomainCmd(\'' + c.id + '\')">Suppr.</button>'
+      + '</div>';
+    el.appendChild(div);
+  });
 }
+
 
 async function saveDomainCmd() {
   const winId = document.getElementById('dcWin').value;
@@ -3114,6 +3170,7 @@ async function saveManualOrder() {
   try {
     await sbUpsert('orders', order);
     orders.unshift(order);
+    await generateDomainPurchaseFromOrder(order);
     addLog('Commande manuelle', pre + ' ' + nom + ' — ' + total.toFixed(2) + ' €');
     closeManualOrder();
     renderOrderList();
@@ -3838,6 +3895,101 @@ function openOrderDetailFromBoulot(id) {
   const btn = document.querySelector('.atab[onclick*="commandes"]');
   if (btn) swTab('commandes', btn);
   setTimeout(() => openOrderDetail(id), 100);
+}
+
+
+// ═══ AUTO-GÉNÉRATION ACHATS DOMAINES ═══════
+// Pour chaque vin commandé qui a un domaine, créer une ligne d'achat
+async function generateDomainPurchaseFromOrder(order, saveConfig = true) {
+  if (!cfg.domainCmds) cfg.domainCmds = [];
+  let added = 0;
+  (order.items || []).forEach(item => {
+    const w = wines.find(x => x.id === item.id);
+    if (!w || !w.exploitation || !w.prixAchat) return;
+    // Vérifier si cet achat existe déjà (lié à cette commande + ce vin)
+    const exists = cfg.domainCmds.find(c =>
+      c.orderId === order.id && c.vinId === item.id
+    );
+    if (exists) return;
+    const ttc = parseFloat(w.prixAchat) * 1.2;
+    cfg.domainCmds.push({
+      id: 'dc_' + Date.now() + '_' + Math.random().toString(36).slice(2,6),
+      orderId: order.id,
+      orderNumero: order.numero || '',
+      orderClient: (order.prenom||'') + ' ' + (order.nom||''),
+      domaine: w.exploitation,
+      vinId: item.id,
+      vinNom: [w.appellation, w.nom, w.millesime ? '(' + w.millesime + ')' : ''].filter(Boolean).join(' '),
+      qty: item.qty,
+      total: (ttc * item.qty).toFixed(2),
+      paye: 0,
+      lieu: 'Au Domaine',
+      notes: 'Auto — Commande client ' + (order.numero ? '#' + order.numero : ''),
+      auto: true,
+      date: order.date || new Date().toISOString()
+    });
+    added++;
+  });
+  if (added > 0 && saveConfig) {
+    try { await sbSetConfig(cfg); } catch(e) { console.warn('Auto-save domain failed:', e); }
+  }
+  return added;
+}
+
+// Régénérer les achats pour toutes les commandes existantes (migration)
+async function regenerateAllDomainPurchases() {
+  if (!cfg.domainCmds) cfg.domainCmds = [];
+  let added = 0;
+  for (const o of orders) {
+    added += await generateDomainPurchaseFromOrder(o, false);
+  }
+  if (added > 0) {
+    try { await sbSetConfig(cfg); showToast('✓ ' + added + ' achat(s) domaine généré(s)'); }
+    catch(e) { showError('Erreur sauvegarde : ' + e.message); }
+  } else {
+    showToast('Aucun nouvel achat à générer');
+  }
+  renderDomainesList();
+  if (currentDomaine) renderDomaineCmds();
+}
+
+
+// ═══ PAYER UNE PARTIE GLOBALE ═══════════════
+function openPayAllModal() {
+  const cmds = (cfg.domainCmds||[]).filter(c => c.domaine === currentDomaine);
+  const reste = cmds.reduce((s,c) => s + parseFloat(c.total||0) - parseFloat(c.paye||0), 0);
+  const montant = prompt('Montant à payer au domaine ' + currentDomaine + ' (reste total : ' + reste.toFixed(2).replace('.',',') + ' €) :');
+  if (!montant) return;
+  const m = parseFloat(montant);
+  if (isNaN(m) || m <= 0) { showError('Montant invalide'); return; }
+  if (m > reste + 0.01) {
+    askConfirm('Le montant dépasse le reste à payer. Continuer ?', () => applyPartialPayment(m));
+  } else {
+    applyPartialPayment(m);
+  }
+}
+
+async function applyPartialPayment(montant) {
+  // Répartir sur les commandes non soldées, de la plus ancienne à la plus récente
+  const cmds = (cfg.domainCmds||[]).filter(c => c.domaine === currentDomaine && parseFloat(c.paye||0) < parseFloat(c.total||0))
+    .sort((a,b) => new Date(a.date) - new Date(b.date));
+  let remaining = montant;
+  for (const c of cmds) {
+    if (remaining <= 0) break;
+    const total = parseFloat(c.total||0);
+    const paye  = parseFloat(c.paye||0);
+    const aPayer = total - paye;
+    const verse  = Math.min(remaining, aPayer);
+    c.paye = (paye + verse).toFixed(2);
+    remaining -= verse;
+  }
+  try {
+    await sbSetConfig(cfg);
+    renderDomaineCmds();
+    renderDomainesList();
+    addLog('Paiement domaine', currentDomaine + ' — ' + montant.toFixed(2) + ' €');
+    showToast('✓ ' + montant.toFixed(2).replace('.',',') + ' € payé');
+  } catch(e) { showError('Erreur : ' + e.message); }
 }
 
 // ═══════════════════════════════════════════════════════
