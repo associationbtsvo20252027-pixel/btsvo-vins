@@ -3009,9 +3009,10 @@ function renderAdminAccountsList() {
     el.innerHTML = '<p style="color:var(--txm);font-style:italic;font-size:.85rem">Aucun compte.</p>';
     return;
   }
-  // Liste des domaines disponibles
+  // Liste des domaines disponibles (vins + admins déjà assignés)
   const domainesMap = {};
   wines.forEach(w => { if (w.exploitation) domainesMap[w.exploitation] = true; });
+  allAdmins.forEach(a => { if (a.domaine) domainesMap[a.domaine] = true; });
   const domaines = Object.keys(domainesMap).sort();
 
   allAdmins.forEach(a => {
